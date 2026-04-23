@@ -1,65 +1,85 @@
-import Image from "next/image";
+import { Suspense } from "react";
+import Hero from "@/components/sections/Hero";
+import ProductGrid from "@/components/sections/ProductGrid";
+import { LinkButton } from "@/components/ui/Button";
+import { getProducts, MOCK_PRODUCTS } from "@/lib/shopify";
+import type { NormalizedProduct } from "@/lib/types";
 
-export default function Home() {
+async function getFeaturedProducts(): Promise<NormalizedProduct[]> {
+  try {
+    const products = await getProducts(3);
+    return products.length > 0 ? products : MOCK_PRODUCTS.slice(0, 3);
+  } catch {
+    // Shopify not configured yet — use mock data
+    return MOCK_PRODUCTS.slice(0, 3);
+  }
+}
+
+export default async function HomePage() {
+  const featured = await getFeaturedProducts();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      {/* Hero */}
+      <Hero
+        eyebrow="Small-Batch Specialty Coffee"
+        headline="Coffee worth boasting about."
+        subhead="Sourced from the world's best growing regions. Roasted & brewed with intention, and delivered to where you are."
+        primaryCta={{ label: "Shop Coffee", href: "/shop" }}
+        dark
+      />
+
+      {/* Featured Products */}
+      <section className="py-20 bg-[var(--color-brand-cream)]">
+        <div className="container-md">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-muted)] mb-2">
+                Bestsellers
+              </p>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)]">
+                Shop
+              </h2>
+            </div>
+            <LinkButton href="/shop" variant="ghost" size="sm">
+              View all products →
+            </LinkButton>
+          </div>
+          <Suspense
+            fallback={
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {[1, 2, 3].map((i) => (
+                  <div
+                    key={i}
+                    className="aspect-square bg-[var(--color-brand-surface)] rounded animate-pulse"
+                  />
+                ))}
+              </div>
+            }
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <ProductGrid products={featured} columns={3} />
+          </Suspense>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Brand Story Teaser */}
+      <section className="py-20 bg-[var(--color-brand-surface)]">
+        <div className="container-md">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)] mb-6">
+              Coffee is our craft.
+            </h2>
+            <p className="text-lg text-[var(--color-brand-muted)] leading-relaxed mb-8">
+              Boast started with a simple idea: coffee done well should be something worth telling people
+              about. Every bean we roast and serve is our answer to that.
+            </p>
+            <LinkButton href="/about" variant="secondary">
+              Our Story
+            </LinkButton>
+          </div>
+        </div>
+      </section>
+
+    </>
   );
 }

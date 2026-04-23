@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Boast Coffee Co.
+
+Modern website rebuild for [boastcoffee.com](https://www.boastcoffee.com). Built with Next.js 16, Tailwind CSS v4, and Shopify Storefront API.
+
+## Stack
+
+- **Framework**: Next.js 16 (App Router, TypeScript)
+- **Styles**: Tailwind CSS v4
+- **E-commerce**: Shopify Storefront API (GraphQL)
+- **Contact form**: Resend
+- **Deployment**: Vercel
 
 ## Getting Started
 
-First, run the development server:
+1. Clone the repo
+2. Copy `.env.example` to `.env` and fill in values
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Run the dev server:
+   ```bash
+   npm run dev
+   ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Open [http://localhost:3000](http://localhost:3000).
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Variable | Description |
+|----------|-------------|
+| `SHOPIFY_STORE_DOMAIN` | Your Shopify store domain (e.g. `store.myshopify.com`) |
+| `SHOPIFY_STOREFRONT_ACCESS_TOKEN` | Storefront API access token from Shopify Admin |
+| `RESEND_API_KEY` | API key from [resend.com](https://resend.com) |
+| `CONTACT_EMAIL` | Email address to receive contact form submissions |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Pages
 
-## Learn More
+| Route | Description |
+|-------|-------------|
+| `/` | Home — hero, featured products, brand story |
+| `/shop` | Product grid with cart + Shopify checkout |
+| `/nitro` | Nitro cold brew feature page |
+| `/about` | Brand story and values |
+| `/contact` | Contact form and business info |
 
-To learn more about Next.js, take a look at the following resources:
+## Shopify Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Create a Shopify store at [shopify.com](https://shopify.com)
+2. Go to **Settings > Apps and sales channels > Develop apps**
+3. Create a custom app, grant Storefront API access (products, cart)
+4. Copy the Storefront API access token to your `.env`
