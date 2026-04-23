@@ -45,6 +45,7 @@ export default function Footer() {
             </p>
             <ul className="space-y-2">
               {[
+                { href: "/visit", label: "Find Us" },
                 { href: "/contact", label: "Contact Us" },
               ].map(({ href, label }) => (
                 <li key={href}>
@@ -56,6 +57,21 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <a
+                  href="https://www.instagram.com/boastcoffee/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Boast Coffee on Instagram"
+                  className="inline-flex items-center gap-2 text-sm text-[var(--color-brand-surface)] hover:text-[var(--color-brand-accent)] transition-colors"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                    <circle cx="12" cy="12" r="4" />
+                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+                  </svg>
+                </a>
+              </li>
             </ul>
           </div>
         </div>

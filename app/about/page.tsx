@@ -9,19 +9,19 @@ export const metadata: Metadata = {
 
 const values = [
   {
-    title: "The Name Means Something",
+    title: "Speak with Quality",
     description:
-      '"Boast" isn\'t ego. It\'s a promise. Every cup is designed to let the coffee\'s natural character speak for itself — nothing masked, nothing compromised.',
+      '"Boast" isn\'t ego. It\'s a promise. Every cup is designed to let the coffee\'s natural character speak for itself. Nothing is masked or compromised.',
   },
   {
-    title: "Rooted in the Bay",
+    title: "Customers First",
     description:
-      "We roast and brew in San Jose, CA and have since 2017. The Bay Area is our home. Serving it well is the whole point.",
+      "We wouldn't be where we are without our customers. To serve worthy coffee is our ultimate form of hospitality.",
   },
   {
     title: "Coffee That Comes to You",
     description:
-      "Nitro kegs for your office, an espresso bar for your event, and espresso concentrate for your cafe. We built Boast to go where coffee is needed most.",
+      "Nitro kegs for your office, an espresso bar for your event, and espresso concentrate for your café. We built Boast to go where coffee is needed most.",
   },
 ];
 
@@ -63,7 +63,7 @@ export default function AboutPage() {
                 San Jose, and started doing nitro cold brew on tap in kegs for offices, venues, and events. Eventually, we expanded to catering using a solar-powered espresso van that brings
                 a full craft coffee bar directly to events.
               </p>
-              <p className="text-[var(--color-brand-dark)] font-medium">
+              <p className="space-y-5 text-[var(--color-brand-muted)] leading-relaxed text-lg font-bold">
                 That&apos;s still what Boast is: great coffee worth telling people about, wherever you need it.
               </p>
             </div>
