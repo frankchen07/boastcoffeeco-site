@@ -24,7 +24,7 @@ export default function VisitPage() {
               Come grab a cup! ☕️
             </h1>
             <p className="text-lg md:text-xl text-[var(--color-brand-surface)] leading-relaxed max-w-lg">
-              We&apos;re parked next to Midwife &amp; the Baker 🥐 in Mountain View.
+              We&apos;re parked next to Midwife &amp; the Baker 🥐 in Mountain View. 
             </p>
           </div>
         </div>
