@@ -77,6 +77,7 @@ export default function AboutPage() {
                 fill
                 className="object-cover object-center opacity-65"
                 sizes="(max-width: 1024px) 100vw, 50vw"
+                loading="eager"
               />
             </div>
           </div>
