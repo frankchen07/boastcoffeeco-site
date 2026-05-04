@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import Image from "next/image";
 import ProductGrid from "@/components/sections/ProductGrid";
 import { LinkButton } from "@/components/ui/Button";
 import { getProducts, MOCK_PRODUCTS } from "@/lib/shopify";
@@ -60,8 +61,17 @@ export default async function ShopPage() {
       </div>
 
       {/* B2B CTA */}
-      <section className="py-20 bg-[var(--color-brand-surface)] border-t border-[var(--color-brand-border)]">
-        <div className="container-md text-center">
+      <section className="relative py-20 border-t border-[var(--color-brand-border)] overflow-hidden">
+        <Image
+          src="/boast-coffee-buckets-1.jpg"
+          alt=""
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-[var(--color-brand-surface)]/88" />
+        <div className="relative container-md text-center">
           <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)] mb-4">
             Need more than a bag?
           </h2>

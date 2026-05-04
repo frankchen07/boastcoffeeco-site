@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { LinkButton } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
@@ -66,13 +67,13 @@ export default function NitroPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="min-h-[75dvh] bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] flex items-center">
-        <div className="container-md py-24">
-          <div className="max-w-2xl">
+      <section className="min-h-[75dvh] bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] flex flex-col lg:flex-row overflow-hidden">
+        <div className="flex-1 flex items-center px-6 md:px-10 lg:pl-[max(2.5rem,calc((100vw-1200px)/2+2.5rem))] lg:pr-16 py-24">
+          <div className="max-w-xl">
             <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.05] mb-6">
               Boasted on Tap
             </h1>
-            <p className="text-lg md:text-xl text-[var(--color-brand-surface)] leading-relaxed mb-10 max-w-lg">
+            <p className="text-lg md:text-xl text-[var(--color-brand-surface)] leading-relaxed mb-10">
               We deliver our tap-ready nitro cold brew kegs to offices, cafés, and events across the Bay Area.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -81,6 +82,16 @@ export default function NitroPage() {
               </LinkButton>
             </div>
           </div>
+        </div>
+        <div className="relative h-72 lg:h-auto lg:w-[44%] shrink-0">
+          <Image
+            src="/boast-coffee-kegs.jpg"
+            alt="Boast nitro cold brew kegs"
+            fill
+            className="object-cover object-center opacity-75"
+            sizes="(max-width: 1024px) 100vw, 44vw"
+            priority
+          />
         </div>
       </section>
 
