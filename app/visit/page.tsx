@@ -34,7 +34,7 @@ export default function VisitPage() {
             src="/boast-coffee-mv.jpg"
             alt="Boast Coffee latte in Mountain View"
             fill
-            className="object-cover object-center opacity-75"
+            className="object-cover object-bottom opacity-75"
             sizes="(max-width: 1024px) 100vw, 44vw"
             priority
           />
