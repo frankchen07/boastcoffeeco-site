@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { LinkButton } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
@@ -85,21 +86,25 @@ export default function CateringPage() {
       </section>
 
       {/* The Van */}
-      <section className="py-20 bg-[var(--color-brand-surface)]">
-        <div className="container-md">
+      <section className="relative py-28 overflow-hidden">
+        <Image
+          src="/boast-coffee-truck.jpg"
+          alt="Boast Coffee solar-powered van"
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 to-black/30" />
+        <div className="container-md relative z-10">
           <div className="max-w-2xl">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)] mb-6">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-cream)] mb-6">
               Solar-powered sustainability.
             </h2>
-            <p className="text-lg text-[var(--color-brand-muted)] leading-relaxed">
+            <p className="text-lg text-[var(--color-brand-surface)] leading-relaxed">
               Our espresso van runs on solar, which means we can set up anywhere without the noise,
               exhaust, or logistics of a generator. Park it in a parking lot, a field, or a rooftop
               terrace. Clean power. Clean coffee. It travels wherever the event takes us.
             </p>
-          </div>
-          {/* Van image placeholder */}
-          <div className="mt-10 h-72 rounded-xl bg-[var(--color-brand-border)] flex items-center justify-center">
-            <p className="text-sm text-[var(--color-brand-muted)]">Van photo coming soon</p>
           </div>
         </div>
       </section>

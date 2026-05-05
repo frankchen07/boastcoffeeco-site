@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Visit",
@@ -17,39 +18,44 @@ export default function VisitPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="min-h-[55dvh] bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] flex items-center">
-        <div className="container-md py-24">
-          <div className="max-w-2xl">
+      <section className="min-h-[55dvh] bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] flex flex-col lg:flex-row overflow-hidden">
+        <div className="flex-1 flex items-center px-6 md:px-10 lg:pl-[max(2.5rem,calc((100vw-1200px)/2+2.5rem))] lg:pr-16 py-24">
+          <div className="max-w-xl">
             <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.05] mb-6">
               Come grab a cup! ☕️
             </h1>
             <p className="text-lg md:text-xl text-[var(--color-brand-surface)] leading-relaxed max-w-lg">
-              We&apos;re parked next to the Midwife &amp; the Baker 🥐 in Mountain View. 
+              We&apos;re parked next to the Midwife &amp; the Baker 🥐 in Mountain View.
             </p>
           </div>
+        </div>
+        <div className="relative h-72 lg:h-auto lg:w-[44%] shrink-0">
+          <Image
+            src="/boast-coffee-mv.jpg"
+            alt="Boast Coffee latte in Mountain View"
+            fill
+            className="object-cover object-center opacity-75"
+            sizes="(max-width: 1024px) 100vw, 44vw"
+            priority
+          />
         </div>
       </section>
 
       {/* Hours */}
       <section className="py-20 bg-[var(--color-brand-cream)]">
         <div className="container-md">
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)] mb-10">
-                Hours
-              </h2>
-              <dl className="divide-y divide-[var(--color-brand-border)]">
-                {hours.map(({ day, time }) => (
-                  <div key={day} className="flex justify-between py-4">
-                    <dt className="font-medium text-[var(--color-brand-dark)]">{day}</dt>
-                    <dd className="text-[var(--color-brand-muted)]">{time}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
-            <div className="h-72 md:h-full min-h-64 rounded-xl bg-[var(--color-brand-border)] flex items-center justify-center">
-              <p className="text-sm text-[var(--color-brand-muted)]">Truck photo coming soon</p>
-            </div>
+          <div className="max-w-sm mx-auto">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)] mb-10 text-center">
+              Hours
+            </h2>
+            <dl className="divide-y divide-[var(--color-brand-border)]">
+              {hours.map(({ day, time }) => (
+                <div key={day} className="flex justify-between py-4">
+                  <dt className="font-medium text-[var(--color-brand-dark)]">{day}</dt>
+                  <dd className="text-[var(--color-brand-muted)]">{time}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
         </div>
       </section>
