@@ -7,8 +7,9 @@ import CartIcon from "@/components/ui/CartIcon";
 
 const NAV_LINKS = [
   { href: "/about", label: "About" },
-  { href: "/nitro", label: "Nitro" },
   { href: "/catering", label: "Catering" },
+  { href: "/nitro", label: "Nitro" },
+  { href: "/spro", label: "Espresso" },
   { href: "/visit", label: "Visit" },
   { href: "/shop", label: "Shop" },
 ];

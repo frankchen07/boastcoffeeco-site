@@ -76,7 +76,7 @@ export default async function ShopPage() {
             Need more than a bag?
           </h2>
           <p className="text-[var(--color-brand-muted)] mb-8 max-w-md mx-auto">
-            We offer wholesale espresso concentrate designed for high-volume iced espresso service, nitro keg service, and full coffee catering
+            We also offer wholesale espresso concentrate designed for high-volume iced espresso service, nitro keg service, and full coffee catering
             for events. Get in touch and we&apos;ll figure out what works.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
