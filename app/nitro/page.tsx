@@ -15,7 +15,7 @@ const kegFeatures = [
       "We service offices, cafés, pop-ups, and venues across the Bay. If you want nitro on tap, we can make it happen.",
   },
   {
-    title: "Freshness Lock",
+    title: "Consistent Quality",
     description:
       "We always seal our kegs with nitrogen and store at 38F, preserving flavor and extending shelf life far beyond a standard cold brew setup. What you pour on day one tastes like day one.",
   },
@@ -74,7 +74,7 @@ export default function NitroPage() {
               Boasted on Tap
             </h1>
             <p className="text-lg md:text-xl text-[var(--color-brand-surface)] leading-relaxed mb-10">
-              We deliver our tap-ready nitro cold brew kegs to offices, cafés, and events across the Bay Area.
+              Bay Area offices and events trust us for tap-ready nitro. We brew, deliver, and service the keg. You just pull the tap.
             </p>
             <div className="flex flex-wrap gap-4">
               <LinkButton href="/contact" size="lg">
@@ -103,7 +103,6 @@ export default function NitroPage() {
               Most places can&apos;t find a reliable partner for tap-ready nitro cold brew.
             </h2>
             <p className="text-lg text-[var(--color-brand-muted)] leading-relaxed">
-              We're a local operator that brews, delivers, and services the keg. That&apos;s rare.
               We&apos;ve built exactly that service. This is nitro cold brew as a first-class experience.
             </p>
           </div>

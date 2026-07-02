@@ -48,8 +48,7 @@ export default function CateringPage() {
               coffee bar to you.
             </h1>
             <p className="text-lg md:text-xl text-[var(--color-brand-surface)] leading-relaxed mb-10 max-w-xl">
-              We are a full-service specialty coffee
-              experience for events, parties, and pop-ups.
+              We pull up with an espresso van, nitro on tap, and craft cold brew — and your guests remember it.
             </p>
             <LinkButton href="/contact" size="lg">
               Book Your Event
@@ -80,6 +79,17 @@ export default function CateringPage() {
                   {description}
                 </p>
               </div>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-3 mt-14">
+            {eventTypes.map((type) => (
+              <span
+                key={type}
+                className="px-4 py-2 text-sm font-medium border border-[var(--color-brand-border)] rounded-full text-[var(--color-brand-muted)]"
+              >
+                {type}
+              </span>
             ))}
           </div>
         </div>
@@ -114,7 +124,7 @@ export default function CateringPage() {
         <div className="container-md">
           <div className="max-w-2xl">
             <h2 className="text-3xl font-display font-bold text-[var(--color-brand-dark)] mb-4">
-              See what others have to say!
+              Offices in the Bay Area keep calling us back!
             </h2>
             <p className="text-lg text-[var(--color-brand-muted)] leading-relaxed mb-8">
               We've consistently delivered at corporate events, private parties, mobile catering at special events, and pop-ups.

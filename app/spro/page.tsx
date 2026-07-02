@@ -20,7 +20,7 @@ const whyFeatures = [
       "Cold-extracting to espresso concentration makes it so every drink tastes the same. No dialing in. No variation between baristas, beans, or temperature changes.",
   },
   {
-    title: "Stays Fresh",
+    title: "Drinks all week.",
     description:
       "Sealed and refrigerated, our concentrate holds its quality far longer than brewed espresso. Open it Monday, finish it Friday.",
   },
@@ -98,10 +98,10 @@ export default function SproPage() {
         <div className="container-md">
           <div className="max-w-2xl mb-14">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)] mb-4">
-              Most espresso is locked behind a machine that costs thousands and constant fiddling to figure out.
+              Iced espresso drinks are your slowest ticket. Every shot that waits on the machine is a customer waiting on the line.
             </h2>
             <p className="text-lg text-[var(--color-brand-muted)] leading-relaxed">
-              We did the extraction for you. What&apos;s in the bag is ready to go — just the spro, nothing else.
+              We did the extraction for you. What&apos;s in the bag is ready to go — just the spro, nothing else. Use it on the line, or even at home.
             </p>
           </div>
 
