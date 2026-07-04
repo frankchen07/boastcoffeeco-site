@@ -1,0 +1,1142 @@
+================================================================================
+WIX SITE BRIEF — BOAST COFFEE CO.
+Strict design, copy, and layout reference for recreation in Wix Editor
+================================================================================
+
+Use this document section by section. Every color, font size, spacing,
+and copy string is exact — replicate as closely as Wix allows.
+
+
+================================================================================
+SECTION 1 — WIX AI GENERATOR PROMPT
+================================================================================
+
+Paste this verbatim into Wix's AI site builder to generate the starting point:
+
+  "Create a specialty coffee brand website for Boast Coffee Co., a Bay Area
+  small-batch roaster that also offers nitro cold brew keg service, espresso
+  catering via a solar-powered van, and bottled espresso concentrate. The tone
+  is warm, confident, and direct — not corporate. Color palette: dark navy
+  (#252444), warm cream (#F7F3EE), amber/gold accents (#C9A86E), warm beige
+  surfaces (#EDE7DF), and muted brown body text (#8A7665). Fonts: Playfair
+  Display for headings, Inter for body. Pages: Home, About, Catering,
+  Nitro Cold Brew, Espresso Concentrate, Visit, Shop, Contact."
+
+After generation, use the rest of this document to correct every page manually.
+
+
+================================================================================
+SECTION 2 — BRAND DESIGN SYSTEM
+================================================================================
+
+COLORS
+------
+Use these exact hex codes everywhere. No substitutions.
+
+  Background (page default):  #F7F3EE  — warm cream
+  Alternate section bg:       #EDE7DF  — warm beige/surface
+  Dark sections & footer:     #252444  — deep navy
+  Gold accent:                #C9A86E  — amber/gold
+  Body text / muted labels:   #8A7665  — warm brown
+  Borders & dividers:         #E4DAD0  — light warm gray
+
+TYPOGRAPHY
+----------
+Headings (H1, H2, H3):
+  Font family:    Playfair Display (Google Fonts — add via Wix font manager)
+  Font weight:    Bold (700)
+  Letter-spacing: -0.02em (tighten slightly — Wix: set character spacing to -2%)
+  Line-height:    1.05 for large heroes; 1.2–1.3 for H2 sections
+
+Body text:
+  Font family:    Inter (Google Fonts — add via Wix font manager)
+  Font weight:    Regular (400), Medium (500) for labels, Semibold (600) for buttons
+  Line-height:    1.625 (relaxed)
+
+Font sizes (approximate px for Wix):
+  Hero H1 (desktop):    72px
+  Hero H1 (mobile):     48px
+  Section H2 (desktop): 36–40px
+  Section H2 (mobile):  30px
+  Card H3:              20–22px
+  Body large:           18–20px
+  Body default:         16px
+  Body small:           14px
+  Eyebrow / label:      12px, uppercase, letter-spacing 0.1em (wide), weight 600
+
+BUTTONS
+-------
+There are three button styles. Never use rounded pills — use a small
+border-radius of 4px only (barely rounded corners, almost square).
+
+PRIMARY BUTTON (default)
+  Background:       #C9A86E  (gold)
+  Text color:       #252444  (dark navy)
+  Border:           1px solid #C9A86E
+  Font:             Inter, 14px, semibold (600)
+  Padding:          16px top/bottom, 32px left/right  (large size)
+  Hover state:      Background transparent, text #C9A86E, border stays gold
+
+SECONDARY BUTTON
+  Background:       #252444  (dark navy)
+  Text color:       #F7F3EE  (cream)
+  Border:           1px solid #252444
+  Font:             Inter, 14px, semibold (600)
+  Padding:          16px top/bottom, 32px left/right  (large size)
+  Hover state:      Background transparent, text #252444, border stays navy
+
+GHOST BUTTON (text-link style)
+  Background:       transparent
+  Text color:       #C9A86E  (gold)
+  Border:           none
+  Font:             Inter, 12px, semibold (600)
+  Hover state:      Text #252444, underline appears
+  Used for:         "View all products →" style inline links
+
+CONTENT CONTAINER
+-----------------
+All page content sits in a centered container:
+  Max-width:        1200px
+  Left/right padding (desktop): 40px
+  Left/right padding (mobile):  24px
+  Horizontal centering: auto margins
+
+SECTION SPACING
+---------------
+Standard section vertical padding: 80px top and bottom
+Large hero vertical padding:       96–112px top and bottom
+Tight sections (page headers):     56px top and bottom
+
+
+================================================================================
+SECTION 3 — HEADER (appears on every page)
+================================================================================
+
+LAYOUT
+  Position:       Sticky, stays fixed at top when scrolling
+  Height:         64px
+  Background:     #F7F3EE  (cream)
+  Bottom border:  1px solid #E4DAD0
+  Layout:         Logo left | Nav links center | Cart icon right
+
+LOGO
+  Image file: logo.png
+  Height: 40px, width auto
+
+RIGHT SIDE (desktop and mobile)
+  Cart icon — always visible, sits to the right of the desktop nav links
+  Hamburger button — visible on mobile only (hidden on md and up)
+    Icon: 3 horizontal lines (20×20px SVG, stroke not fill, color #252444)
+    When open: icon changes to X close (same size and color)
+    Tap to toggle the mobile menu open/closed
+
+NAVIGATION LINKS (desktop, in this exact order left to right)
+  About · Catering · Nitro · Espresso · Visit · Shop
+  Font: Inter, 14px, medium (500)
+  Color: #8A7665  (muted)
+  Hover color: #252444  (dark)
+
+MOBILE NAVIGATION
+  Show hamburger icon on screens under 768px wide
+  Tap opens a dropdown immediately below the header (pushes page content down)
+  Background: #F7F3EE
+  Top border: 1px solid #E4DAD0
+  Links stacked vertically, 4px gap between links
+  Font: Inter, 16px, medium (500)
+  Color: #252444  (dark)
+  Hover color: #C9A86E  (gold — different from desktop hover)
+  Each link has 8px top/bottom padding
+
+
+================================================================================
+SECTION 4 — FOOTER (appears on every page)
+================================================================================
+
+LAYOUT
+  Background: #252444  (dark navy)
+  Text color: #F7F3EE  (cream)
+  3 equal columns, separated by spacing (not dividers)
+  Padding: 48px top and bottom
+
+COLUMN 1 — Brand
+  "Boast Coffee Co."
+    Font: Playfair Display, 24px, bold
+    Color: #F7F3EE  (cream)
+    Margin below: 12px
+  Tagline: "Small-batch specialty coffee, roasted and brewed with intention in every cup."
+    Font: Inter, 14px, regular
+    Color: #8A7665  (muted)
+    Line-height: 1.625
+    Max-width: 320px
+
+COLUMN 2 — Navigate
+  Label: "Navigate"  — 12px, uppercase, letter-spacing 0.1em, weight 600, color #8A7665
+  Margin below label: 16px
+  Links (stacked vertically, 8px gap, in this exact order):
+    Home        → /
+    About       → /about
+    Catering    → /catering
+    Nitro       → /nitro
+    Espresso    → /spro
+    Visit       → /visit
+    Shop        → /shop
+  Link font: Inter, 14px, regular
+  Link color: #EDE7DF  (slightly muted cream)
+  Hover color: #C9A86E  (gold)
+
+COLUMN 3 — Say Hello
+  Label: "Say Hello"  — same label style as column 2
+  Links (stacked vertically, 8px gap):
+    "Find Us"     → /visit
+    "Contact Us"  → /contact
+  Link font and color: same as Navigate links
+  Below links: Instagram icon link (SVG icon only, no text label)
+    Icon: Instagram logo — rounded square outline, circle inside, dot top-right
+    Icon size: 16px × 16px, stroke not fill
+    Color: #EDE7DF, hover: #C9A86E
+    Links to: https://www.instagram.com/boastcoffee/
+    Opens in new tab
+
+BOTTOM BAR
+  Top border: 1px solid rgba(138, 118, 101, 0.2)  — muted brown at 20% opacity
+  Margin above border: 40px
+  Padding above text: 24px
+  Layout: two items on same row — left and right
+    Left:  "© [current year] Boast Coffee Co. All rights reserved."
+    Right: "Made with care."
+  Font: Inter, 12px, regular
+  Color: #8A7665  (muted)
+
+
+================================================================================
+SECTION 5 — PAGE: HOME  (/)
+================================================================================
+
+--- HERO SECTION ---
+Background:   #252444  (dark navy)
+Min-height:   85% of viewport height
+Layout:       Text block left-aligned, max-width 672px, vertically centered
+
+Eyebrow text:
+  "Small-Batch Specialty Coffee"
+  Font: Inter, 12px, uppercase, letter-spacing 0.1em, weight 600
+  Color: #C9A86E  (gold accent)
+  Margin below: 20px
+
+H1:
+  "Coffee worth boasting about."
+  Font: Playfair Display, 72px (desktop) / 48px (mobile), bold
+  Color: #F7F3EE  (cream)
+  Letter-spacing: -0.02em
+  Line-height: 1.05
+  Margin below: 24px
+
+Subheadline:
+  "Sourced from the world's best growing regions. Roasted & brewed with
+  intention, and delivered to where you are."
+  Font: Inter, 18–20px, regular
+  Color: #EDE7DF  (slightly muted cream, not pure white)
+  Line-height: 1.625
+  Margin below: 40px
+
+CTA Button (PRIMARY style):
+  Label: "Shop Coffee"
+  Links to: /shop
+
+
+--- FEATURED PRODUCTS SECTION ---
+Background:   #F7F3EE  (cream)
+Padding:      80px top and bottom
+
+Section header (left-aligned):
+  Eyebrow: "Bestsellers"
+    Font: Inter, 12px, uppercase, letter-spacing 0.1em, weight 600
+    Color: #8A7665
+    Margin below: 8px
+  H2: "Shop"
+    Font: Playfair Display, 36px (desktop) / 30px (mobile), bold
+    Color: #252444
+
+Ghost link (right-aligned, same row as H2):
+  "View all products →"
+  GHOST button style, links to /shop
+
+Product grid:
+  3 columns on desktop, 1 column on mobile
+  40px gap between cards
+  Product cards are Shopify-connected — see Section 8 (Shop) for card style
+
+
+--- BRAND STORY TEASER SECTION ---
+Background:   #EDE7DF  (surface/beige)
+Padding:      80px top and bottom
+Layout:       Content centered, max-width 672px, text-align center
+
+H2:
+  "Coffee is our craft."
+  Font: Playfair Display, 36px (desktop) / 30px (mobile), bold
+  Color: #252444
+  Margin below: 24px
+
+Body:
+  "Boast started with a simple idea: coffee done well should be something worth
+  telling people about. Every bean we roast and serve is our answer to that."
+  Font: Inter, 18px, regular
+  Color: #8A7665
+  Line-height: 1.625
+  Margin below: 32px
+
+CTA Button (SECONDARY style):
+  Label: "Our Story"
+  Links to: /about
+
+
+================================================================================
+SECTION 6 — PAGE: ABOUT  (/about)
+================================================================================
+
+--- HERO SECTION ---
+Background:   #EDE7DF  (warm surface/beige)
+Bottom border: 1px solid #E4DAD0
+Padding:      80px top and bottom (112px on desktop)
+Layout:       Text block left-aligned, max-width 672px
+
+H1:
+  "We're here to boast the coffee, not ourselves."
+  Font: Playfair Display, 72px (desktop) / 48px (mobile), bold
+  Color: #252444
+  Letter-spacing: -0.02em
+  Line-height: 1.1  (slightly looser than other heroes — use 1.1 not 1.05)
+  Margin below: 24px
+
+Body:
+  'The name isn't about ego. "Boast" is about letting the coffee do the
+  talking — preserving what makes each bean exceptional and putting it front
+  and center, every time.'
+  Font: Inter, 20px, regular
+  Color: #8A7665
+  Line-height: 1.625
+
+
+--- ORIGIN STORY SECTION ---
+Background:   #F7F3EE  (cream)
+Padding:      80px top and bottom
+Layout:       2 columns, desktop only — text left (50%), image right (50%), 64px gap
+              On mobile: stacks vertically, text first then image
+
+Text column:
+  H2:
+    "Our Origin Story"
+    Font: Playfair Display, 36px (desktop) / 30px (mobile), bold
+    Color: #252444
+    Margin below: 24px
+
+  Paragraph 1:
+    "We started with a simple frustration: the Bay Area has always had great
+    coffee culture but there was a real gap in how craft coffee was delivered,
+    especially off-premise."
+    Font: Inter, 18px, regular, color #8A7665, line-height 1.625
+
+  Paragraph 2 (20px margin top):
+    "So in 2017, we built something different. We sourced specialty beans,
+    small-batch roasted them in San Jose, and started doing nitro cold brew on
+    tap in kegs for offices, venues, and events. Eventually, we expanded to
+    catering using a solar-powered espresso van that brings a full craft coffee
+    bar directly to events."
+    Font: Inter, 18px, regular, color #8A7665, line-height 1.625
+
+  Paragraph 3 (20px margin top):
+    "That's still what Boast is: great coffee worth telling people about,
+    wherever you need it."
+    Font: Inter, 18px, BOLD (700), color #8A7665, line-height 1.625
+
+Image column:
+  Image file:  boast-coffee-bags-1.jpg
+  Aspect ratio: 4:5 (portrait)
+  Object fit:  cover, centered
+  Opacity:     65%  (image is deliberately dimmed)
+  Border-radius: 12px
+  Drop shadow: 0 10px 15px -3px rgba(0,0,0,0.1)
+
+
+--- VALUES SECTION ---
+Background:   #252444  (dark navy)
+Padding:      80px top and bottom
+
+Section header:
+  H2: "Our Values"
+  Font: Playfair Display, 36px (desktop) / 30px (mobile), bold
+  Color: #F7F3EE  (cream)
+  Margin below: 56px
+
+Cards layout: 3 equal columns, 40px gap, stacks to 1 column on mobile
+
+Each card:
+  Top border:  1px solid rgba(138, 118, 101, 0.3)  — muted brown at 30% opacity
+  Padding-top: 32px
+  No background (transparent — shows dark navy section bg)
+
+  Card title (H3):
+    Font: Playfair Display, 20px, bold
+    Color: #F7F3EE  (cream)
+    Margin below: 12px
+
+  Card body:
+    Font: Inter, 14px, regular
+    Color: #EDE7DF  (slightly muted cream)
+    Line-height: 1.625
+
+CARD 1
+  Title: "Speak with Quality"
+  Body:  '"Boast" isn't ego. It's a promise. Every cup is designed to let the
+          coffee's natural character speak for itself. Nothing is masked or
+          compromised.'
+
+CARD 2
+  Title: "Customers First"
+  Body:  "We wouldn't be where we are without our customers. To serve worthy
+          coffee is our ultimate form of hospitality."
+
+CARD 3
+  Title: "Coffee That Comes to You"
+  Body:  "Nitro kegs for your office, an espresso bar for your event, and
+          espresso concentrate for your café. We built Boast to go where
+          coffee is needed most."
+
+
+--- CTA SECTION ---
+Background:   #EDE7DF  (surface/beige)
+Padding:      80px top and bottom
+Layout:       Content centered, text-align center
+
+H2:
+  "Ready to taste the difference?"
+  Font: Playfair Display, 36px (desktop) / 30px (mobile), bold
+  Color: #252444
+  Margin below: 24px
+
+Body:
+  "Shop our coffee, book an event, or just say hello!"
+  Font: Inter, 16px, regular
+  Color: #8A7665
+  Max-width: 384px, centered
+  Margin below: 32px
+
+Buttons (side by side, centered, 16px gap):
+  Button 1: PRIMARY — "Shop Coffee" → /shop
+  Button 2: SECONDARY — "Book an Event" → /catering
+
+
+================================================================================
+SECTION 7 — PAGE: CATERING  (/catering)
+================================================================================
+
+--- HERO SECTION ---
+Background:   #252444  (dark navy)
+Min-height:   70% of viewport height
+Layout:       Text block left-aligned, max-width 672px, vertically centered
+Padding:      96px top and bottom
+
+H1:
+  "We bring the whole coffee bar to you."
+  Font: Playfair Display, 72px (desktop) / 48px (mobile), bold
+  Color: #F7F3EE  (cream)
+  Letter-spacing: -0.02em
+  Line-height: 1.05
+  Margin below: 24px
+
+Body:
+  "We pull up with an espresso van, nitro on tap, and craft cold brew — and
+  your guests remember it."
+  Font: Inter, 18–20px, regular
+  Color: #EDE7DF  (slightly muted cream)
+  Line-height: 1.625
+  Margin below: 40px
+
+CTA Button (PRIMARY style):
+  Label: "Book Your Event"
+  Links to: /contact
+
+
+--- SERVICES SECTION ---
+Background:   #F7F3EE  (cream)
+Padding:      80px top and bottom
+
+H2:
+  "No more cardboard box coffee. Get Boast."
+  Font: Playfair Display, 36px (desktop) / 30px (mobile), bold
+  Color: #252444
+  Max-width: 672px
+  Margin below: 56px
+
+Cards layout: 3 equal columns, 40px gap, stacks to 1 column on mobile
+
+Each card:
+  Top border:  2px solid #C9A86E  (gold — this is thicker than the Values cards)
+  Padding-top: 32px
+  No background (transparent — shows cream section bg)
+
+  Card title (H3):
+    Font: Playfair Display, 20px, bold
+    Color: #252444
+    Margin below: 12px
+
+  Card body:
+    Font: Inter, 14px, regular
+    Color: #8A7665
+    Line-height: 1.625
+
+CARD 1
+  Title: "Espresso Bar"
+  Body:  "Full espresso setup from our solar-powered van. Lattes, cappuccinos,
+          cortados — made to order on-site. No generator, no fumes, no noise."
+
+CARD 2
+  Title: "Nitro Cold Brew On Tap"
+  Body:  "We bring the keg to you. Full tap service. It's the conversation
+          starter at every event we've done."
+
+CARD 3
+  Title: "Iced Espresso & Cold Drinks"
+  Body:  "Made with our Kyoto cold brew concentrate. It's the same smooth,
+          low-acid profile as our nitro cold brew, in a form that scales for
+          any size event."
+
+EVENT TYPE PILLS (below the 3 cards, 56px margin top)
+  Layout: Wrap horizontally (multiple pills per row, wrap to next line)
+  Gap: 12px between pills
+  Each pill style:
+    Border:       1px solid #E4DAD0
+    Border-radius: 9999px  (fully rounded / pill shape)
+    Padding:      8px top/bottom, 16px left/right
+    Font:         Inter, 14px, medium (500)
+    Text color:   #8A7665
+    Background:   transparent
+
+  Pills (in this order):
+    Corporate Events
+    Weddings
+    Farmers Markets
+    Pop-Ups
+    Brand Activations
+    Private Parties
+
+
+--- THE VAN SECTION (full-bleed) ---
+Background image: boast-coffee-truck.jpg
+  Object fit: cover, centered
+  Full width, no border-radius
+Overlay: gradient from left — rgba(0,0,0,0.75) on left fading to rgba(0,0,0,0.3) on right
+Padding: 112px top and bottom (py-28)
+
+Text block (sits over the image overlay, left-aligned, max-width 672px):
+  H2:
+    "Solar-powered sustainability."
+    Font: Playfair Display, 36px (desktop) / 30px (mobile), bold
+    Color: #F7F3EE  (cream)
+    Margin below: 24px
+
+  Body:
+    "Our espresso van runs on solar, which means we can set up anywhere without
+    the noise, exhaust, or logistics of a generator. Park it in a parking lot,
+    a field, or a rooftop terrace. Clean power. Clean coffee. It travels
+    wherever the event takes us."
+    Font: Inter, 18px, regular
+    Color: #EDE7DF  (slightly muted cream)
+    Line-height: 1.625
+
+
+--- SOCIAL PROOF SECTION ---
+Background:   #F7F3EE  (cream)
+Padding:      80px top and bottom
+Layout:       Text block left-aligned, max-width 672px
+
+H2:
+  "Offices in the Bay Area keep calling us back!"
+  Font: Playfair Display, 30px, bold
+  Color: #252444
+  Margin below: 16px
+
+Body:
+  "We've consistently delivered at corporate events, private parties, mobile
+  catering at special events, and pop-ups."
+  Font: Inter, 18px, regular
+  Color: #8A7665
+  Line-height: 1.625
+  Margin below: 32px
+
+CTA Button (PRIMARY style):
+  Label: "Read our Reviews"
+  Links to: https://www.yelp.com/biz/boast-coffee-san-jose-2?osq=boast+coffee
+  Opens in new tab
+
+
+================================================================================
+SECTION 8 — PAGE: NITRO COLD BREW  (/nitro)
+================================================================================
+
+--- HERO SECTION ---
+Background:   #252444  (dark navy)
+Min-height:   75% of viewport height
+Layout:       SPLIT — 2 columns on desktop, stacked on mobile
+  Left column (56% width): Text, vertically centered, 96px top/bottom padding
+  Right column (44% width): Full-height image, no padding
+Layout gap: 64px between columns on desktop
+
+LEFT COLUMN — text:
+  H1:
+    "Boasted on Tap"
+    Font: Playfair Display, 72px (desktop) / 48px (mobile), bold
+    Color: #F7F3EE  (cream)
+    Letter-spacing: -0.02em
+    Line-height: 1.05
+    Max-width: 576px
+    Margin below: 24px
+
+  Body:
+    "Bay Area offices and events trust us for tap-ready nitro. We brew, deliver,
+    and service the keg. You just pull the tap."
+    Font: Inter, 18–20px, regular
+    Color: #EDE7DF  (slightly muted cream)
+    Line-height: 1.625
+    Margin below: 40px
+
+  CTA Button (PRIMARY style):
+    Label: "Request a Keg"
+    Links to: /contact
+
+RIGHT COLUMN — image:
+  Image file: boast-coffee-kegs.jpg
+  Height: fills entire hero height
+  Width: 44% of total section width
+  Object fit: cover, centered
+  Opacity: 75%
+  No border-radius (flush with section edges)
+  On mobile: becomes a 288px tall full-width image strip below the text
+
+
+--- WHY NITRO KEGS SECTION ---
+Background:   #F7F3EE  (cream)
+Padding:      80px top and bottom
+
+H2:
+  "Most places can't find a reliable partner for tap-ready nitro cold brew."
+  Font: Playfair Display, 36px (desktop) / 30px (mobile), bold
+  Color: #252444
+  Max-width: 672px
+  Margin below: 16px
+
+Subtext (below H2):
+  "We've built exactly that service. This is nitro cold brew as a first-class
+  experience."
+  Font: Inter, 18px, regular
+  Color: #8A7665
+  Line-height: 1.625
+  Max-width: 672px
+  Margin below: 56px
+
+Cards: same style as Catering services — 3 columns, 2px gold top border, 32px padding-top
+
+CARD 1
+  Title: "Bay Area Delivery"
+  Body:  "We service offices, cafés, pop-ups, and venues across the Bay. If you
+          want nitro on tap, we can make it happen."
+
+CARD 2
+  Title: "Consistent Quality"
+  Body:  "We always seal our kegs with nitrogen and store at 38F, preserving
+          flavor and extending shelf life far beyond a standard cold brew setup.
+          What you pour on day one tastes like day one."
+
+CARD 3
+  Title: "The Pour"
+  Body:  "The nitrogen creates a creamy head of foam that's both visual and
+          textural. Our guests always remember it."
+
+
+--- OUR PROCESS SECTION ---
+Background:   #EDE7DF  (surface/beige)
+Padding:      80px top and bottom
+
+H2 (centered):
+  "Our Process"
+  Font: Playfair Display, 36px (desktop) / 30px (mobile), bold
+  Color: #252444
+  Text-align: center
+  Margin below: 56px
+
+Cards layout: 3 equal columns, 40px gap
+
+Each card (no top border — these have icon boxes instead):
+  Gap between elements within card: 16px (vertical stack)
+
+  Icon box:
+    Size: 56px × 56px
+    Background: #F7F3EE  (cream)
+    Border-radius: 8px
+    Icon color: #C9A86E  (gold)
+    Icon: SVG line icon, 32px, stroke-width 1.25
+
+  Card title (H3):
+    Font: Playfair Display, 20px, bold
+    Color: #252444
+
+  Card body:
+    Font: Inter, 14px, regular
+    Color: #8A7665
+    Line-height: 1.625
+
+CARD 1
+  Icon: coffee cup with steam
+  Title: "Single-Origin Base"
+  Body:  "Brewed from the same traceable, specialty-grade beans we use for our
+          full roast lineup. No shortcuts."
+
+CARD 2
+  Icon: clock / circle with hour hand
+  Title: "18-Hour Cold Steep"
+  Body:  "Our cold brew steeps for a full 18 hours at low temperature,
+          extracting maximum flavor with zero bitterness."
+
+CARD 3
+  Icon: smiley face / circle
+  Title: "Nitrogen Infused"
+  Body:  "Charged with nitrogen gas for a silky, cascading pour with a natural
+          creaminess. No added sugar or additives."
+
+
+--- CALLOUT SECTION ---
+Background:   #F7F3EE  (cream)
+Padding:      80px top and bottom
+Layout:       Text block left-aligned, max-width 768px
+
+H2 — two lines, different colors:
+  Line 1: "Less acid. More flavor."
+    Font: Playfair Display, 36px (desktop), bold
+    Color: #252444  (dark)
+  Line 2: "No explanation needed."
+    Font: Playfair Display, 36px (desktop), bold
+    Color: #8A7665  (muted — visually de-emphasized)
+  Line-height: 1.2
+  Margin below: 32px
+
+Body:
+  "Cold brewing strips out the acidity and bitterness. What's left is
+  concentrated, naturally smooth coffee. Nitrogen turns the texture velvety.
+  Most people who try our cold brew for the first time ask where it's been
+  their whole life."
+  Font: Inter, 18px, regular
+  Color: #8A7665
+  Line-height: 1.625
+
+
+================================================================================
+SECTION 9 — PAGE: ESPRESSO CONCENTRATE  (/spro)
+================================================================================
+
+--- HERO SECTION ---
+Background:   #252444  (dark navy)
+Min-height:   75% of viewport height
+Layout:       SPLIT — same 2-column split as Nitro (56% text / 44% image)
+
+LEFT COLUMN — text:
+  H1:
+    "Espresso, Bottled."
+    Font: Playfair Display, 72px (desktop) / 48px (mobile), bold
+    Color: #F7F3EE  (cream)
+    Letter-spacing: -0.02em
+    Line-height: 1.05
+    Margin below: 24px
+
+  Body:
+    "Single-origin espresso concentrate, cold-extracted and ready to use.
+    No machine. No wait."
+    Font: Inter, 18–20px, regular
+    Color: #EDE7DF  (slightly muted cream)
+    Line-height: 1.625
+    Margin below: 40px
+
+  CTA Button (PRIMARY style):
+    Label: "Get In Touch"
+    Links to: /contact
+
+RIGHT COLUMN — image:
+  Image file: boast-coffee-bags-1.jpg
+  Same specs as Nitro hero image: full height, 44% width, cover, centered, 75% opacity
+
+
+--- WHY CONCENTRATE SECTION ---
+Background:   #F7F3EE  (cream)
+Padding:      80px top and bottom
+
+H2:
+  "Iced espresso drinks are your slowest ticket. Every shot that waits on the
+  machine is a customer waiting on the line."
+  Font: Playfair Display, 36px (desktop) / 30px (mobile), bold
+  Color: #252444
+  Max-width: 672px
+  Margin below: 16px
+
+Subtext:
+  "We did the extraction for you. What's in the bag is ready to go — just the
+  spro, nothing else. Use it on the line, or even at home."
+  Font: Inter, 18px, regular
+  Color: #8A7665
+  Max-width: 672px
+  Margin below: 56px
+
+Cards: 3 columns, same gold 2px top border style
+
+CARD 1
+  Title: "Higher throughput. No new machines."
+  Body:  "Every iced drink that waits for the espresso machine slows down the
+          line. Our concentrate pulls it out of the equation — same quality,
+          higher throughput, more happy customers."
+
+CARD 2
+  Title: "Consistent shot quality. Every time."
+  Body:  "Cold-extracting to espresso concentration makes it so every drink
+          tastes the same. No dialing in. No variation between baristas, beans,
+          or temperature changes."
+
+CARD 3
+  Title: "Drinks all week."
+  Body:  "Sealed and refrigerated, our concentrate holds its quality far longer
+          than brewed espresso. Open it Monday, finish it Friday."
+
+
+--- OUR PROCESS SECTION ---
+Background:   #EDE7DF  (surface/beige)
+Padding:      80px top and bottom
+Same layout and card style as Nitro process section
+
+H2 (centered): "Our Process"  — same style as Nitro
+
+CARD 1
+  Icon: coffee cup
+  Title: "Single-Origin Base"
+  Body:  "Same traceable, specialty-grade beans we roast for the full lineup.
+          We know where every bag comes from."
+
+CARD 2
+  Icon: clock / circle
+  Title: "Cold Extraction"
+  Body:  "We extract cold and slow, pulling maximum flavor without the bitterness
+          that heat introduces. The result is smooth, rounded, and complex."
+
+CARD 3
+  Icon: briefcase / container
+  Title: "Concentrated Craft"
+  Body:  "Packed at high strength so you control the dilution. Use it straight
+          for a bold hit, or stretch it for lattes, cocktails, and batch service."
+
+
+--- CALLOUT SECTION ---
+Background:   #F7F3EE  (cream)
+Padding:      80px top and bottom
+Layout:       Text block left-aligned, max-width 768px
+
+H2 — two lines:
+  Line 1: "Boasted without the machine."
+    Color: #252444  (dark)
+  Line 2: "That's the whole idea."
+    Color: #8A7665  (muted)
+  Same font/size as Nitro callout
+  Margin below: 32px
+
+Body:
+  "Espresso concentrate opens up a format that most people never get access to
+  outside a café. Use it over ice for a quick Americano, steam milk into it for
+  a latte, or batch it for events and pop-ups."
+  Font: Inter, 18px, regular
+  Color: #8A7665
+  Line-height: 1.625
+
+
+================================================================================
+SECTION 10 — PAGE: VISIT  (/visit)
+================================================================================
+
+--- HERO SECTION ---
+Background:   #252444  (dark navy)
+Min-height:   55% of viewport height
+Layout:       SPLIT — 2 columns on desktop (same 56%/44% split), stacked on mobile
+
+LEFT COLUMN — text, vertically centered, 96px top/bottom padding:
+  H1:
+    "Come grab a cup! ☕️"
+    Font: Playfair Display, 72px (desktop) / 48px (mobile), bold
+    Color: #F7F3EE  (cream)
+    Letter-spacing: -0.02em
+    Line-height: 1.05
+    Margin below: 24px
+
+  Body:
+    "We're parked next to the Midwife & the Baker 🥐 in Mountain View."
+    Font: Inter, 18–20px, regular
+    Color: #EDE7DF  (slightly muted cream)
+    Line-height: 1.625
+
+RIGHT COLUMN — image:
+  Image file: boast-coffee-mv.jpg
+  Full height, 44% width, object-fit cover, object position bottom
+  Opacity: 75%
+  On mobile: 288px tall full-width image
+
+
+--- HOURS SECTION ---
+Background:   #F7F3EE  (cream)
+Padding:      80px top and bottom
+Layout:       Narrow centered column, max-width 384px, content centered
+
+H2:
+  "Hours"
+  Font: Playfair Display, 36px (desktop) / 30px (mobile), bold
+  Color: #252444
+  Text-align: center
+  Margin below: 40px
+
+Hours list (stacked rows, each row: day left / time right):
+  Each row:
+    Divider: 1px solid #E4DAD0 between rows
+    Padding: 16px top and bottom
+    Day text: Inter, 16px, medium (500), color #252444
+    Time text: Inter, 16px, regular, color #8A7665
+
+  Wednesday    8 am – 12 pm
+  Thursday     8 am – 12 pm
+  Friday       8 am – 1 pm
+  Saturday     8 am – 1 pm
+
+
+--- MAP SECTION ---
+Background:   #EDE7DF  (surface/beige)
+Padding:      80px top and bottom
+
+Google Map embed:
+  Query/address: MidWife & the Baker, Mountain View, CA
+  Width: 100%
+  Height: 288px (mobile) / 384px (desktop)
+  Border-radius: 12px
+  Border: none (no iframe border)
+  Lazy load enabled
+
+
+================================================================================
+SECTION 11 — PAGE: SHOP  (/shop)
+================================================================================
+
+--- PAGE HEADER ---
+Background:   #EDE7DF  (surface/beige)
+Bottom border: 1px solid #E4DAD0
+Padding:      56px top and bottom
+
+Eyebrow:
+  "Our Products"
+  Font: Inter, 12px, uppercase, letter-spacing 0.1em, weight 600
+  Color: #8A7665
+  Margin below: 12px
+
+H1:
+  "Shop"
+  Font: Playfair Display, 40–48px, bold
+  Color: #252444
+  Margin below: 16px
+
+Subtext:
+  "Small-batch espresso roasts, nitro cold brew, and our loved Kyoto-brewed
+  espresso concentrate."
+  Font: Inter, 18px, regular
+  Color: #8A7665
+  Max-width: 512px
+
+
+--- PRODUCT GRID ---
+Background:   #F7F3EE  (cream)
+Padding:      64px top and bottom
+Grid:         3 columns (desktop), 2 columns (tablet), 1 column (mobile), 24px gap
+
+Product card style:
+  Background: #EDE7DF  (surface)
+  Border-radius: 8px
+  Overflow: hidden (image fills top)
+  Product image: square aspect ratio, object-fit cover
+  Product name: Inter, 16px, medium, color #252444, 12px margin top
+  Product price: Inter, 14px, regular, color #8A7665
+  On hover: slight lift / shadow
+
+Note: Products are Shopify-connected. Use Wix Stores or Wix-Shopify integration.
+If recreating manually, create 1 product card as a template and duplicate.
+
+
+--- B2B CTA SECTION ---
+Background image: boast-coffee-buckets-1.jpg
+  Object fit: cover, centered
+  Full width
+Color overlay on top of image: rgba(237, 231, 223, 0.88)  — surface color at 88% opacity
+  (this creates a warm washed-out effect over the image, not a dark overlay)
+Padding: 80px top and bottom
+Layout: content centered, text-align center
+
+H2:
+  "Need more than a bag?"
+  Font: Playfair Display, 36px (desktop) / 30px (mobile), bold
+  Color: #252444
+  Margin below: 16px
+
+Body:
+  "We also offer wholesale espresso concentrate designed for high-volume iced
+  espresso service, nitro keg service, and full coffee catering for events.
+  Get in touch and we'll figure out what works."
+  Font: Inter, 16px, regular
+  Color: #8A7665
+  Max-width: 480px, centered
+  Line-height: 1.625
+  Margin below: 32px
+
+CTA Button (PRIMARY style):
+  Label: "Get in Touch"
+  Links to: /contact
+
+
+================================================================================
+SECTION 12 — PAGE: CONTACT  (/contact)
+================================================================================
+
+--- PAGE HEADER ---
+Background:   #EDE7DF  (surface/beige)
+Bottom border: 1px solid #E4DAD0
+Padding:      56px top and bottom
+
+Eyebrow:
+  "Say Hello"
+  Font: Inter, 12px, uppercase, letter-spacing 0.1em, weight 600
+  Color: #8A7665
+  Margin below: 12px
+
+H1:
+  "Contact"
+  Font: Playfair Display, 40–48px, bold
+  Color: #252444
+
+
+--- CONTACT CONTENT ---
+Background:   #F7F3EE  (cream)
+Padding:      64px top and bottom
+Layout:       2 columns on desktop (50% / 50%), 64px gap, stacks on mobile
+
+LEFT COLUMN — Contact form:
+  H2:
+    "Send us a message"
+    Font: Playfair Display, 24px, bold
+    Color: #252444
+    Margin below: 8px
+
+  Subtext below H2:
+    "Questions about an order, wholesale inquiries, or just want to talk
+    coffee — we're here."
+    Font: Inter, 14px, regular
+    Color: #8A7665
+    Margin below: 32px
+
+  Form fields (stacked):
+    Name field
+    Email field
+    Message textarea (4 rows tall)
+    Submit button (PRIMARY style, label: "Send")
+
+  Form field style:
+    Border: 1px solid #E4DAD0
+    Border-radius: 4px
+    Background: white or #F7F3EE
+    Font: Inter, 16px
+    Padding: 12px
+    Focus state: border color #C9A86E (gold)
+
+RIGHT COLUMN — Contact info:
+  Block 1:
+    Label: "Email Us"
+      Font: Inter, 12px, uppercase, letter-spacing 0.1em, weight 600
+      Color: #8A7665
+      Margin below: 16px
+    Email link: hello@boastcoffee.com
+      Font: Inter, 16px, medium (500)
+      Color: #252444
+      Hover: #C9A86E (gold)
+
+  Block 2 (40px margin top):
+    Label: "Response Time"
+      Same label style as above
+    Body: "We reply to all messages within 1–2 business days. For urgent order
+           issues, include your order number."
+      Font: Inter, 14px, regular
+      Color: #8A7665
+      Line-height: 1.625
+
+  Block 3 (40px margin top):
+    Label: "Follow Along"
+      Same label style
+    Link: "Instagram"
+      Font: Inter, 14px, medium (500)
+      Color: #252444
+      Hover: #C9A86E
+      Links to: https://www.instagram.com/boastcoffee/
+      Opens in new tab
+
+
+================================================================================
+SECTION 13 — IMAGES
+================================================================================
+
+All images live in the /public folder of the Next.js project. Export them and
+upload to Wix Media Manager before building any pages.
+
+  logo.png                — site logo, use on transparent or cream background
+  boast-coffee-bags-1.jpg — coffee bags (Home hero BG, About story, Espresso hero)
+  boast-coffee-kegs.jpg   — nitro kegs (Nitro hero right panel)
+  boast-coffee-truck.jpg  — espresso van (Catering van section, full-bleed)
+  boast-coffee-mv.jpg     — Mountain View location (Visit hero right panel)
+  boast-coffee-buckets-1.jpg — coffee buckets (Shop B2B CTA, full-bleed with overlay)
+
+
+================================================================================
+SECTION 14 — WIX-SPECIFIC IMPLEMENTATION NOTES
+================================================================================
+
+LAYOUT COMPONENTS TO USE
+  Hero sections:         Wix "Strip" with 2 columns (text + image) or full-width strip
+  Feature card grids:    Wix "Grid" or "Repeater" — 3 columns desktop
+  Full-bleed image bg:   Wix strip with image background + color overlay on top
+  Event type pills:      Wix text boxes in a flex/wrap container, or Tag element
+  Split hero (text+img): Wix 2-column strip — left column has text box, right has image
+
+SHOPIFY INTEGRATION
+  The current site pulls products via the Shopify Storefront API.
+  Options in Wix:
+  A) Use the Wix-Shopify channel (keeps Shopify as the product source)
+  B) Migrate products to Wix Stores (requires re-entering all products)
+  Recommendation: Option A if you want to keep existing Shopify checkout.
+
+CONTACT FORM
+  Use Wix's built-in form builder.
+  Connect submissions to: hello@boastcoffee.com
+
+GOOGLE MAP
+  Add via Wix "Google Maps" element.
+  Address: MidWife & the Baker, 2320 Central Expy, Mountain View, CA 94043
+
+FONTS
+  Add both fonts via Wix's font manager before styling anything:
+    Playfair Display — Google Fonts
+    Inter — Google Fonts
+
+SECTION BACKGROUNDS
+  When a section needs the dark navy color (#252444), use Wix strip background color.
+  When you need an image behind text, add the image as the strip background,
+  then add a color overlay (use the strip's "overlay" or "tint" setting).
+
+OPACITY ON IMAGES
+  Some images are intentionally dimmed:
+    Split hero images (Nitro, Espresso, Visit): 75% opacity
+    About story image: 65% opacity
+  Set this in Wix's image settings under "Filters" or "Opacity".

@@ -21,10 +21,12 @@ export default function Footer() {
             <ul className="space-y-2">
               {[
                 { href: "/", label: "Home" },
-                { href: "/shop", label: "Shop" },
                 { href: "/about", label: "About" },
-                { href: "/nitro", label: "Nitro" },
                 { href: "/catering", label: "Catering" },
+                { href: "/nitro", label: "Nitro" },
+                { href: "/spro", label: "Espresso" },
+                { href: "/visit", label: "Visit" },
+                { href: "/shop", label: "Shop" },
               ].map(({ href, label }) => (
                 <li key={href}>
                   <Link
