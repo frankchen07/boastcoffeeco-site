@@ -22,10 +22,10 @@ export default function VisitPage() {
         <div className="flex-1 flex items-center px-6 md:px-10 lg:pl-[max(2.5rem,calc((100vw-1200px)/2+2.5rem))] lg:pr-16 py-24">
           <div className="max-w-xl">
             <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.05] mb-6">
-              Come grab a cup! ☕️
+              Come try our coffee!
             </h1>
             <p className="text-lg md:text-xl text-[var(--color-brand-surface)] leading-relaxed max-w-lg">
-              We&apos;re parked next to the Midwife &amp; the Baker 🥐 in Mountain View.
+              We&apos;re next to the Midwife &amp; the Baker 🥐 in Mountain View.
             </p>
           </div>
         </div>

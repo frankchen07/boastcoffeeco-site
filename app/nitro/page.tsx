@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 
 const kegFeatures = [
   {
-    title: "Bay Area Delivery",
+    title: "Full Service",
     description:
-      "We service offices, cafés, pop-ups, and venues across the Bay. If you want nitro on tap, we can make it happen.",
+      "We serve offices, cafés, pop-ups, and venues across the Bay. If you want nitro on tap, we deliver, setup, and service the kegs.",
   },
   {
     title: "Consistent Quality",

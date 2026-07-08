@@ -17,7 +17,7 @@ const services = [
   {
     title: "Nitro Cold Brew On Tap",
     description:
-      "We bring the keg to you. Full tap service. It's the conversation starter at every event we've done.",
+      "We bring the nitro kegs to you. Full tap service. It's the conversation starter at every event we've done.",
   },
   {
     title: "Iced Espresso & Cold Drinks",
@@ -124,7 +124,7 @@ export default function CateringPage() {
         <div className="container-md">
           <div className="max-w-2xl">
             <h2 className="text-3xl font-display font-bold text-[var(--color-brand-dark)] mb-4">
-              Offices in the Bay Area keep calling us back!
+              Bay Area offices keep calling us back!
             </h2>
             <p className="text-lg text-[var(--color-brand-muted)] leading-relaxed mb-8">
               We've consistently delivered at corporate events, private parties, mobile catering at special events, and pop-ups.
