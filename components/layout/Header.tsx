@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import CartIcon from "@/components/ui/CartIcon";
 
 const NAV_LINKS = [
@@ -16,6 +16,41 @@ const NAV_LINKS = [
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const wasOpen = useRef(false);
+
+  useEffect(() => {
+    if (!menuOpen) {
+      if (wasOpen.current) toggleRef.current?.focus();
+      wasOpen.current = false;
+      return;
+    }
+    wasOpen.current = true;
+
+    const nav = navRef.current;
+    if (!nav) return;
+
+    const focusable = Array.from(
+      nav.querySelectorAll<HTMLElement>('a[href], button:not([disabled])')
+    );
+    focusable[0]?.focus();
+
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") { setMenuOpen(false); return; }
+      if (e.key !== "Tab" || focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [menuOpen]);
 
   return (
     <header className="sticky top-0 z-50 bg-[var(--color-brand-cream)] border-b border-[var(--color-brand-border)]">
@@ -51,9 +86,12 @@ export default function Header() {
           <CartIcon />
           {/* Mobile menu toggle */}
           <button
+            ref={toggleRef}
             className="md:hidden p-2 -mr-2 text-[var(--color-brand-dark)]"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
           >
             {menuOpen ? (
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -70,7 +108,11 @@ export default function Header() {
 
       {/* Mobile nav */}
       {menuOpen && (
-        <nav className="md:hidden border-t border-[var(--color-brand-border)] bg-[var(--color-brand-cream)]">
+        <nav
+          id="mobile-nav"
+          ref={navRef}
+          className="md:hidden border-t border-[var(--color-brand-border)] bg-[var(--color-brand-cream)]"
+        >
           <div className="container-md py-4 flex flex-col gap-1">
             {NAV_LINKS.map(({ href, label }) => (
               <Link

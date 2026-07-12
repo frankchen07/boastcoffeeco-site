@@ -76,6 +76,19 @@ export default function VisitPage() {
               title="Boast Coffee Co. location — next to MidWife & the Baker, Mountain View"
             />
           </div>
+          <div className="mt-6 text-center">
+            <p className="text-sm text-[var(--color-brand-muted)]">
+              Next to MidWife &amp; the Baker &mdash; Mountain View, CA
+            </p>
+            <a
+              href="https://maps.google.com/?q=MidWife+%26+the+Baker+Mountain+View+CA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-1 inline-block text-sm font-medium text-[var(--color-brand-dark)] underline underline-offset-4 hover:text-[var(--color-brand-accent)] transition-colors"
+            >
+              Open in Google Maps
+            </a>
+          </div>
         </div>
       </section>
 

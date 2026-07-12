@@ -2,11 +2,55 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRef, useEffect } from "react";
 import { useCart } from "@/lib/cart-context";
 import { formatPrice } from "@/lib/shopify";
 
 export default function CartDrawer() {
   const { cart, isOpen, isLoading, closeCart, removeItem, updateItem } = useCart();
+  const drawerRef = useRef<HTMLElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const returnFocusRef = useRef<Element | null>(null);
+
+  // Save pre-open focus target; restore it on close
+  useEffect(() => {
+    if (isOpen) {
+      returnFocusRef.current = document.activeElement;
+      closeButtonRef.current?.focus();
+    } else if (returnFocusRef.current instanceof HTMLElement) {
+      returnFocusRef.current.focus();
+      returnFocusRef.current = null;
+    }
+  }, [isOpen]);
+
+  // Focus trap + Escape
+  useEffect(() => {
+    if (!isOpen) return;
+    const drawer = drawerRef.current;
+    if (!drawer) return;
+
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") { closeCart(); return; }
+      if (e.key !== "Tab") return;
+
+      const focusable = Array.from(
+        drawer!.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+      } else {
+        if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, closeCart]);
 
   return (
     <>
@@ -21,6 +65,7 @@ export default function CartDrawer() {
 
       {/* Drawer */}
       <aside
+        ref={drawerRef}
         role="dialog"
         aria-modal="true"
         aria-label="Shopping cart"
@@ -34,6 +79,7 @@ export default function CartDrawer() {
             Your Cart
           </h2>
           <button
+            ref={closeButtonRef}
             onClick={closeCart}
             aria-label="Close cart"
             className="p-1.5 text-[var(--color-brand-muted)] hover:text-[var(--color-brand-dark)] transition-colors"

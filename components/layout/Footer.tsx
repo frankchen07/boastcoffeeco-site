@@ -80,7 +80,16 @@ export default function Footer() {
 
         <div className="mt-10 pt-6 border-t border-[var(--color-brand-cream)]/20 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-[var(--color-brand-border)]">
           <p>&copy; {new Date().getFullYear()} Boast Coffee Co. All rights reserved.</p>
-          <p>Made with care.</p>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/accessibility"
+              className="hover:text-[var(--color-brand-accent)] transition-colors"
+            >
+              Accessibility
+            </Link>
+            <span aria-hidden="true">·</span>
+            <p>Made with care.</p>
+          </div>
         </div>
       </div>
     </footer>

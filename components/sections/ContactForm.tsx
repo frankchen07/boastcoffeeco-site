@@ -100,13 +100,14 @@ export default function ContactForm() {
 
       {state.message && (
         <p
+          role="alert"
           className={`text-sm ${
             state.status === "success"
               ? "text-green-700"
               : "text-red-600"
           }`}
         >
-          {state.message}
+          {state.status === "success" ? "✓ " : "✗ "}{state.message}
         </p>
       )}
 
