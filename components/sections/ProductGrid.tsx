@@ -28,11 +28,11 @@ function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="group flex flex-col bg-[var(--color-brand-cream)] border border-[var(--color-brand-border)] rounded overflow-hidden hover:border-[var(--color-brand-muted)] transition-colors">
       {/* Image */}
-      <Link href={`/shop/${product.handle}`} className="block aspect-square bg-[var(--color-brand-surface)] overflow-hidden">
+      <Link href={`/shop/${product.handle}`} aria-hidden="true" tabIndex={-1} className="block aspect-square bg-[var(--color-brand-surface)] overflow-hidden">
         {product.image ? (
           <Image
             src={product.image.url}
-            alt={product.image.altText ?? product.title}
+            alt=""
             width={600}
             height={600}
             className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"

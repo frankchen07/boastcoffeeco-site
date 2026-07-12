@@ -8,14 +8,14 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <p className="font-display text-2xl font-bold mb-3">Boast Coffee Co.</p>
-            <p className="text-sm text-[var(--color-brand-muted)] leading-relaxed max-w-xs">
+            <p className="text-sm text-[var(--color-brand-border)] leading-relaxed max-w-xs">
               Small-batch specialty coffee, roasted and brewed with intention in every cup.
             </p>
           </div>
 
           {/* Navigation */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-muted)] mb-4">
+            <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-border)] mb-4">
               Navigate
             </p>
             <ul className="space-y-2">
@@ -42,7 +42,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-muted)] mb-4">
+            <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-border)] mb-4">
               Say Hello
             </p>
             <ul className="space-y-2">
@@ -78,7 +78,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-[var(--color-brand-muted)]/20 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-[var(--color-brand-muted)]">
+        <div className="mt-10 pt-6 border-t border-[var(--color-brand-cream)]/20 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-[var(--color-brand-border)]">
           <p>&copy; {new Date().getFullYear()} Boast Coffee Co. All rights reserved.</p>
           <p>Made with care.</p>
         </div>

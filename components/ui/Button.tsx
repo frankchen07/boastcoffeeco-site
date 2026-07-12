@@ -24,7 +24,7 @@ const variants: Record<Variant, string> = {
   secondary:
     "bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] border border-[var(--color-brand-dark)] hover:bg-transparent hover:text-[var(--color-brand-dark)] focus-visible:outline-[var(--color-brand-dark)]",
   ghost:
-    "bg-transparent text-[var(--color-brand-accent)] hover:text-[var(--color-brand-dark)] underline-offset-4 hover:underline",
+    "bg-transparent text-[var(--color-brand-dark)] underline underline-offset-4 hover:text-[var(--color-brand-accent)]",
 };
 
 const sizes: Record<Size, string> = {
