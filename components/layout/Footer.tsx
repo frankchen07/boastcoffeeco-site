@@ -88,6 +88,20 @@ export default function Footer() {
               Accessibility
             </Link>
             <span aria-hidden="true">·</span>
+            <Link
+              href="/privacy"
+              className="hover:text-[var(--color-brand-accent)] transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <span aria-hidden="true">·</span>
+            <Link
+              href="/terms"
+              className="hover:text-[var(--color-brand-accent)] transition-colors"
+            >
+              Terms
+            </Link>
+            <span aria-hidden="true">·</span>
             <p>Made with care.</p>
           </div>
         </div>
