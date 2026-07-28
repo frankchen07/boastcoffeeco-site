@@ -7,7 +7,7 @@ import type {
 } from "./types";
 
 const SHOPIFY_ENDPOINT = process.env.SHOPIFY_STORE_DOMAIN
-  ? `https://${process.env.SHOPIFY_STORE_DOMAIN}/api/2024-01/graphql.json`
+  ? `https://${process.env.SHOPIFY_STORE_DOMAIN}/api/2026-04/graphql.json`
   : null;
 
 const STOREFRONT_TOKEN = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
