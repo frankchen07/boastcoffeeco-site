@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ContactForm from "@/components/sections/ContactForm";
+import { SHOPIFY_ACCOUNT_URL } from "@/lib/shopify";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -47,7 +49,28 @@ export default function ContactPage() {
                 Wholesale
               </p>
               <p className="text-sm text-[var(--color-brand-muted)] leading-relaxed">
-                For wholesale inquiries, please use our wholesale store.
+                For nitro kegs, batch beans, large orders of espresso concentrate, and other
+                wholesale inquiries, please{" "}
+                {SHOPIFY_ACCOUNT_URL ? (
+                  <a
+                    href={SHOPIFY_ACCOUNT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--color-brand-dark)] hover:text-[var(--color-brand-accent)] underline transition-colors"
+                  >
+                    login
+                  </a>
+                ) : (
+                  "login"
+                )}{" "}
+                to our wholesale store or{" "}
+                <Link
+                  href="/wholesale"
+                  className="text-[var(--color-brand-dark)] hover:text-[var(--color-brand-accent)] underline transition-colors"
+                >
+                  create an account
+                </Link>
+                .
               </p>
             </div>
           </div>
