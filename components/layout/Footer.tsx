@@ -66,10 +66,18 @@ export default function Footer({ accountUrl }: { accountUrl: string | null }) {
                     rel="noopener noreferrer"
                     className="text-sm text-[var(--color-brand-surface)] hover:text-[var(--color-brand-accent)] transition-colors"
                   >
-                    Manage Subscription
+                    Account
                   </a>
                 </li>
               )}
+              <li>
+                <Link
+                  href="/wholesale"
+                  className="text-sm text-[var(--color-brand-surface)] hover:text-[var(--color-brand-accent)] transition-colors"
+                >
+                  Wholesale
+                </Link>
+              </li>
               <li>
                 <a
                   href="https://www.instagram.com/boastcoffee/"

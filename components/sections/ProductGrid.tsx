@@ -67,9 +67,6 @@ function ProductCard({ product }: ProductCardProps) {
           >
             {product.title}
           </Link>
-          <p className="text-sm text-[var(--color-brand-muted)] mt-1 line-clamp-2">
-            {product.description}
-          </p>
         </div>
 
         <div className="flex items-center justify-between mt-auto pt-2">
