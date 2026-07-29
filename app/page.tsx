@@ -83,7 +83,7 @@ export default function HomePage() {
             <LinkButton href="/shop" size="lg">
               Shop Coffee
             </LinkButton>
-            <LinkButton href="/catering" variant="secondary" size="lg">
+            <LinkButton href="/contact" variant="secondary" size="lg">
               Book an Event
             </LinkButton>
           </div>
