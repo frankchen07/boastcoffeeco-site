@@ -26,15 +26,6 @@ const services = [
   },
 ];
 
-const eventTypes = [
-  "Corporate Events",
-  "Weddings",
-  "Farmers Markets",
-  "Pop-Ups",
-  "Brand Activations",
-  "Private Parties",
-];
-
 export default function CateringPage() {
   return (
     <div>
@@ -79,17 +70,6 @@ export default function CateringPage() {
                   {description}
                 </p>
               </div>
-            ))}
-          </div>
-
-          <div className="flex flex-wrap gap-3 mt-14">
-            {eventTypes.map((type) => (
-              <span
-                key={type}
-                className="px-4 py-2 text-sm font-medium border border-[var(--color-brand-border)] rounded-full text-[var(--color-brand-muted)]"
-              >
-                {type}
-              </span>
             ))}
           </div>
         </div>

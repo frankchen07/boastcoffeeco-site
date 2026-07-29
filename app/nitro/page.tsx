@@ -95,8 +95,8 @@ export default function NitroPage() {
         </div>
       </section>
 
-      {/* Why Nitro Kegs */}
-      <section className="py-20 bg-[var(--color-brand-cream)]">
+      {/* Why Nitro Kegs + Our Process */}
+      <section className="py-20 bg-[var(--color-brand-surface)]">
         <div className="container-md">
           <div className="max-w-2xl mb-14">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)] mb-4">
@@ -107,13 +107,13 @@ export default function NitroPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-10">
-            {kegFeatures.map(({ title, description }) => (
-              <div
-                key={title}
-                className="border-t-2 border-[var(--color-brand-accent)] pt-8"
-              >
-                <h3 className="text-xl font-display font-bold text-[var(--color-brand-dark)] mb-3">
+          <div className="grid md:grid-cols-3 gap-10 mb-14">
+            {processFeatures.map(({ icon, title, description }) => (
+              <div key={title} className="flex flex-col gap-4">
+                <div className="w-14 h-14 rounded-lg bg-[var(--color-brand-cream)] flex items-center justify-center text-[var(--color-brand-accent)]">
+                  {icon}
+                </div>
+                <h3 className="text-xl font-display font-bold text-[var(--color-brand-dark)]">
                   {title}
                 </h3>
                 <p className="text-[var(--color-brand-muted)] leading-relaxed text-sm">
@@ -122,25 +122,14 @@ export default function NitroPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* The Process */}
-      <section id="the-process" className="py-20 bg-[var(--color-brand-surface)]">
-        <div className="container-md">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)]">
-              Our Process
-            </h2>
-          </div>
 
           <div className="grid md:grid-cols-3 gap-10">
-            {processFeatures.map(({ icon, title, description }) => (
-              <div key={title} className="flex flex-col gap-4">
-                <div className="w-14 h-14 rounded-lg bg-[var(--color-brand-cream)] flex items-center justify-center text-[var(--color-brand-accent)]">
-                  {icon}
-                </div>
-                <h3 className="text-xl font-display font-bold text-[var(--color-brand-dark)]">
+            {kegFeatures.map(({ title, description }) => (
+              <div
+                key={title}
+                className="border-t-2 border-[var(--color-brand-accent)] pt-8"
+              >
+                <h3 className="text-xl font-display font-bold text-[var(--color-brand-dark)] mb-3">
                   {title}
                 </h3>
                 <p className="text-[var(--color-brand-muted)] leading-relaxed text-sm">
