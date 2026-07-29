@@ -14,6 +14,10 @@ const SHOPIFY_ENDPOINT = process.env.SHOPIFY_STORE_DOMAIN
 
 const STOREFRONT_TOKEN = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 
+export const SHOPIFY_ACCOUNT_URL = process.env.SHOPIFY_STORE_DOMAIN
+  ? `https://${process.env.SHOPIFY_STORE_DOMAIN}/account`
+  : null;
+
 // ─── GraphQL Fragments ───────────────────────────────────────────────────────
 
 const PRODUCT_FRAGMENT = `

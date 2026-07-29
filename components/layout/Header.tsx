@@ -13,7 +13,7 @@ const NAV_LINKS = [
   { href: "/shop", label: "Shop" },
 ];
 
-export default function Header() {
+export default function Header({ accountUrl }: { accountUrl: string | null }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const navRef = useRef<HTMLElement>(null);
@@ -82,6 +82,16 @@ export default function Header() {
 
         {/* Right side */}
         <div className="flex items-center gap-4">
+          {accountUrl && (
+            <a
+              href={accountUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:inline text-sm font-medium text-[var(--color-brand-muted)] hover:text-[var(--color-brand-dark)] transition-colors"
+            >
+              Account
+            </a>
+          )}
           <CartIcon />
           {/* Mobile menu toggle */}
           <button
@@ -123,6 +133,17 @@ export default function Header() {
                 {label}
               </Link>
             ))}
+            {accountUrl && (
+              <a
+                href={accountUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuOpen(false)}
+                className="py-2 text-base font-medium text-[var(--color-brand-dark)] hover:text-[var(--color-brand-accent)] transition-colors"
+              >
+                Account
+              </a>
+            )}
           </div>
         </nav>
       )}
