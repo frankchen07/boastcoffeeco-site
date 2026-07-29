@@ -15,6 +15,9 @@ function ProductCard({ product }: ProductCardProps) {
   const { addItem } = useCart();
   const [adding, setAdding] = useState(false);
 
+  const needsOptions =
+    product.variants.length > 1 || product.variants[0]?.sellingPlans.length > 0;
+
   async function handleAddToCart() {
     if (!product.availableForSale || !product.variantId) return;
     setAdding(true);
@@ -70,16 +73,27 @@ function ProductCard({ product }: ProductCardProps) {
         </div>
 
         <div className="flex items-center justify-between mt-auto pt-2">
-          <span className="text-base font-semibold text-[var(--color-brand-dark)]">
-            {formatPrice(product.price, product.currencyCode)}
-          </span>
-          <button
-            onClick={handleAddToCart}
-            disabled={!product.availableForSale || adding}
-            className="text-xs font-semibold px-4 py-2 rounded bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] hover:bg-[var(--color-brand-accent)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-          >
-            {adding ? "Adding…" : product.availableForSale ? "Add to Cart" : "Sold Out"}
-          </button>
+          {!needsOptions && (
+            <span className="text-base font-semibold text-[var(--color-brand-dark)]">
+              {formatPrice(product.price, product.currencyCode)}
+            </span>
+          )}
+          {needsOptions ? (
+            <Link
+              href={`/shop/${product.handle}`}
+              className="text-xs font-semibold px-4 py-2 rounded bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] hover:bg-[var(--color-brand-accent)] transition-colors ml-auto"
+            >
+              Choose Options
+            </Link>
+          ) : (
+            <button
+              onClick={handleAddToCart}
+              disabled={!product.availableForSale || adding}
+              className="text-xs font-semibold px-4 py-2 rounded bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] hover:bg-[var(--color-brand-accent)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              {adding ? "Adding…" : product.availableForSale ? "Add to Cart" : "Sold Out"}
+            </button>
+          )}
         </div>
       </div>
     </article>

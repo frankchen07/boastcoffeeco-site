@@ -82,9 +82,10 @@ export default async function ProductPage({ params }: Props) {
               </p>
             </div>
 
-            <p className="text-[var(--color-brand-muted)] leading-relaxed">
-              {product.description}
-            </p>
+            <div
+              className="shop-prose text-[var(--color-brand-muted)] leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
+            />
 
             <AddToCartButton product={product} />
           </div>
