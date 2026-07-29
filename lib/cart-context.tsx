@@ -25,7 +25,7 @@ interface CartContextValue {
   itemCount: number;
   openCart: () => void;
   closeCart: () => void;
-  addItem: (variantId: string, quantity?: number) => Promise<void>;
+  addItem: (variantId: string, quantity?: number, sellingPlanId?: string) => Promise<void>;
   removeItem: (lineId: string) => Promise<void>;
   updateItem: (lineId: string, quantity: number) => Promise<void>;
 }
@@ -58,11 +58,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }, [cart]);
 
   const addItem = useCallback(
-    async (variantId: string, quantity = 1) => {
+    async (variantId: string, quantity = 1, sellingPlanId?: string) => {
       setIsLoading(true);
       try {
         const cartId = await ensureCart();
-        const updated = await addToCart(cartId, [{ merchandiseId: variantId, quantity }]);
+        const updated = await addToCart(cartId, [
+          { merchandiseId: variantId, quantity, sellingPlanId },
+        ]);
         setCart(updated);
         setIsOpen(true);
       } finally {

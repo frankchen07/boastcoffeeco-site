@@ -132,6 +132,11 @@ export default function CartDrawer() {
                     {line.variantTitle !== "Default Title" && (
                       <p className="text-xs text-[var(--color-brand-muted)]">{line.variantTitle}</p>
                     )}
+                    {line.sellingPlanName && (
+                      <p className="text-xs text-[var(--color-brand-accent)] font-medium">
+                        {line.sellingPlanName}
+                      </p>
+                    )}
                     <p className="text-sm text-[var(--color-brand-dark)] mt-1">
                       {formatPrice(line.price, line.currencyCode)}
                     </p>

@@ -10,12 +10,36 @@ export interface ShopifyMoneyV2 {
   currencyCode: string;
 }
 
+export interface ShopifySellingPlan {
+  id: string;
+  name: string;
+  description: string | null;
+  recurringDeliveries: boolean;
+}
+
+export interface ShopifySellingPlanAllocation {
+  sellingPlan: ShopifySellingPlan;
+  priceAdjustments: { price: ShopifyMoneyV2 }[];
+}
+
+export interface ShopifySelectedOption {
+  name: string;
+  value: string;
+}
+
 export interface ShopifyProductVariant {
   id: string;
   title: string;
   availableForSale: boolean;
   price: ShopifyMoneyV2;
   compareAtPrice: ShopifyMoneyV2 | null;
+  selectedOptions: ShopifySelectedOption[];
+  sellingPlanAllocations: { edges: { node: ShopifySellingPlanAllocation }[] };
+}
+
+export interface ShopifyProductOption {
+  name: string;
+  values: string[];
 }
 
 export interface ShopifyProduct {
@@ -30,12 +54,14 @@ export interface ShopifyProduct {
     minVariantPrice: ShopifyMoneyV2;
     maxVariantPrice: ShopifyMoneyV2;
   };
+  options: ShopifyProductOption[];
   variants: { edges: { node: ShopifyProductVariant }[] };
 }
 
 export interface CartLine {
   id: string;
   quantity: number;
+  sellingPlanAllocation: { sellingPlan: { name: string } } | null;
   merchandise: {
     id: string;
     title: string;
@@ -60,16 +86,36 @@ export interface Cart {
 }
 
 // Normalized types for component use
+export interface NormalizedSellingPlan {
+  id: string;
+  name: string;
+  description: string | null;
+  price: string;
+}
+
+export interface NormalizedVariant {
+  id: string;
+  title: string;
+  availableForSale: boolean;
+  price: string;
+  compareAtPrice: string | null;
+  selectedOptions: ShopifySelectedOption[];
+  sellingPlans: NormalizedSellingPlan[];
+}
+
 export interface NormalizedProduct {
   id: string;
   handle: string;
   title: string;
   description: string;
+  descriptionHtml: string;
   image: ShopifyImage | null;
   price: string;
   currencyCode: string;
   variantId: string;
   availableForSale: boolean;
+  options: ShopifyProductOption[];
+  variants: NormalizedVariant[];
 }
 
 export interface NormalizedCartLine {
@@ -78,6 +124,7 @@ export interface NormalizedCartLine {
   variantId: string;
   productTitle: string;
   variantTitle: string;
+  sellingPlanName: string | null;
   price: string;
   currencyCode: string;
   handle: string;

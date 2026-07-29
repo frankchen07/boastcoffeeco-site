@@ -46,6 +46,48 @@ h1, h2, h3 {
   padding-inline: 1.5rem;
 }
 
+.shop-prose p {
+  margin-bottom: 1em;
+}
+
+.shop-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.shop-prose ul,
+.shop-prose ol {
+  margin-bottom: 1em;
+  padding-left: 1.25em;
+}
+
+.shop-prose ul {
+  list-style: disc;
+}
+
+.shop-prose ol {
+  list-style: decimal;
+}
+
+.shop-prose li {
+  margin-bottom: 0.35em;
+}
+
+.shop-prose strong {
+  font-weight: 600;
+  color: var(--color-brand-dark);
+}
+
+.shop-prose a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.shop-prose br {
+  display: block;
+  content: "";
+  margin-top: 0.5em;
+}
+
 @media (min-width: 768px) {
   .container-md {
     padding-inline: 2.5rem;

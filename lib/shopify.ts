@@ -1,7 +1,9 @@
 import type {
   ShopifyProduct,
+  ShopifyProductVariant,
   Cart,
   NormalizedProduct,
+  NormalizedVariant,
   NormalizedCart,
   NormalizedCartLine,
 } from "./types";
@@ -27,6 +29,7 @@ const PRODUCT_FRAGMENT = `
       minVariantPrice { amount currencyCode }
       maxVariantPrice { amount currencyCode }
     }
+    options { name values }
     variants(first: 10) {
       edges {
         node {
@@ -35,6 +38,15 @@ const PRODUCT_FRAGMENT = `
           availableForSale
           price { amount currencyCode }
           compareAtPrice { amount currencyCode }
+          selectedOptions { name value }
+          sellingPlanAllocations(first: 10) {
+            edges {
+              node {
+                sellingPlan { id name description recurringDeliveries }
+                priceAdjustments { price { amount currencyCode } }
+              }
+            }
+          }
         }
       }
     }
@@ -55,6 +67,9 @@ const CART_FRAGMENT = `
         node {
           id
           quantity
+          sellingPlanAllocation {
+            sellingPlan { name }
+          }
           merchandise {
             ... on ProductVariant {
               id
@@ -110,18 +125,39 @@ async function shopifyFetch<T>(
 
 // ─── Normalizers ──────────────────────────────────────────────────────────────
 
+function normalizeVariant(variant: ShopifyProductVariant): NormalizedVariant {
+  return {
+    id: variant.id,
+    title: variant.title,
+    availableForSale: variant.availableForSale,
+    price: variant.price.amount,
+    compareAtPrice: variant.compareAtPrice?.amount ?? null,
+    selectedOptions: variant.selectedOptions,
+    sellingPlans: variant.sellingPlanAllocations.edges.map(({ node }) => ({
+      id: node.sellingPlan.id,
+      name: node.sellingPlan.name,
+      description: node.sellingPlan.description,
+      price: node.priceAdjustments[0]?.price.amount ?? variant.price.amount,
+    })),
+  };
+}
+
 function normalizeProduct(product: ShopifyProduct): NormalizedProduct {
-  const firstVariant = product.variants.edges[0]?.node;
+  const variants = product.variants.edges.map(({ node }) => normalizeVariant(node));
+  const firstVariant = variants[0];
   return {
     id: product.id,
     handle: product.handle,
     title: product.title,
     description: product.description,
+    descriptionHtml: product.descriptionHtml,
     image: product.featuredImage ?? null,
     price: product.priceRange.minVariantPrice.amount,
     currencyCode: product.priceRange.minVariantPrice.currencyCode,
     variantId: firstVariant?.id ?? "",
     availableForSale: firstVariant?.availableForSale ?? false,
+    options: product.options,
+    variants,
   };
 }
 
@@ -132,6 +168,7 @@ function normalizeCart(cart: Cart): NormalizedCart {
     variantId: node.merchandise.id,
     productTitle: node.merchandise.product.title,
     variantTitle: node.merchandise.title,
+    sellingPlanName: node.sellingPlanAllocation?.sellingPlan.name ?? null,
     price: node.merchandise.price.amount,
     currencyCode: node.merchandise.price.currencyCode,
     handle: node.merchandise.product.handle,
@@ -195,7 +232,7 @@ export async function createCart(): Promise<NormalizedCart> {
 
 export async function addToCart(
   cartId: string,
-  lines: { merchandiseId: string; quantity: number }[]
+  lines: { merchandiseId: string; quantity: number; sellingPlanId?: string }[]
 ): Promise<NormalizedCart> {
   const data = await shopifyFetch<{ cartLinesAdd: { cart: Cart } }>(
     `
@@ -257,39 +294,61 @@ export async function getCart(cartId: string): Promise<NormalizedCart | null> {
 
 // ─── Mock data for development (no Shopify store yet) ─────────────────────────
 
+function mockVariant(id: string, price: string): NormalizedVariant {
+  return {
+    id,
+    title: "Default Title",
+    availableForSale: true,
+    price,
+    compareAtPrice: null,
+    selectedOptions: [],
+    sellingPlans: [],
+  };
+}
+
 export const MOCK_PRODUCTS: NormalizedProduct[] = [
   {
     id: "mock-1",
     handle: "signature-blend",
     title: "Signature Blend",
     description: "Our flagship medium roast from Guatemala. Rich, balanced, smooth.",
+    descriptionHtml:
+      "<p>Our flagship medium roast from Guatemala. Rich, balanced, smooth.</p>",
     image: null,
     price: "18.00",
     currencyCode: "USD",
     variantId: "mock-variant-1",
     availableForSale: true,
+    options: [],
+    variants: [mockVariant("mock-variant-1", "18.00")],
   },
   {
     id: "mock-2",
     handle: "single-origin-ethiopia",
     title: "Single Origin Ethiopia",
     description: "Bright and fruity with notes of blueberry and citrus.",
+    descriptionHtml: "<p>Bright and fruity with notes of blueberry and citrus.</p>",
     image: null,
     price: "22.00",
     currencyCode: "USD",
     variantId: "mock-variant-2",
     availableForSale: true,
+    options: [],
+    variants: [mockVariant("mock-variant-2", "22.00")],
   },
   {
     id: "mock-3",
     handle: "nitro-cold-brew-can",
     title: "Espresso Concentrate 25oz",
     description: "Velvety smooth concentrate brewed Kyoto-style.",
+    descriptionHtml: "<p>Velvety smooth concentrate brewed Kyoto-style.</p>",
     image: null,
     price: "6.00",
     currencyCode: "USD",
     variantId: "mock-variant-3",
     availableForSale: true,
+    options: [],
+    variants: [mockVariant("mock-variant-3", "6.00")],
   },
 ];
 
