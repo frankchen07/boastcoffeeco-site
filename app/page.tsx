@@ -1,23 +1,8 @@
-import { Suspense } from "react";
+import Image from "next/image";
 import Hero from "@/components/sections/Hero";
-import ProductGrid from "@/components/sections/ProductGrid";
 import { LinkButton } from "@/components/ui/Button";
-import { getProducts, MOCK_PRODUCTS } from "@/lib/shopify";
-import type { NormalizedProduct } from "@/lib/types";
 
-async function getFeaturedProducts(): Promise<NormalizedProduct[]> {
-  try {
-    const products = await getProducts(3);
-    return products.length > 0 ? products : MOCK_PRODUCTS.slice(0, 3);
-  } catch {
-    // Shopify not configured yet — use mock data
-    return MOCK_PRODUCTS.slice(0, 3);
-  }
-}
-
-export default async function HomePage() {
-  const featured = await getFeaturedProducts();
-
+export default function HomePage() {
   return (
     <>
       {/* Hero */}
@@ -29,57 +14,81 @@ export default async function HomePage() {
         dark
       />
 
-      {/* Featured Products */}
-      <section className="py-20 bg-[var(--color-brand-cream)]">
-        <div className="container-md">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-muted)] mb-2">
-                Bestsellers
-              </p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)]">
-                Shop
-              </h2>
-            </div>
-            <LinkButton href="/shop" variant="ghost" size="sm">
-              View all products →
-            </LinkButton>
-          </div>
-          <Suspense
-            fallback={
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                {[1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className="aspect-square bg-[var(--color-brand-surface)] rounded animate-pulse"
-                  />
-                ))}
-              </div>
-            }
-          >
-            <ProductGrid products={featured} columns={3} />
-          </Suspense>
-        </div>
-      </section>
-
-      {/* Brand Story Teaser */}
+      {/* We're here to boast */}
       <section className="py-20 bg-[var(--color-brand-surface)]">
         <div className="container-md">
-          <div className="max-w-2xl mx-auto text-center">
+          <div className="max-w-2xl">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)] mb-6">
-              Coffee is our craft.
+              We&apos;re here to boast
+              <br />
+              the coffee, not ourselves.
             </h2>
-            <p className="text-lg text-[var(--color-brand-muted)] leading-relaxed mb-8">
-              Boast started with a simple idea: coffee done well should be something worth telling people
-              about. Every bean we roast and serve is our answer to that.
+            <p className="text-lg text-[var(--color-brand-muted)] leading-relaxed">
+              Boast started with a simple idea: coffee done well should be something worth telling
+              people about. Every bean we roast and serve is our answer to that. The name isn&apos;t
+              about ego. &ldquo;Boast&rdquo; is about letting the coffee do the talking — preserving
+              what makes each bean exceptional and putting it front and center, every time.
             </p>
-            <LinkButton href="/about" variant="secondary">
-              Our Story
-            </LinkButton>
           </div>
         </div>
       </section>
 
+      {/* Origin Story */}
+      <section className="py-20 bg-[var(--color-brand-cream)]">
+        <div className="container-md">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-3xl font-display font-bold text-[var(--color-brand-dark)] mb-6">
+                Our Origin Story
+              </h2>
+              <div className="space-y-5 text-[var(--color-brand-muted)] leading-relaxed text-lg">
+                <p>
+                  We started with a simple frustration: the Bay Area has always had great coffee culture but there was a
+                  real gap in how craft coffee was delivered, especially off-premise.
+                </p>
+                <p>
+                  So in 2017, we built something different. We sourced specialty beans, small-batch roasted them in
+                  San Jose, and started doing nitro cold brew on tap in kegs for offices, venues, and events. Eventually, we expanded to catering using a solar-powered espresso van that brings
+                  a full craft coffee bar directly to events.
+                </p>
+                <p className="font-bold">
+                  That&apos;s still what Boast is: great coffee worth telling people about, wherever you need it.
+                </p>
+              </div>
+            </div>
+            <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-lg">
+              <Image
+                src="/boast-coffee-bags-1.jpg"
+                alt="Boast Coffee bags ready to ship"
+                fill
+                className="object-cover object-center opacity-65"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                loading="eager"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Closing CTA */}
+      <section className="py-20 bg-[var(--color-brand-surface)]">
+        <div className="container-md text-center">
+          <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)] mb-6">
+            Ready to taste the difference?
+          </h2>
+          <p className="text-[var(--color-brand-muted)] mb-8 max-w-md mx-auto">
+            Shop our coffee, book an event, or just say hello!
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <LinkButton href="/shop" size="lg">
+              Shop Coffee
+            </LinkButton>
+            <LinkButton href="/catering" variant="secondary" size="lg">
+              Book an Event
+            </LinkButton>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

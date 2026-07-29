@@ -93,16 +93,32 @@ export default function SproPage() {
         </div>
       </section>
 
-      {/* Why Espresso Concentrate */}
-      <section className="py-20 bg-[var(--color-brand-cream)]">
+      {/* Why Espresso Concentrate + Our Process */}
+      <section className="py-20 bg-[var(--color-brand-surface)]">
         <div className="container-md">
           <div className="max-w-2xl mb-14">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)] mb-4">
-              Iced espresso drinks are your slowest ticket. Every shot that waits on the machine is a customer waiting on the line.
+              Every iced espresso is a hot drink you&apos;re not making. More shots means longer wait times.
             </h2>
             <p className="text-lg text-[var(--color-brand-muted)] leading-relaxed">
               We did the extraction for you. What&apos;s in the bag is ready to go — just the spro, nothing else. Use it on the line, or even at home.
             </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-10 mb-14">
+            {processFeatures.map(({ icon, title, description }) => (
+              <div key={title} className="flex flex-col gap-4">
+                <div className="w-14 h-14 rounded-lg bg-[var(--color-brand-cream)] flex items-center justify-center text-[var(--color-brand-accent)]">
+                  {icon}
+                </div>
+                <h3 className="text-xl font-display font-bold text-[var(--color-brand-dark)]">
+                  {title}
+                </h3>
+                <p className="text-[var(--color-brand-muted)] leading-relaxed text-sm">
+                  {description}
+                </p>
+              </div>
+            ))}
           </div>
 
           <div className="grid md:grid-cols-3 gap-10">
@@ -112,33 +128,6 @@ export default function SproPage() {
                 className="border-t-2 border-[var(--color-brand-accent)] pt-8"
               >
                 <h3 className="text-xl font-display font-bold text-[var(--color-brand-dark)] mb-3">
-                  {title}
-                </h3>
-                <p className="text-[var(--color-brand-muted)] leading-relaxed text-sm">
-                  {description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* The Process */}
-      <section id="the-process" className="py-20 bg-[var(--color-brand-surface)]">
-        <div className="container-md">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)]">
-              Our Process
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-10">
-            {processFeatures.map(({ icon, title, description }) => (
-              <div key={title} className="flex flex-col gap-4">
-                <div className="w-14 h-14 rounded-lg bg-[var(--color-brand-cream)] flex items-center justify-center text-[var(--color-brand-accent)]">
-                  {icon}
-                </div>
-                <h3 className="text-xl font-display font-bold text-[var(--color-brand-dark)]">
                   {title}
                 </h3>
                 <p className="text-[var(--color-brand-muted)] leading-relaxed text-sm">
