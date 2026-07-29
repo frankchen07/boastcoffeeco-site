@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Footer() {
+export default function Footer({ accountUrl }: { accountUrl: string | null }) {
   return (
     <footer className="bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)]">
       <div className="container-md py-12">
@@ -58,6 +58,18 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              {accountUrl && (
+                <li>
+                  <a
+                    href={accountUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-[var(--color-brand-surface)] hover:text-[var(--color-brand-accent)] transition-colors"
+                  >
+                    Manage Subscription
+                  </a>
+                </li>
+              )}
               <li>
                 <a
                   href="https://www.instagram.com/boastcoffee/"

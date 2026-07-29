@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import CartDrawer from "@/components/sections/CartDrawer";
 import { CartProvider } from "@/lib/cart-context";
+import { SHOPIFY_ACCOUNT_URL } from "@/lib/shopify";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -52,9 +53,9 @@ export default function RootLayout({
           >
             Skip to main content
           </a>
-          <Header />
+          <Header accountUrl={SHOPIFY_ACCOUNT_URL} />
           <main id="main-content" className="flex-1">{children}</main>
-          <Footer />
+          <Footer accountUrl={SHOPIFY_ACCOUNT_URL} />
           <CartDrawer />
         </CartProvider>
       </body>
