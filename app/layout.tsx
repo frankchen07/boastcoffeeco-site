@@ -53,7 +53,7 @@ export default function RootLayout({
           >
             Skip to main content
           </a>
-          <Header accountUrl={SHOPIFY_ACCOUNT_URL} />
+          <Header />
           <main id="main-content" className="flex-1">{children}</main>
           <Footer accountUrl={SHOPIFY_ACCOUNT_URL} />
           <CartDrawer />

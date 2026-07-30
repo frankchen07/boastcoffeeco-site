@@ -47,21 +47,9 @@ export default function WholesalePage() {
                 Already Approved?
               </p>
               <p className="text-sm text-[var(--color-brand-muted)] leading-relaxed">
-                Use the Account link in the header or footer to log in and shop your wholesale
-                catalog.
+                We&apos;ll email you a direct link to your wholesale storefront login once your
+                account is set up — there&apos;s nothing to click on this site.
               </p>
-            </div>
-
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-muted)] mb-4">
-                Questions?
-              </p>
-              <a
-                href="mailto:hello@boastcoffee.com"
-                className="text-[var(--color-brand-dark)] hover:text-[var(--color-brand-accent)] transition-colors font-medium"
-              >
-                hello@boastcoffee.com
-              </a>
             </div>
           </div>
         </div>

@@ -59,7 +59,9 @@ This site is headless and stateless — no admin backend, no database, and no Sh
 1. Customer submits the form at `/wholesale` → emails Frank via Resend (`app/api/wholesale/route.ts`) with business details. No Shopify object is created yet.
 2. Frank reviews the email, then manually creates a Company → Location → Contact in Shopify Admin (**Customers > Companies**).
 3. Shopify emails the new contact an invite to set up their login.
-4. Once logged in via the site's "Account" link, they see the wholesale catalog (as scoped to Companies in Admin) — retail visitors don't.
+4. Frank separately sends the approved contact the dedicated wholesale storefront URL (the standard Shopify theme, e.g. `wholesale.boastcoffee.com` or `boast-coffee.myshopify.com`, password-protected in **Online Store > Preferences**) — not the headless site. Once logged in there, they see the wholesale catalog (as scoped to Companies in Admin).
+
+The headless site's "Account" link is retail-only (order history, subscriptions) — wholesale customers are never pointed at it, since Shopify account identity is shared per-customer, not per-storefront, and mixing the two on one link is confusing.
 
 **Subscription changes (pause/skip/swap/cancel)**
 1. Customer clicks "Account" (header or footer) → lands on Shopify's hosted Customer Accounts portal (`SHOPIFY_ACCOUNT_URL` in `lib/shopify.ts`).

@@ -47,7 +47,7 @@ export default function Footer({ accountUrl }: { accountUrl: string | null }) {
             <ul className="space-y-2">
               {[
                 { href: "/visit", label: "Find Us" },
-                { href: "/contact", label: "Contact Us" },
+                { href: "/book-event", label: "Book an Event" },
               ].map(({ href, label }) => (
                 <li key={href}>
                   <Link
@@ -58,6 +58,14 @@ export default function Footer({ accountUrl }: { accountUrl: string | null }) {
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/wholesale"
+                  className="text-sm text-[var(--color-brand-surface)] hover:text-[var(--color-brand-accent)] transition-colors"
+                >
+                  Wholesale
+                </Link>
+              </li>
               {accountUrl && (
                 <li>
                   <a
@@ -70,14 +78,6 @@ export default function Footer({ accountUrl }: { accountUrl: string | null }) {
                   </a>
                 </li>
               )}
-              <li>
-                <Link
-                  href="/wholesale"
-                  className="text-sm text-[var(--color-brand-surface)] hover:text-[var(--color-brand-accent)] transition-colors"
-                >
-                  Wholesale
-                </Link>
-              </li>
               <li>
                 <a
                   href="https://www.instagram.com/boastcoffee/"
