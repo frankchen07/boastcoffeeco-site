@@ -53,17 +53,23 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Operational Runbooks
 
-This site is headless and stateless — no admin backend, no database, and no Shopify Admin API access. It can only read Storefront data and send emails. Anything beyond that (approvals, account setup, order changes) happens by hand in Shopify Admin.
+The retail site is headless and stateless — no admin backend, no database, and no Shopify Admin API access. It can only read Storefront data and send emails. Anything beyond that (approvals, account setup, order changes) happens by hand in Shopify Admin.
 
-**Wholesale application → approval**
+**Adding Products**
+- If a product has a retail and a wholesale variant, making a duplicate is the cleanest way to achieve this. 
+- Add the retail and the wholesale duplicate, ensure that the variants are different (usually size/amount).
+- Exclude retail products from the Shopify online store, and include retail products to the Boast headless store.
+- Include respective products into the individual or wholesale catalogs.
+- Tag retail products until retail, and wholesale products under wholesale
+
+**Wholesale Customer: Application → Approval**
 1. Customer submits the form at `/wholesale` → emails Frank via Resend (`app/api/wholesale/route.ts`) with business details. No Shopify object is created yet.
-2. Frank reviews the email, then manually creates a Company → Location → Contact in Shopify Admin (**Customers > Companies**).
+2. Frank reviews the email, then manually creates a company entry in Shopify Admin.
+3. Frank adds a customer contact to the company entry.
 3. Shopify emails the new contact an invite to set up their login.
-4. Frank separately sends the approved contact the dedicated wholesale storefront URL (the standard Shopify theme, e.g. `wholesale.boastcoffee.com` or `boast-coffee.myshopify.com`, password-protected in **Online Store > Preferences**) — not the headless site. Once logged in there, they see the wholesale catalog (as scoped to Companies in Admin).
+4. Frank separately sends the approved contact the dedicated wholesale storefront URL (the standard Shopify theme, e.g. `boast-coffee.myshopify.com` — not the headless site. It should be in the invite email though. Once logged in there, they see the wholesale catalog and can purchase.
 
-The headless site's "Account" link is retail-only (order history, subscriptions) — wholesale customers are never pointed at it, since Shopify account identity is shared per-customer, not per-storefront, and mixing the two on one link is confusing.
-
-**Subscription changes (pause/skip/swap/cancel)**
-1. Customer clicks "Account" (header or footer) → lands on Shopify's hosted Customer Accounts portal (`SHOPIFY_ACCOUNT_URL` in `lib/shopify.ts`).
-2. Self-service pause/skip/swap/cancel happens entirely in Shopify's hosted UI — there's no code path for this in the repo.
-3. Requires Shopify's Subscriptions app + the new Customer Accounts system to be active in Admin (already the case).
+**Retail Customers**
+1. Customer clicks "Manage Subscription" and lands on https://boast-coffee.myshopify.com/tools/subscriptions
+2. They can also see the wholesale site but if because have no company affiliation, they cannot purchase these items.
+3. Subscription management happens here.
