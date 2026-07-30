@@ -69,12 +69,12 @@ export default function Footer({ accountUrl }: { accountUrl: string | null }) {
               {accountUrl && (
                 <li>
                   <a
-                    href={accountUrl}
+                    href="https://boast-coffee.myshopify.com/tools/subscriptions"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-[var(--color-brand-surface)] hover:text-[var(--color-brand-accent)] transition-colors"
                   >
-                    Account
+                    Manage Subscription
                   </a>
                 </li>
               )}
