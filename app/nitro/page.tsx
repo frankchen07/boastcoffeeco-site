@@ -77,7 +77,7 @@ export default function NitroPage() {
               Bay Area offices and events trust us for tap-ready nitro. We brew, deliver, and service the keg. You just pull the tap.
             </p>
             <div className="flex flex-wrap gap-4">
-              <LinkButton href="/contact" size="lg">
+              <LinkButton href="/wholesale" size="lg">
                 Request a Keg
               </LinkButton>
             </div>

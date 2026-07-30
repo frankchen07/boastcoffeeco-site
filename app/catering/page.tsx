@@ -41,7 +41,7 @@ export default function CateringPage() {
             <p className="text-lg md:text-xl text-[var(--color-brand-surface)] leading-relaxed mb-10 max-w-xl">
               We pull up with an espresso van, nitro on tap, and craft cold brew — and your guests remember it.
             </p>
-            <LinkButton href="/contact" size="lg">
+            <LinkButton href="/book-event" size="lg">
               Book Your Event
             </LinkButton>
           </div>

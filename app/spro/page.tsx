@@ -75,7 +75,7 @@ export default function SproPage() {
               Single-origin espresso concentrate, cold-extracted and ready to use. No machine. No wait.
             </p>
             <div className="flex flex-wrap gap-4">
-              <LinkButton href="/contact" size="lg">
+              <LinkButton href="/wholesale" size="lg">
                 Get In Touch
               </LinkButton>
             </div>
