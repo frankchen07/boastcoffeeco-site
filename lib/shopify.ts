@@ -196,13 +196,13 @@ export async function getProducts(first = 12): Promise<NormalizedProduct[]> {
   const data = await shopifyFetch<{ products: { edges: { node: ShopifyProduct }[] } }>(
     `
     ${PRODUCT_FRAGMENT}
-    query GetProducts($first: Int!) {
+    query GetProducts($first: Int!, $country: CountryCode!) @inContext(country: $country) {
       products(first: $first, sortKey: BEST_SELLING) {
         edges { node { ...ProductFields } }
       }
     }
     `,
-    { first }
+    { first, country: "US" }
   );
   return data.products.edges.map(({ node }) => normalizeProduct(node));
 }
@@ -211,11 +211,11 @@ export async function getProduct(handle: string): Promise<NormalizedProduct | nu
   const data = await shopifyFetch<{ productByHandle: ShopifyProduct | null }>(
     `
     ${PRODUCT_FRAGMENT}
-    query GetProduct($handle: String!) {
+    query GetProduct($handle: String!, $country: CountryCode!) @inContext(country: $country) {
       productByHandle(handle: $handle) { ...ProductFields }
     }
     `,
-    { handle }
+    { handle, country: "US" }
   );
   return data.productByHandle ? normalizeProduct(data.productByHandle) : null;
 }
