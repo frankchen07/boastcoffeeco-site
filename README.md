@@ -50,3 +50,18 @@ Open [http://localhost:3000](http://localhost:3000).
 2. Go to **Settings > Apps and sales channels > Develop apps**
 3. Create a custom app, grant Storefront API access (products, cart)
 4. Copy the Storefront API access token to your `.env`
+
+## Operational Runbooks
+
+This site is headless and stateless — no admin backend, no database, and no Shopify Admin API access. It can only read Storefront data and send emails. Anything beyond that (approvals, account setup, order changes) happens by hand in Shopify Admin.
+
+**Wholesale application → approval**
+1. Customer submits the form at `/wholesale` → emails Frank via Resend (`app/api/wholesale/route.ts`) with business details. No Shopify object is created yet.
+2. Frank reviews the email, then manually creates a Company → Location → Contact in Shopify Admin (**Customers > Companies**).
+3. Shopify emails the new contact an invite to set up their login.
+4. Once logged in via the site's "Account" link, they see the wholesale catalog (as scoped to Companies in Admin) — retail visitors don't.
+
+**Subscription changes (pause/skip/swap/cancel)**
+1. Customer clicks "Account" (header or footer) → lands on Shopify's hosted Customer Accounts portal (`SHOPIFY_ACCOUNT_URL` in `lib/shopify.ts`).
+2. Self-service pause/skip/swap/cancel happens entirely in Shopify's hosted UI — there's no code path for this in the repo.
+3. Requires Shopify's Subscriptions app + the new Customer Accounts system to be active in Admin (already the case).
