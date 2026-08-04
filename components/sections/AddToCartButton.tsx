@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useCart } from "@/lib/cart-context";
+import { useCart, type CartContextValue } from "@/lib/cart-context";
 import { formatPrice } from "@/lib/shopify";
 import type { NormalizedProduct } from "@/lib/types";
 
@@ -13,8 +13,14 @@ function findVariant(product: NormalizedProduct, selected: Record<string, string
   );
 }
 
-export default function AddToCartButton({ product }: { product: NormalizedProduct }) {
-  const { addItem } = useCart();
+export default function AddToCartButton({
+  product,
+  useCartHook = useCart,
+}: {
+  product: NormalizedProduct;
+  useCartHook?: () => CartContextValue;
+}) {
+  const { addItem } = useCartHook();
   const [adding, setAdding] = useState(false);
 
   const [selectedOptions, setSelectedOptions] = useState<Record<string, string>>(() => {
