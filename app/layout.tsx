@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import CartDrawer from "@/components/sections/CartDrawer";
+import ChromeGate from "@/components/layout/ChromeGate";
 import { CartProvider } from "@/lib/cart-context";
-import { SHOPIFY_ACCOUNT_URL } from "@/lib/shopify";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -53,10 +50,7 @@ export default function RootLayout({
           >
             Skip to main content
           </a>
-          <Header />
-          <main id="main-content" className="flex-1">{children}</main>
-          <Footer accountUrl={SHOPIFY_ACCOUNT_URL} />
-          <CartDrawer />
+          <ChromeGate>{children}</ChromeGate>
         </CartProvider>
       </body>
     </html>

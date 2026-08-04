@@ -3,11 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRef, useEffect } from "react";
-import { useCart } from "@/lib/cart-context";
+import { useCart, type CartContextValue } from "@/lib/cart-context";
 import { formatPrice } from "@/lib/shopify";
 
-export default function CartDrawer() {
-  const { cart, isOpen, isLoading, closeCart, removeItem, updateItem } = useCart();
+export default function CartDrawer({
+  useCartHook = useCart,
+  shopBasePath = "/shop",
+}: {
+  useCartHook?: () => CartContextValue;
+  shopBasePath?: string;
+}) {
+  const { cart, isOpen, isLoading, closeCart, removeItem, updateItem } = useCartHook();
   const drawerRef = useRef<HTMLElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const returnFocusRef = useRef<Element | null>(null);
@@ -96,7 +102,7 @@ export default function CartDrawer() {
             <div className="flex flex-col items-center justify-center h-full gap-4 text-center">
               <p className="text-[var(--color-brand-muted)] text-sm">Your cart is empty.</p>
               <Link
-                href="/shop"
+                href={shopBasePath}
                 onClick={closeCart}
                 className="text-sm font-medium text-[var(--color-brand-accent)] hover:underline"
               >

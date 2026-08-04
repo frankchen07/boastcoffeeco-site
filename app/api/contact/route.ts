@@ -80,7 +80,7 @@ export async function POST(request: Request) {
       from: "Boast Coffee Website <noreply@boastcoffee.com>",
       to: CONTACT_EMAIL,
       replyTo: email.trim(),
-      subject: `New event booking request from ${name.trim()} (${eventType})`,
+      subject: `[Event] ${name.trim()} - ${eventType}`,
       text: textLines.join("\n"),
       html: `
         <p><strong>Name:</strong> ${escapeHtml(name.trim())}</p>

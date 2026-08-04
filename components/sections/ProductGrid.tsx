@@ -3,16 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { useCart } from "@/lib/cart-context";
+import { useCart, type CartContextValue } from "@/lib/cart-context";
 import { formatPrice } from "@/lib/shopify";
 import type { NormalizedProduct } from "@/lib/types";
 
 interface ProductCardProps {
   product: NormalizedProduct;
+  useCartHook: () => CartContextValue;
+  shopBasePath: string;
 }
 
-function ProductCard({ product }: ProductCardProps) {
-  const { addItem } = useCart();
+function ProductCard({ product, useCartHook, shopBasePath }: ProductCardProps) {
+  const { addItem } = useCartHook();
   const [adding, setAdding] = useState(false);
 
   const needsOptions =
@@ -31,7 +33,7 @@ function ProductCard({ product }: ProductCardProps) {
   return (
     <article className="group flex flex-col bg-[var(--color-brand-cream)] border border-[var(--color-brand-border)] rounded overflow-hidden hover:border-[var(--color-brand-muted)] transition-colors">
       {/* Image */}
-      <Link href={`/shop/${product.handle}`} aria-hidden="true" tabIndex={-1} className="block aspect-square bg-[var(--color-brand-surface)] overflow-hidden">
+      <Link href={`${shopBasePath}/${product.handle}`} aria-hidden="true" tabIndex={-1} className="block aspect-square bg-[var(--color-brand-surface)] overflow-hidden">
         {product.image ? (
           <Image
             src={product.image.url}
@@ -62,7 +64,7 @@ function ProductCard({ product }: ProductCardProps) {
       <div className="p-4 flex flex-col gap-3 flex-1">
         <div className="flex-1">
           <Link
-            href={`/shop/${product.handle}`}
+            href={`${shopBasePath}/${product.handle}`}
             className="font-display text-base font-semibold text-[var(--color-brand-dark)] hover:text-[var(--color-brand-accent)] transition-colors line-clamp-2"
           >
             {product.title}
@@ -77,7 +79,7 @@ function ProductCard({ product }: ProductCardProps) {
           )}
           {needsOptions ? (
             <Link
-              href={`/shop/${product.handle}`}
+              href={`${shopBasePath}/${product.handle}`}
               className="text-xs font-semibold px-4 py-2 rounded bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] hover:bg-[var(--color-brand-accent)] transition-colors ml-auto"
             >
               Choose Options
@@ -100,9 +102,16 @@ function ProductCard({ product }: ProductCardProps) {
 interface ProductGridProps {
   products: NormalizedProduct[];
   columns?: 2 | 3;
+  useCartHook?: () => CartContextValue;
+  shopBasePath?: string;
 }
 
-export default function ProductGrid({ products, columns = 3 }: ProductGridProps) {
+export default function ProductGrid({
+  products,
+  columns = 3,
+  useCartHook = useCart,
+  shopBasePath = "/shop",
+}: ProductGridProps) {
   if (products.length === 0) {
     return (
       <div className="text-center py-16 text-[var(--color-brand-muted)]">
@@ -120,7 +129,12 @@ export default function ProductGrid({ products, columns = 3 }: ProductGridProps)
       }`}
     >
       {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard
+          key={product.id}
+          product={product}
+          useCartHook={useCartHook}
+          shopBasePath={shopBasePath}
+        />
       ))}
     </div>
   );

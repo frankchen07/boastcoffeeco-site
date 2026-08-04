@@ -40,6 +40,7 @@ Open [http://localhost:3000](http://localhost:3000).
 |-------|-------------|
 | `/` | Home — hero, featured products, brand story |
 | `/shop` | Product grid with cart + Shopify checkout |
+| `/wholesaleshop` | Second headless storefront (separate Shopify Storefront API token/channel) for wholesale-tagged products. Not linked from nav, noindexed — access is link-only. |
 | `/nitro` | Nitro cold brew feature page |
 | `/about` | Brand story and values |
 | `/contact` | Contact form and business info |
@@ -62,12 +63,19 @@ The retail site is headless and stateless — no admin backend, no database, and
 - Include respective products into the individual or wholesale catalogs.
 - Tag retail products until retail, and wholesale products under wholesale
 
+**Provisioning the wholesale storefront (`/wholesaleshop`)**
+- In Shopify Admin, create a second "Headless" sales channel (Settings > Apps and sales channels > Develop apps) distinct from the one retail uses.
+- Generate its own Storefront API access token and grant it Storefront API access (products, cart) same as retail.
+- Publish only wholesale-tagged products to this second channel — this is what scopes `/wholesaleshop`'s catalog to wholesale products automatically, no app-side filtering needed.
+- Add the token to `.env` as `SHOPIFY_WHOLESALE_STOREFRONT_ACCESS_TOKEN` (same `SHOPIFY_STORE_DOMAIN` as retail).
+- Pricing is one shared wholesale price list for everyone with the link — there's no login, so Shopify's per-company negotiated pricing doesn't apply here.
+
 **Wholesale Customer: Application → Approval**
 1. Customer submits the form at `/wholesale` → emails Frank via Resend (`app/api/wholesale/route.ts`) with business details. No Shopify object is created yet.
-2. Frank reviews the email, then manually creates a company entry in Shopify Admin.
-3. Frank adds a customer contact to the company entry.
-3. Shopify emails the new contact an invite to set up their login.
-4. Frank separately sends the approved contact the dedicated wholesale storefront URL (the standard Shopify theme, e.g. `boast-coffee.myshopify.com` — not the headless site. It should be in the invite email though. Once logged in there, they see the wholesale catalog and can purchase.
+2. Frank reviews the email, then manually creates a company entry in Shopify Admin, and adds a customer contact to it (kept for record-keeping — this is not a login gate).
+3. Frank sends the approved contact the `/wholesaleshop` link directly (on this headless site, not the standard Shopify theme). No login required — access is link-only, and the wholesale catalog/pricing is scoped by the second headless channel's Storefront API token, not by company affiliation.
+4. The customer browses, adds to cart, and checks out through real Shopify checkout, same as retail — one-time purchases and subscriptions (selling plans) both work.
+5. Afterward, the customer manages any subscription the same way retail customers do — via the standard Shopify subscriptions portal, matched by their checkout email.
 
 **Retail Customers**
 1. Customer clicks "Manage Subscription" and lands on https://boast-coffee.myshopify.com/tools/subscriptions

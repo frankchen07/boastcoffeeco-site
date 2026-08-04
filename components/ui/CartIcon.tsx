@@ -1,9 +1,13 @@
 "use client";
 
-import { useCart } from "@/lib/cart-context";
+import { useCart, type CartContextValue } from "@/lib/cart-context";
 
-export default function CartIcon() {
-  const { openCart, itemCount } = useCart();
+export default function CartIcon({
+  useCartHook = useCart,
+}: {
+  useCartHook?: () => CartContextValue;
+}) {
+  const { openCart, itemCount } = useCartHook();
 
   return (
     <button
