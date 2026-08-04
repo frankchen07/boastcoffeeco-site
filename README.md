@@ -40,7 +40,7 @@ Open [http://localhost:3000](http://localhost:3000).
 |-------|-------------|
 | `/` | Home — hero, featured products, brand story |
 | `/shop` | Product grid with cart + Shopify checkout |
-| `/wholesaleshop` | Second headless storefront (separate Shopify Storefront API token/channel) for wholesale-tagged products. Not linked from nav, noindexed — access is link-only. |
+| `/wholesaleshop` | Second headless storefront (separate Shopify Storefront API token/channel) for wholesale-tagged products. Not linked from nav, noindexed, and password-gated (`proxy.ts` + `/wholesaleshop/login`) — access requires both the link and the shared password. |
 | `/nitro` | Nitro cold brew feature page |
 | `/about` | Brand story and values |
 | `/contact` | Contact form and business info |
@@ -67,13 +67,14 @@ The retail site is headless and stateless — no admin backend, no database, and
 - In Shopify Admin, create a second "Headless" sales channel (Settings > Apps and sales channels > Develop apps) distinct from the one retail uses.
 - Generate its own Storefront API access token and grant it Storefront API access (products, cart) same as retail.
 - Publish only wholesale-tagged products to this second channel — this is what scopes `/wholesaleshop`'s catalog to wholesale products automatically, no app-side filtering needed.
-- Add the token to `.env` as `SHOPIFY_WHOLESALE_STOREFRONT_ACCESS_TOKEN` (same `SHOPIFY_STORE_DOMAIN` as retail).
-- Pricing is one shared wholesale price list for everyone with the link — there's no login, so Shopify's per-company negotiated pricing doesn't apply here.
+- Add the token to `.env` as `NEXT_PUBLIC_SHOPIFY_WHOLESALE_STOREFRONT_ACCESS_TOKEN` (same `NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN` as retail).
+- Pricing is one shared wholesale price list for everyone with the link — there's no company login, so Shopify's per-company negotiated pricing doesn't apply here.
+- Set `WHOLESALE_SHOP_PASSWORD` in `.env` (server-only, pick any shared password) — this gates every `/wholesaleshop` page behind `/wholesaleshop/login` regardless of the Storefront token/catalog setup above.
 
 **Wholesale Customer: Application → Approval**
 1. Customer submits the form at `/wholesale` → emails Frank via Resend (`app/api/wholesale/route.ts`) with business details. No Shopify object is created yet.
 2. Frank reviews the email, then manually creates a company entry in Shopify Admin, and adds a customer contact to it (kept for record-keeping — this is not a login gate).
-3. Frank sends the approved contact the `/wholesaleshop` link directly (on this headless site, not the standard Shopify theme). No login required — access is link-only, and the wholesale catalog/pricing is scoped by the second headless channel's Storefront API token, not by company affiliation.
+3. Frank sends the approved contact the `/wholesaleshop` link and the shared `WHOLESALE_SHOP_PASSWORD` (on this headless site, not the standard Shopify theme). No Shopify login/company affiliation is checked — the password gate is the only access control, and the wholesale catalog/pricing is scoped by the second headless channel's Storefront API token.
 4. The customer browses, adds to cart, and checks out through real Shopify checkout, same as retail — one-time purchases and subscriptions (selling plans) both work.
 5. Afterward, the customer manages any subscription the same way retail customers do — via the standard Shopify subscriptions portal, matched by their checkout email.
 
