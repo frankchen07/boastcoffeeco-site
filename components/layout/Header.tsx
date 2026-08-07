@@ -6,9 +6,7 @@ import { useState, useRef, useEffect } from "react";
 import CartIcon from "@/components/ui/CartIcon";
 
 const NAV_LINKS = [
-  { href: "/catering", label: "Catering" },
-  { href: "/nitro", label: "Nitro" },
-  { href: "/spro", label: "Espresso" },
+  { href: "/#services", label: "Services" },
   { href: "/visit", label: "Visit" },
   { href: "/shop", label: "Shop" },
 ];

@@ -20,10 +20,8 @@ export default function Footer({ accountUrl }: { accountUrl: string | null }) {
             </p>
             <ul className="space-y-2">
               {[
-                { href: "/", label: "Home" },
-                { href: "/catering", label: "Catering" },
-                { href: "/nitro", label: "Nitro" },
-                { href: "/spro", label: "Espresso" },
+                { href: "/our-story", label: "Our Story" },
+                { href: "/#services", label: "Services" },
                 { href: "/visit", label: "Visit" },
                 { href: "/shop", label: "Shop" },
               ].map(({ href, label }) => (
@@ -42,11 +40,10 @@ export default function Footer({ accountUrl }: { accountUrl: string | null }) {
           {/* Contact */}
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-border)] mb-4">
-              Say Hello
+              Get Boast
             </p>
             <ul className="space-y-2">
               {[
-                { href: "/visit", label: "Find Us" },
                 { href: "/book-event", label: "Book an Event" },
               ].map(({ href, label }) => (
                 <li key={href}>
