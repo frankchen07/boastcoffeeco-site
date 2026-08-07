@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { CART_TYPES, SPECIAL_DRINKS } from "@/lib/event-pricing";
 
 interface FormState {
   status: "idle" | "loading" | "success" | "error";
@@ -17,6 +18,10 @@ const EVENT_TYPES = [
   "Other",
 ];
 
+const CART_TYPE_OPTIONS = Object.keys(CART_TYPES);
+const SPECIAL_DRINK_OPTIONS = Object.keys(SPECIAL_DRINKS);
+const SOLAR_VAN_OPTIONS = ["No", "Yes"];
+
 const initialForm = {
   name: "",
   email: "",
@@ -25,6 +30,9 @@ const initialForm = {
   guestCount: "",
   eventStart: "",
   eventEnd: "",
+  cartType: CART_TYPE_OPTIONS[0],
+  solarVan: SOLAR_VAN_OPTIONS[0],
+  specialDrinks: [] as string[],
   message: "",
   company: "",
 };
@@ -42,6 +50,15 @@ export default function ContactForm() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  }
+
+  function toggleSpecialDrink(drink: string) {
+    setForm((prev) => ({
+      ...prev,
+      specialDrinks: prev.specialDrinks.includes(drink)
+        ? prev.specialDrinks.filter((d) => d !== drink)
+        : [...prev.specialDrinks, drink],
+    }));
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -186,25 +203,6 @@ export default function ContactForm() {
         </div>
       </div>
 
-      <div>
-        <label htmlFor="guestCount" className={labelCls}>
-          Expected Guests
-        </label>
-        <input
-          id="guestCount"
-          name="guestCount"
-          type="number"
-          min="1"
-          max="2000"
-          required
-          value={form.guestCount}
-          onChange={handleChange}
-          placeholder="50"
-          className={inputCls}
-          disabled={state.status === "loading"}
-        />
-      </div>
-
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
           <label htmlFor="eventStart" className={labelCls}>
@@ -238,6 +236,123 @@ export default function ContactForm() {
             className={inputCls}
             disabled={state.status === "loading"}
           />
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="guestCount" className={labelCls}>
+          Expected Guests
+        </label>
+        <input
+          id="guestCount"
+          name="guestCount"
+          type="number"
+          min="1"
+          max="2000"
+          required
+          value={form.guestCount}
+          onChange={handleChange}
+          placeholder="50"
+          className={inputCls}
+          disabled={state.status === "loading"}
+        />
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-5">
+        <div>
+          <label htmlFor="cartType" className={labelCls}>
+            Coffee Cart Type
+          </label>
+          <div className="relative">
+            <select
+              id="cartType"
+              name="cartType"
+              required
+              value={form.cartType}
+              onChange={handleChange}
+              className={`${inputCls} appearance-none pr-10`}
+              disabled={state.status === "loading"}
+            >
+              {CART_TYPE_OPTIONS.map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
+            </select>
+            <svg
+              className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[var(--color-brand-muted)]"
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M2.5 4.5L6 8l3.5-3.5" />
+            </svg>
+          </div>
+        </div>
+
+        <div>
+          <label htmlFor="solarVan" className={labelCls}>
+            Solar-Powered Van
+          </label>
+          <div className="relative">
+            <select
+              id="solarVan"
+              name="solarVan"
+              required
+              value={form.solarVan}
+              onChange={handleChange}
+              className={`${inputCls} appearance-none pr-10`}
+              disabled={state.status === "loading"}
+            >
+              {SOLAR_VAN_OPTIONS.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+            <svg
+              className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[var(--color-brand-muted)]"
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M2.5 4.5L6 8l3.5-3.5" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p className={labelCls}>
+          Special Drinks <span className="normal-case font-normal">(optional)</span>
+        </p>
+        <div className="flex flex-col gap-3">
+          {SPECIAL_DRINK_OPTIONS.map((drink) => (
+            <label
+              key={drink}
+              className="flex items-center gap-2 text-sm text-[var(--color-brand-dark)]"
+            >
+              <input
+                type="checkbox"
+                checked={form.specialDrinks.includes(drink)}
+                onChange={() => toggleSpecialDrink(drink)}
+                disabled={state.status === "loading"}
+              />
+              {drink}
+            </label>
+          ))}
         </div>
       </div>
 
