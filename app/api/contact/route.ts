@@ -1,5 +1,12 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import {
+  CART_TYPES,
+  SPECIAL_DRINKS,
+  calculateEventEstimate,
+  type CartType,
+  type SpecialDrink,
+} from "@/lib/event-pricing";
 
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "hello@boastcoffee.com";
 const FIVE_MINUTES_MS = 5 * 60 * 1000;
@@ -13,11 +20,28 @@ const EVENT_TYPES = [
   "Other",
 ];
 
+const CART_TYPE_OPTIONS = Object.keys(CART_TYPES);
+const SPECIAL_DRINK_OPTIONS = Object.keys(SPECIAL_DRINKS);
+const SOLAR_VAN_OPTIONS = ["No", "Yes"];
+
 export async function POST(request: Request) {
   const resend = new Resend(process.env.RESEND_API_KEY);
   try {
     const body = await request.json();
-    const { name, email, phone, eventType, guestCount, eventStart, eventEnd, message, company } = body;
+    const {
+      name,
+      email,
+      phone,
+      eventType,
+      guestCount,
+      eventStart,
+      eventEnd,
+      cartType,
+      solarVan,
+      specialDrinks,
+      message,
+      company,
+    } = body;
 
     // Honeypot: real users never see or fill this field.
     if (typeof company === "string" && company.trim().length > 0) {
@@ -58,12 +82,34 @@ export async function POST(request: Request) {
     if (new Date(eventEnd) < new Date(eventStart)) {
       return NextResponse.json({ error: "Event end must be after event start" }, { status: 400 });
     }
+    if (!cartType || typeof cartType !== "string" || !CART_TYPE_OPTIONS.includes(cartType)) {
+      return NextResponse.json({ error: "Valid cart type is required" }, { status: 400 });
+    }
+    if (!solarVan || typeof solarVan !== "string" || !SOLAR_VAN_OPTIONS.includes(solarVan)) {
+      return NextResponse.json({ error: "Invalid solar van value" }, { status: 400 });
+    }
+    if (
+      !Array.isArray(specialDrinks) ||
+      !specialDrinks.every((d) => typeof d === "string" && SPECIAL_DRINK_OPTIONS.includes(d))
+    ) {
+      return NextResponse.json({ error: "Invalid special drinks selection" }, { status: 400 });
+    }
     if (typeof message === "string" && message.trim().length > 1000) {
       return NextResponse.json({ error: "Message is too long" }, { status: 400 });
     }
 
     const phoneTrimmed = typeof phone === "string" ? phone.trim() : "";
     const messageTrimmed = typeof message === "string" ? message.trim() : "";
+    const solarVanBool = solarVan === "Yes";
+
+    const estimate = calculateEventEstimate({
+      guestCount: guests,
+      eventStart,
+      eventEnd,
+      cartType: cartType as CartType,
+      solarVan: solarVanBool,
+      specialDrinks: specialDrinks as SpecialDrink[],
+    });
 
     const textLines = [
       `Name: ${name.trim()}`,
@@ -73,6 +119,11 @@ export async function POST(request: Request) {
       `Expected Guests: ${guestCount}`,
       `Event Start: ${eventStart}`,
       `Event End: ${eventEnd}`,
+      `Cart Type: ${cartType}`,
+      `Solar Van: ${solarVan}`,
+      `Special Drinks: ${specialDrinks.length > 0 ? specialDrinks.join(", ") : "None"}`,
+      `\nEstimated Price: $${estimate.total} (internal estimate — verify before quoting)`,
+      `  Duration: ${estimate.breakdown.hours}h, Guest blocks: ${estimate.breakdown.guestBlocks}, Cart: +$${estimate.breakdown.cartDelta}, Van: +$${estimate.breakdown.vanDelta}, Drinks: +$${estimate.breakdown.drinksDelta}`,
       messageTrimmed && `\n${messageTrimmed}`,
     ].filter(Boolean);
 
@@ -90,6 +141,11 @@ export async function POST(request: Request) {
         <p><strong>Expected Guests:</strong> ${escapeHtml(String(guestCount))}</p>
         <p><strong>Event Start:</strong> ${escapeHtml(eventStart)}</p>
         <p><strong>Event End:</strong> ${escapeHtml(eventEnd)}</p>
+        <p><strong>Cart Type:</strong> ${escapeHtml(cartType)}</p>
+        <p><strong>Solar Van:</strong> ${escapeHtml(solarVan)}</p>
+        <p><strong>Special Drinks:</strong> ${escapeHtml(specialDrinks.length > 0 ? specialDrinks.join(", ") : "None")}</p>
+        <p><strong>Estimated Price:</strong> $${estimate.total} <em>(internal estimate — verify before quoting)</em></p>
+        <p style="color:#666;font-size:0.9em;">Duration: ${estimate.breakdown.hours}h &middot; Guest blocks: ${estimate.breakdown.guestBlocks} &middot; Cart: +$${estimate.breakdown.cartDelta} &middot; Van: +$${estimate.breakdown.vanDelta} &middot; Drinks: +$${estimate.breakdown.drinksDelta}</p>
         ${messageTrimmed ? `<br><p>${escapeHtml(messageTrimmed).replace(/\n/g, "<br>")}</p>` : ""}
       `,
     });
