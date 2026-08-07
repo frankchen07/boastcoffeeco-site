@@ -17,13 +17,28 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/about",
-        destination: "/",
+        destination: "/our-story",
         permanent: true,
       },
       {
         source: "/contact",
         destination: "/book-event",
         permanent: true,
+      },
+      {
+        source: "/catering",
+        destination: "/#services",
+        permanent: false,
+      },
+      {
+        source: "/nitro",
+        destination: "/#services",
+        permanent: false,
+      },
+      {
+        source: "/espresso",
+        destination: "/#services",
+        permanent: false,
       },
     ];
   },
