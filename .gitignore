@@ -49,3 +49,5 @@ next-env.d.ts
 !public/*.png
 !public/*.avif
 !public/*.webp
+public/*.mp4
+public/*.mov

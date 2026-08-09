@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Visit",
@@ -18,8 +17,17 @@ export default function VisitPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="min-h-[55dvh] bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] flex flex-col lg:flex-row overflow-hidden">
-        <div className="flex-1 flex items-center px-6 md:px-10 lg:pl-[max(2.5rem,calc((100vw-1200px)/2+2.5rem))] lg:pr-16 py-24">
+      <section className="relative min-h-[55dvh] flex items-center overflow-hidden text-[var(--color-brand-cream)]">
+        <video
+          src="/bcc-timelapse.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/25" />
+        <div className="relative z-10 px-6 md:px-10 lg:pl-[max(2.5rem,calc((100vw-1200px)/2+2.5rem))] lg:pr-16 py-24">
           <div className="max-w-xl">
             <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.05] mb-6">
               Come try our coffee!
@@ -28,16 +36,6 @@ export default function VisitPage() {
               We&apos;re next to the Midwife &amp; the Baker 🥐 in Mountain View.
             </p>
           </div>
-        </div>
-        <div className="relative h-72 lg:h-auto lg:w-[44%] shrink-0">
-          <Image
-            src="/boast-coffee-mv.jpg"
-            alt="Boast Coffee latte in Mountain View"
-            fill
-            className="object-cover object-bottom opacity-75"
-            sizes="(max-width: 1024px) 100vw, 44vw"
-            priority
-          />
         </div>
       </section>
 
