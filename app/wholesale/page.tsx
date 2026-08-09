@@ -3,7 +3,7 @@ import WholesaleForm from "@/components/sections/WholesaleForm";
 
 export const metadata: Metadata = {
   title: "Wholesale",
-  description: "Apply for a Boast Coffee Co. wholesale account.",
+  description: "Buy wholesale from Boast Coffee Co.",
 };
 
 export default function WholesalePage() {
@@ -23,7 +23,7 @@ export default function WholesalePage() {
           {/* Form */}
           <div>
             <h2 className="text-2xl font-display font-bold text-[var(--color-brand-dark)] mb-8">
-              Apply for a Wholesale Account
+              Buy Wholesale
             </h2>
             <WholesaleForm />
           </div>
@@ -36,19 +36,8 @@ export default function WholesalePage() {
               </p>
               <p className="text-sm text-[var(--color-brand-muted)] leading-relaxed">
                 We supply cafes, restaurants, offices, and retailers with wholesale-sized coffee,
-                nitro, and espresso concentrate. Submit an application and we&apos;ll review it —
-                once approved, you&apos;ll get an email invite to set up your wholesale account
-                login.
-              </p>
-            </div>
-
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-muted)] mb-4">
-                Already Approved?
-              </p>
-              <p className="text-sm text-[var(--color-brand-muted)] leading-relaxed">
-                We&apos;ll email you a direct link to your wholesale storefront login once your
-                account is set up — there&apos;s nothing to click on this site.
+                nitro, and espresso concentrate. Submit this form and a member of our team will
+                reach out!
               </p>
             </div>
           </div>
