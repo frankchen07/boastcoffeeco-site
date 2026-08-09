@@ -270,7 +270,7 @@ export default function WholesaleForm() {
         className="w-full"
         size="lg"
       >
-        {state.status === "loading" ? "Sending…" : "Submit Application"}
+        {state.status === "loading" ? "Sending…" : "Submit"}
       </Button>
     </form>
   );
