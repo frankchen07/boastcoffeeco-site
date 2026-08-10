@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import visitContent from "@/content/visit.json";
 
 export const metadata: Metadata = {
   title: "Visit",
@@ -6,12 +7,7 @@ export const metadata: Metadata = {
     "Find Boast Coffee Co. in Mountain View, CA. We're parked next to MidWife & the Baker, Wed–Sat. Espresso, nitro cold brew, and Kyoto concentrate on tap.",
 };
 
-const hours = [
-  { day: "Wednesday", time: "8 am – 12 pm" },
-  { day: "Thursday", time: "8 am – 12 pm" },
-  { day: "Friday", time: "8 am – 1 pm" },
-  { day: "Saturday", time: "8 am – 1 pm" },
-];
+const { hours } = visitContent;
 
 export default function VisitPage() {
   return (

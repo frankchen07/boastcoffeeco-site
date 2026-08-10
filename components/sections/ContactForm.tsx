@@ -3,20 +3,14 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { CART_TYPES, SPECIAL_DRINKS } from "@/lib/event-pricing";
+import formsContent from "@/content/forms.json";
 
 interface FormState {
   status: "idle" | "loading" | "success" | "error";
   message: string;
 }
 
-const EVENT_TYPES = [
-  "Corporate Event",
-  "Wedding",
-  "Farmer's Market",
-  "Pop-up",
-  "Private Party",
-  "Other",
-];
+const EVENT_TYPES = formsContent.eventTypes;
 
 const CART_TYPE_OPTIONS = Object.keys(CART_TYPES);
 const SPECIAL_DRINK_OPTIONS = Object.keys(SPECIAL_DRINKS);

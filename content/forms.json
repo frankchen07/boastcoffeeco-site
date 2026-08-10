@@ -1,0 +1,17 @@
+{
+  "eventTypes": [
+    "Corporate Event",
+    "Wedding",
+    "Farmer's Market",
+    "Pop-up",
+    "Private Party",
+    "Other"
+  ],
+  "businessTypes": [
+    "Cafe/Restaurant",
+    "Grocery/Retail",
+    "Office/Corporate",
+    "Distributor",
+    "Other"
+  ]
+}

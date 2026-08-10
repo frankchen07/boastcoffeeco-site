@@ -1,4 +1,5 @@
 import Link from "next/link";
+import navContent from "@/content/nav.json";
 
 export default function Footer({ accountUrl }: { accountUrl: string | null }) {
   return (
@@ -9,7 +10,7 @@ export default function Footer({ accountUrl }: { accountUrl: string | null }) {
           <div>
             <p className="font-display text-2xl font-bold mb-3">Boast Coffee Co.</p>
             <p className="text-sm text-[var(--color-brand-border)] leading-relaxed max-w-xs">
-              Small-batch specialty coffee, roasted and brewed with intention in every cup.
+              {navContent.footerTagline}
             </p>
           </div>
 
@@ -19,12 +20,7 @@ export default function Footer({ accountUrl }: { accountUrl: string | null }) {
               Navigate
             </p>
             <ul className="space-y-2">
-              {[
-                { href: "/our-story", label: "Our Story" },
-                { href: "/#services", label: "Services" },
-                { href: "/visit", label: "Visit" },
-                { href: "/shop", label: "Shop" },
-              ].map(({ href, label }) => (
+              {navContent.footerNavigate.map(({ href, label }) => (
                 <li key={href}>
                   <Link
                     href={href}
@@ -43,9 +39,7 @@ export default function Footer({ accountUrl }: { accountUrl: string | null }) {
               Get Boast
             </p>
             <ul className="space-y-2">
-              {[
-                { href: "/book-event", label: "Book an Event" },
-              ].map(({ href, label }) => (
+              {navContent.footerGetBoast.map(({ href, label }) => (
                 <li key={href}>
                   <Link
                     href={href}
