@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import WholesaleForm from "@/components/sections/WholesaleForm";
+import wholesaleContent from "@/content/wholesale.json";
 
 export const metadata: Metadata = {
   title: "Wholesale",
@@ -35,9 +36,7 @@ export default function WholesalePage() {
                 How It Works
               </p>
               <p className="text-sm text-[var(--color-brand-muted)] leading-relaxed">
-                We supply cafes, restaurants, offices, and retailers with wholesale-sized coffee,
-                nitro, and espresso concentrate. Submit this form and a member of our team will
-                reach out!
+                {wholesaleContent.intro}
               </p>
             </div>
           </div>

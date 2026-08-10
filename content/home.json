@@ -1,0 +1,78 @@
+{
+  "cateringServices": [
+    {
+      "title": "Espresso Bar",
+      "description": "Full espresso setup from our solar-powered van or espresso cart. Lattes, cappuccinos, cortados — made to order on-site. No generator, no fumes, no noise."
+    },
+    {
+      "title": "Nitro Cold Brew On Tap",
+      "description": "We bring the nitro kegs to you. Full tap service. It's the conversation starter at every event we've done."
+    },
+    {
+      "title": "Iced Espresso & Cold Drinks",
+      "description": "Made with our Kyoto cold brew concentrate. It's the same smooth, low-acid profile as our nitro cold brew, in a form that scales for any size event."
+    }
+  ],
+  "nitroKegFeatures": [
+    {
+      "title": "Full Service",
+      "description": "We serve offices, cafés, pop-ups, and venues across the Bay. If you want nitro on tap, we deliver, setup, and service the kegs."
+    },
+    {
+      "title": "Consistent Quality",
+      "description": "We always seal our kegs with nitrogen and store at 38F, preserving flavor and extending shelf life far beyond a standard cold brew setup. What you pour on day one tastes like day one."
+    },
+    {
+      "title": "The Pour",
+      "description": "The nitrogen creates a creamy head of foam that's both visual and textural. Our guests always remember it."
+    }
+  ],
+  "nitroProcessFeatures": [
+    {
+      "icon": "mug",
+      "title": "Single-Origin Base",
+      "description": "Brewed from the same traceable, specialty-grade beans we use for our full roast lineup. No shortcuts."
+    },
+    {
+      "icon": "clock",
+      "title": "18-Hour Cold Steep",
+      "description": "Our cold brew steeps for a full 18 hours at low temperature, extracting maximum flavor with zero bitterness."
+    },
+    {
+      "icon": "smiley",
+      "title": "Nitrogen Infused",
+      "description": "Charged with nitrogen gas for a silky, cascading pour with a natural creaminess. No added sugar or additives."
+    }
+  ],
+  "sproWhyFeatures": [
+    {
+      "title": "Higher throughput. No new machines.",
+      "description": "Every iced drink that waits for the espresso machine slows down the line. Our concentrate pulls it out of the equation — same quality, higher throughput, more happy customers."
+    },
+    {
+      "title": "Consistent shot quality. Every time.",
+      "description": "Cold-extracting to espresso concentration makes it so every drink tastes the same. No dialing in. No variation between baristas, beans, or temperature changes."
+    },
+    {
+      "title": "Drinks all week.",
+      "description": "Sealed and refrigerated, our concentrate holds its quality far longer than brewed espresso. Open it Monday, finish it Friday."
+    }
+  ],
+  "sproProcessFeatures": [
+    {
+      "icon": "mug",
+      "title": "Single-Origin Base",
+      "description": "Same traceable, specialty-grade beans we roast for the full lineup. We know where every bag comes from."
+    },
+    {
+      "icon": "clock",
+      "title": "Cold Extraction",
+      "description": "We extract cold and slow, pulling maximum flavor without the bitterness that heat introduces. The result is smooth, rounded, and complex."
+    },
+    {
+      "icon": "box",
+      "title": "Concentrated Craft",
+      "description": "Packed at high strength so you control the dilution. Use it straight for a bold hit, or stretch it for lattes, cocktails, and batch service."
+    }
+  ]
+}

@@ -4,12 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import CartIcon from "@/components/ui/CartIcon";
+import navContent from "@/content/nav.json";
 
-const NAV_LINKS = [
-  { href: "/#services", label: "Services" },
-  { href: "/visit", label: "Visit" },
-  { href: "/shop", label: "Shop" },
-];
+const NAV_LINKS = navContent.navLinks;
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);

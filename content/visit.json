@@ -1,0 +1,8 @@
+{
+  "hours": [
+    { "day": "Wednesday", "time": "8 am – 12 pm" },
+    { "day": "Thursday", "time": "8 am – 12 pm" },
+    { "day": "Friday", "time": "8 am – 1 pm" },
+    { "day": "Saturday", "time": "8 am – 1 pm" }
+  ]
+}

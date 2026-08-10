@@ -1,0 +1,17 @@
+{
+  "navLinks": [
+    { "href": "/#services", "label": "Services" },
+    { "href": "/visit", "label": "Visit" },
+    { "href": "/shop", "label": "Shop" }
+  ],
+  "footerTagline": "Small-batch specialty coffee, roasted and brewed with intention in every cup.",
+  "footerNavigate": [
+    { "href": "/our-story", "label": "Our Story" },
+    { "href": "/#services", "label": "Services" },
+    { "href": "/visit", "label": "Visit" },
+    { "href": "/shop", "label": "Shop" }
+  ],
+  "footerGetBoast": [
+    { "href": "/book-event", "label": "Book an Event" }
+  ]
+}

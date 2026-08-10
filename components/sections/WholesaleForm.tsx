@@ -2,19 +2,14 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import formsContent from "@/content/forms.json";
 
 interface FormState {
   status: "idle" | "loading" | "success" | "error";
   message: string;
 }
 
-const BUSINESS_TYPES = [
-  "Cafe/Restaurant",
-  "Grocery/Retail",
-  "Office/Corporate",
-  "Distributor",
-  "Other",
-];
+const BUSINESS_TYPES = formsContent.businessTypes;
 
 const initialForm = {
   name: "",
