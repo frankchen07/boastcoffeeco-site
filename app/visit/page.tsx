@@ -15,7 +15,7 @@ export default function VisitPage() {
       {/* Hero */}
       <section className="relative min-h-[55dvh] flex items-center overflow-hidden text-[var(--color-brand-cream)]">
         <video
-          src="/bcc-timelapse.mp4"
+          src="/bcc-timelapse-outside.mp4"
           autoPlay
           loop
           muted
