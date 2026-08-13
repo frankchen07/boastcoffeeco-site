@@ -95,7 +95,7 @@ export default function HomePage() {
 
         <div className="relative py-36 overflow-hidden">
           <Image
-            src="/boast-coffee-truck.jpg"
+            src="/bcc-truck.jpg"
             alt="Boast Coffee solar-powered van"
             fill
             className="object-cover object-center"

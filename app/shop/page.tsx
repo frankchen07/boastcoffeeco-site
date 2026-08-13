@@ -63,7 +63,7 @@ export default async function ShopPage() {
       {/* B2B CTA */}
       <section className="relative py-20 border-t border-[var(--color-brand-border)] overflow-hidden">
         <Image
-          src="/boast-coffee-buckets-1.jpg"
+          src="/bcc-buckets-1.jpg"
           alt=""
           fill
           className="object-cover object-center"
