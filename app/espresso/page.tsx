@@ -83,7 +83,7 @@ export default function SproPage() {
         </div>
         <div className="relative h-72 lg:h-auto lg:w-[44%] shrink-0">
           <Image
-            src="/boast-coffee-bags-1.jpg"
+            src="/bcc-bags-1.jpg"
             alt="Boast espresso concentrate bags"
             fill
             className="object-cover object-center opacity-75"

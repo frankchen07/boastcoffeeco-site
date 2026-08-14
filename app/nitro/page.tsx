@@ -85,7 +85,7 @@ export default function NitroPage() {
         </div>
         <div className="relative h-72 lg:h-auto lg:w-[44%] shrink-0">
           <Image
-            src="/boast-coffee-kegs.jpg"
+            src="/bcc-kegs.jpg"
             alt="Boast nitro cold brew kegs"
             fill
             className="object-cover object-center opacity-75"
