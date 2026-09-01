@@ -46,7 +46,7 @@ test('Media Verification - All 4 Elements', async ({ page }) => {
   await page.screenshot({ path: '/private/tmp/claude-501/-Users-fronk-Documents-github-boastcoffeeco-site/56734c5c-4dee-4ed9-9f1f-1422a8dd772b/scratchpad/2-shop-v2.png', fullPage: true });
 
   // Test 3: Our Story bags image
-  await page.goto(`${BASE_URL}/our-story`);
+  await page.goto(`${BASE_URL}/`);
   await page.waitForLoadState('networkidle');
   const bagsImg = page.locator('img[alt*="bags"], img[src*="bags"]').first();
   const bagsVisible = await bagsImg.isVisible().catch(() => false);

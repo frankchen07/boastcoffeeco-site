@@ -4,8 +4,8 @@ export const GUEST_BLOCK_SIZE = 25;
 export const PER_HOUR_RATE = 40; // TODO: added per hour of event duration
 
 export const CART_TYPES = {
-  "Standard Cart": 0,
-  "Premium Cart": 150, // TODO
+  No: 0,
+  Yes: 0,
 } as const;
 
 export const SOLAR_VAN_DELTA = 100; // TODO: can be negative if it should be a discount

@@ -12,7 +12,7 @@ const services = [
   {
     title: "Espresso Bar",
     description:
-      "Full espresso setup from our solar-powered van. Lattes, cappuccinos, cortados — made to order on-site. No generator, no fumes, no noise.",
+      "On-site coffee carts serving lattes, cappuccinos, cortados, and more — made to order.",
   },
   {
     title: "Nitro Cold Brew On Tap",
@@ -30,8 +30,17 @@ export default function CateringPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="min-h-[70dvh] bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] flex items-center">
-        <div className="container-md py-24">
+      <section className="relative min-h-[70dvh] overflow-hidden text-[var(--color-brand-cream)] flex items-center">
+        <Image
+          src="/bcc-coffee-cart.jpeg"
+          alt="Boast Coffee espresso cart at an event"
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/25" />
+        <div className="container-md relative z-10 py-24">
           <div className="max-w-2xl">
             <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.05] mb-6">
               We bring the whole
@@ -39,7 +48,7 @@ export default function CateringPage() {
               coffee bar to you.
             </h1>
             <p className="text-lg md:text-xl text-[var(--color-brand-surface)] leading-relaxed mb-10 max-w-xl">
-              We pull up with an espresso van, nitro on tap, and craft cold brew — and your guests remember it.
+              We pull up with a full espresso cart, nitro on tap, and a trained coffee crew - and guests love it.
             </p>
             <LinkButton href="/book-event" size="lg">
               Book Your Event

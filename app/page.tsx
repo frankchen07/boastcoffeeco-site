@@ -7,15 +7,16 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <Hero
-        eyebrow="Small-Batch Specialty Coffee"
+        eyebrow="Organic Small-Batch Specialty Coffee"
         headline="Coffee worth boasting about."
-        subhead="Sourced from the world's best growing regions. Roasted & brewed with intention, and delivered to where you are."
+        subhead="Sourced from the world's best growing regions. Small-batch roasted & brewed with intention, and delivered to where you are."
         primaryCta={{ label: "Shop Coffee", href: "/shop" }}
         dark
+        videoSrc="/bcc-roastery.mov"
       />
 
       {/* We're here to boast */}
-      <section className="py-20 bg-[var(--color-brand-surface)]">
+      <section id="about" className="py-20 bg-[var(--color-brand-surface)] scroll-mt-20">
         <div className="container-md">
           <div className="max-w-2xl">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)] mb-6">
@@ -47,9 +48,7 @@ export default function HomePage() {
                   real gap in how craft coffee was delivered, especially off-premise.
                 </p>
                 <p>
-                  So in 2017, we built something different. We sourced specialty beans, small-batch roasted them in
-                  San Jose, and started doing nitro cold brew on tap in kegs for offices, venues, and events. Eventually, we expanded to catering using a solar-powered espresso van that brings
-                  a full craft coffee bar directly to events.
+                  In 2017, we started small-batch roasting specialty beans in San Jose and serving nitro cold brew on tap in kegs for offices and corporate venues. Demand grew, so we added on-site coffee carts alongside of our smooth cold brew, and started running catering events. In the past two years, we've taken it further with our custom solar-powered espresso van, bringing a full service craft coffee bar directly to events.
                 </p>
                 <p className="font-bold">
                   That&apos;s still what Boast is: great coffee worth telling people about, wherever you need it.

@@ -195,6 +195,13 @@ export default function ContactForm() {
             <path d="M2.5 4.5L6 8l3.5-3.5" />
           </svg>
         </div>
+        {form.eventType && form.eventType !== "Other" && (
+          <p className="mt-2 text-sm text-[var(--color-brand-muted)]">
+            {form.eventType === "Pop-up"
+              ? "This type of event will be charged normally, by the cup."
+              : "This type of event will be prepaid."}
+          </p>
+        )}
       </div>
 
       <div className="grid sm:grid-cols-2 gap-5">
@@ -255,7 +262,7 @@ export default function ContactForm() {
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
           <label htmlFor="cartType" className={labelCls}>
-            Coffee Cart Type
+            Coffee Cart
           </label>
           <div className="relative">
             <select
