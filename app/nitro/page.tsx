@@ -44,9 +44,9 @@ const processFeatures = [
         <path d="M12 8v4l3 3" />
       </svg>
     ),
-    title: "18-Hour Cold Steep",
+    title: "Kyoto-style Brewed",
     description:
-      "Our cold brew steeps for a full 18 hours at low temperature, extracting maximum flavor with zero bitterness.",
+      "Our cold brew is made by active cold extraction, which pulls out maximum flavor with zero bitterness.",
   },
   {
     icon: (

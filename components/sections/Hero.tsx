@@ -7,6 +7,7 @@ interface HeroProps {
   secondaryCta?: { label: string; href: string };
   eyebrow?: string;
   dark?: boolean;
+  videoSrc?: string;
 }
 
 export default function Hero({
@@ -16,16 +17,30 @@ export default function Hero({
   secondaryCta,
   eyebrow,
   dark = false,
+  videoSrc,
 }: HeroProps) {
   return (
     <section
-      className={`relative min-h-[85dvh] flex items-center ${
+      className={`relative min-h-[85dvh] flex items-center overflow-hidden ${
         dark
           ? "bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)]"
           : "bg-[var(--color-brand-surface)] text-[var(--color-brand-dark)]"
       }`}
     >
-      <div className="container-md py-24 md:py-32">
+      {videoSrc && (
+        <>
+          <video
+            src={videoSrc}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/25" />
+        </>
+      )}
+      <div className="container-md relative z-10 py-24 md:py-32">
         <div className="max-w-2xl">
           {eyebrow && (
             <p

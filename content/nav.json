@@ -1,6 +1,6 @@
 {
   "navLinks": [
-    { "href": "/our-story", "label": "About" },
+    { "href": "/#about", "label": "About" },
     { "href": "/catering", "label": "Catering" },
     { "href": "/nitro", "label": "Nitro" },
     { "href": "/espresso", "label": "Espresso" },
@@ -9,7 +9,7 @@
   ],
   "footerTagline": "Small-batch specialty coffee, roasted and brewed with intention in every cup.",
   "footerNavigate": [
-    { "href": "/our-story", "label": "About" },
+    { "href": "/#about", "label": "About" },
     { "href": "/catering", "label": "Catering" },
     { "href": "/nitro", "label": "Nitro" },
     { "href": "/espresso", "label": "Espresso" },

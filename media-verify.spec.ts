@@ -24,7 +24,7 @@ test('Media Verification', async ({ page }) => {
   await page.screenshot({ path: '/private/tmp/claude-501/-Users-fronk-Documents-github-boastcoffeeco-site/56734c5c-4dee-4ed9-9f1f-1422a8dd772b/scratchpad/2-shop-final.png' });
 
   // Test 3: Our Story bags image
-  await page.goto(`${BASE_URL}/our-story`);
+  await page.goto(`${BASE_URL}/`);
   await page.waitForLoadState('networkidle');
 
   const bagsImg = page.locator('img[src*="bags"]').first();
