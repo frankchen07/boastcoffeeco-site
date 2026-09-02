@@ -7,11 +7,17 @@
     "Pop-up",
     "Other"
   ],
-  "businessTypes": [
-    "Cafe/Restaurant",
-    "Grocery/Retail",
-    "Office/Corporate",
-    "Distributor",
-    "Other"
+  "wholesaleItems": [
+    { "label": "Coffee Beans", "placeholder": "e.g. 20 lbs every 2 weeks" },
+    { "label": "Nitro Kegs", "placeholder": "e.g. 2 kegs every 2 weeks" },
+    { "label": "Espresso Concentrate", "placeholder": "e.g. 4 bottles every 2 weeks" },
+    { "label": "Other", "placeholder": "Tell us what else you're interested in" }
+  ],
+  "officeProgramItems": [
+    { "label": "Nitro Coffee Kegs", "placeholder": "e.g. 2 kegs every 2 weeks" },
+    { "label": "Nitro Tea Kegs", "placeholder": "e.g. 1 keg every 2 weeks" },
+    { "label": "Marin Kombucha", "placeholder": "e.g. 1 keg every 2 weeks" },
+    { "label": "Coffee Beans", "placeholder": "e.g. 10 lbs every 2 weeks" },
+    { "label": "Other", "placeholder": "Tell us what else you're interested in" }
   ]
 }

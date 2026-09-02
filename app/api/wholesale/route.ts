@@ -1,15 +1,10 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { WHOLESALE_ITEM_PRICES } from "@/lib/wholesale-pricing";
 
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "hello@boastcoffee.com";
 
-const BUSINESS_TYPES = [
-  "Cafe/Restaurant",
-  "Grocery/Retail",
-  "Office/Corporate",
-  "Distributor",
-  "Other",
-];
+const ITEM_OPTIONS = ["Coffee Beans", "Nitro Kegs", "Espresso Concentrate", "Other"];
 
 export async function POST(request: Request) {
   const resend = new Resend(process.env.RESEND_API_KEY);
@@ -20,9 +15,9 @@ export async function POST(request: Request) {
       email,
       phone,
       businessName,
-      businessType,
-      volume,
       taxId,
+      items,
+      itemDetails,
       message,
       company,
     } = body;
@@ -53,14 +48,23 @@ export async function POST(request: Request) {
     if (businessName.trim().length > 150) {
       return NextResponse.json({ error: "Business name is too long" }, { status: 400 });
     }
-    if (!businessType || typeof businessType !== "string" || !BUSINESS_TYPES.includes(businessType)) {
-      return NextResponse.json({ error: "Valid business type is required" }, { status: 400 });
+    if (
+      !Array.isArray(items) ||
+      !items.every((item) => typeof item === "string" && ITEM_OPTIONS.includes(item))
+    ) {
+      return NextResponse.json({ error: "Invalid items selection" }, { status: 400 });
     }
-    if (!volume || typeof volume !== "string" || volume.trim().length < 1) {
-      return NextResponse.json({ error: "Estimated order volume is required" }, { status: 400 });
-    }
-    if (volume.trim().length > 200) {
-      return NextResponse.json({ error: "Estimated order volume is too long" }, { status: 400 });
+    if (
+      itemDetails !== undefined &&
+      (typeof itemDetails !== "object" ||
+        itemDetails === null ||
+        Array.isArray(itemDetails) ||
+        !Object.entries(itemDetails).every(
+          ([key, value]) =>
+            ITEM_OPTIONS.includes(key) && typeof value === "string" && value.length <= 200
+        ))
+    ) {
+      return NextResponse.json({ error: "Invalid item details" }, { status: 400 });
     }
     if (typeof taxId === "string" && taxId.trim().length > 100) {
       return NextResponse.json({ error: "Tax ID is too long" }, { status: 400 });
@@ -72,14 +76,20 @@ export async function POST(request: Request) {
     const phoneTrimmed = typeof phone === "string" ? phone.trim() : "";
     const taxIdTrimmed = typeof taxId === "string" ? taxId.trim() : "";
     const messageTrimmed = typeof message === "string" ? message.trim() : "";
+    const details: Record<string, string> = itemDetails ?? {};
+    const itemsList: string[] = (items as string[]).map((item) => {
+      const detail = details[item]?.trim();
+      const price = WHOLESALE_ITEM_PRICES[item] ?? 0;
+      return `${item}${detail ? ` — ${detail}` : ""} (internal ref: $${price}/unit)`;
+    });
+    const itemsSummary = itemsList.length > 0 ? itemsList.join("; ") : "None selected";
 
     const textLines = [
       `Name: ${name.trim()}`,
       `Email: ${email.trim()}`,
       phoneTrimmed && `Phone: ${phoneTrimmed}`,
       `Business Name: ${businessName.trim()}`,
-      `Business Type: ${businessType}`,
-      `Estimated Order Volume: ${volume.trim()}`,
+      `Items Interested In: ${itemsSummary}`,
       taxIdTrimmed && `Resale/Tax ID: ${taxIdTrimmed}`,
       messageTrimmed && `\n${messageTrimmed}`,
     ].filter(Boolean);
@@ -97,8 +107,7 @@ export async function POST(request: Request) {
         <p><strong>Email:</strong> ${escapeHtml(email.trim())}</p>
         ${phoneTrimmed ? `<p><strong>Phone:</strong> ${escapeHtml(phoneTrimmed)}</p>` : ""}
         <p><strong>Business Name:</strong> ${escapeHtml(businessName.trim())}</p>
-        <p><strong>Business Type:</strong> ${escapeHtml(businessType)}</p>
-        <p><strong>Estimated Order Volume:</strong> ${escapeHtml(volume.trim())}</p>
+        <p><strong>Items Interested In:</strong> ${escapeHtml(itemsSummary)}</p>
         ${taxIdTrimmed ? `<p><strong>Resale/Tax ID:</strong> ${escapeHtml(taxIdTrimmed)}</p>` : ""}
         ${messageTrimmed ? `<br><p>${escapeHtml(messageTrimmed).replace(/\n/g, "<br>")}</p>` : ""}
       `,

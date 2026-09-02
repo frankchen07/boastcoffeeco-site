@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import WholesaleForm from "@/components/sections/WholesaleForm";
+import BusinessInquiryForm from "@/components/sections/BusinessInquiryForm";
 import wholesaleContent from "@/content/wholesale.json";
+import formsContent from "@/content/forms.json";
 
 export const metadata: Metadata = {
   title: "Wholesale",
@@ -26,7 +27,14 @@ export default function WholesalePage() {
             <h2 className="text-2xl font-display font-bold text-[var(--color-brand-dark)] mb-8">
               Buy Wholesale
             </h2>
-            <WholesaleForm />
+            <BusinessInquiryForm
+              idPrefix="ws"
+              apiEndpoint="/api/wholesale"
+              businessNameLabel="Business Name"
+              itemOptions={formsContent.wholesaleItems}
+              showTaxId
+              successMessage="Application sent! We'll review it and follow up soon."
+            />
           </div>
 
           {/* Info */}
