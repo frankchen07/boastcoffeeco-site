@@ -2,28 +2,46 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
-import formsContent from "@/content/forms.json";
 
 interface FormState {
   status: "idle" | "loading" | "success" | "error";
   message: string;
 }
 
-const BUSINESS_TYPES = formsContent.businessTypes;
+interface ItemOption {
+  label: string;
+  placeholder: string;
+}
 
-const initialForm = {
-  name: "",
-  email: "",
-  phone: "",
-  businessName: "",
-  businessType: "",
-  volume: "",
-  taxId: "",
-  message: "",
-  company: "",
-};
+interface BusinessInquiryFormProps {
+  idPrefix: string;
+  apiEndpoint: string;
+  businessNameLabel: string;
+  itemOptions: ItemOption[];
+  showTaxId: boolean;
+  successMessage: string;
+}
 
-export default function WholesaleForm() {
+export default function BusinessInquiryForm({
+  idPrefix,
+  apiEndpoint,
+  businessNameLabel,
+  itemOptions,
+  showTaxId,
+  successMessage,
+}: BusinessInquiryFormProps) {
+  const initialForm = {
+    name: "",
+    email: "",
+    phone: "",
+    businessName: "",
+    taxId: "",
+    items: [] as string[],
+    itemDetails: {} as Record<string, string>,
+    message: "",
+    company: "",
+  };
+
   const [form, setForm] = useState(initialForm);
   const [state, setState] = useState<FormState>({ status: "idle", message: "" });
 
@@ -33,12 +51,29 @@ export default function WholesaleForm() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
+  function toggleItem(item: string) {
+    setForm((prev) => {
+      if (prev.items.includes(item)) {
+        const { [item]: _removed, ...restDetails } = prev.itemDetails;
+        return { ...prev, items: prev.items.filter((i) => i !== item), itemDetails: restDetails };
+      }
+      return { ...prev, items: [...prev.items, item] };
+    });
+  }
+
+  function setItemDetail(item: string, value: string) {
+    setForm((prev) => ({
+      ...prev,
+      itemDetails: { ...prev.itemDetails, [item]: value },
+    }));
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setState({ status: "loading", message: "" });
 
     try {
-      const res = await fetch("/api/wholesale", {
+      const res = await fetch(apiEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -49,10 +84,7 @@ export default function WholesaleForm() {
         throw new Error(data.error ?? "Something went wrong");
       }
 
-      setState({
-        status: "success",
-        message: "Application sent! We'll review it and follow up soon.",
-      });
+      setState({ status: "success", message: successMessage });
       setForm(initialForm);
     } catch (err) {
       setState({
@@ -71,9 +103,9 @@ export default function WholesaleForm() {
     <form onSubmit={handleSubmit} noValidate className="space-y-5">
       {/* Honeypot: hidden from real users, bots tend to fill every field */}
       <div className="absolute -left-[9999px]" aria-hidden="true">
-        <label htmlFor="ws-company">Company</label>
+        <label htmlFor={`${idPrefix}-company`}>Company</label>
         <input
-          id="ws-company"
+          id={`${idPrefix}-company`}
           name="company"
           type="text"
           tabIndex={-1}
@@ -85,11 +117,11 @@ export default function WholesaleForm() {
 
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
-          <label htmlFor="ws-name" className={labelCls}>
+          <label htmlFor={`${idPrefix}-name`} className={labelCls}>
             Name
           </label>
           <input
-            id="ws-name"
+            id={`${idPrefix}-name`}
             name="name"
             type="text"
             required
@@ -103,11 +135,11 @@ export default function WholesaleForm() {
         </div>
 
         <div>
-          <label htmlFor="ws-email" className={labelCls}>
+          <label htmlFor={`${idPrefix}-email`} className={labelCls}>
             Email
           </label>
           <input
-            id="ws-email"
+            id={`${idPrefix}-email`}
             name="email"
             type="email"
             required
@@ -122,11 +154,11 @@ export default function WholesaleForm() {
       </div>
 
       <div>
-        <label htmlFor="ws-phone" className={labelCls}>
+        <label htmlFor={`${idPrefix}-phone`} className={labelCls}>
           Phone <span className="normal-case font-normal">(optional)</span>
         </label>
         <input
-          id="ws-phone"
+          id={`${idPrefix}-phone`}
           name="phone"
           type="tel"
           maxLength={20}
@@ -139,104 +171,78 @@ export default function WholesaleForm() {
       </div>
 
       <div>
-        <label htmlFor="ws-businessName" className={labelCls}>
-          Business Name
+        <label htmlFor={`${idPrefix}-businessName`} className={labelCls}>
+          {businessNameLabel}
         </label>
         <input
-          id="ws-businessName"
+          id={`${idPrefix}-businessName`}
           name="businessName"
           type="text"
           required
           maxLength={150}
           value={form.businessName}
           onChange={handleChange}
-          placeholder="Your business name"
+          placeholder={`Your ${businessNameLabel.toLowerCase()}`}
           className={inputCls}
           disabled={state.status === "loading"}
         />
       </div>
 
       <div>
-        <label htmlFor="ws-businessType" className={labelCls}>
-          Business Type
-        </label>
-        <div className="relative">
-          <select
-            id="ws-businessType"
-            name="businessType"
-            required
-            value={form.businessType}
-            onChange={handleChange}
-            className={`${inputCls} appearance-none pr-10`}
-            disabled={state.status === "loading"}
-          >
-            <option value="" disabled>
-              Select a business type
-            </option>
-            {BUSINESS_TYPES.map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-          </select>
-          <svg
-            className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[var(--color-brand-muted)]"
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M2.5 4.5L6 8l3.5-3.5" />
-          </svg>
+        <p className={labelCls}>Items Interested In</p>
+        <div className="flex flex-col gap-3">
+          {itemOptions.map((item) => (
+            <div key={item.label}>
+              <label className="flex items-center gap-2 text-sm text-[var(--color-brand-dark)]">
+                <input
+                  type="checkbox"
+                  checked={form.items.includes(item.label)}
+                  onChange={() => toggleItem(item.label)}
+                  disabled={state.status === "loading"}
+                />
+                {item.label}
+              </label>
+              {form.items.includes(item.label) && (
+                <input
+                  type="text"
+                  maxLength={200}
+                  value={form.itemDetails[item.label] ?? ""}
+                  onChange={(e) => setItemDetail(item.label, e.target.value)}
+                  placeholder={item.placeholder}
+                  className={`${inputCls} mt-2`}
+                  disabled={state.status === "loading"}
+                />
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
-      <div>
-        <label htmlFor="ws-volume" className={labelCls}>
-          Estimated Order Volume
-        </label>
-        <input
-          id="ws-volume"
-          name="volume"
-          type="text"
-          required
-          maxLength={200}
-          value={form.volume}
-          onChange={handleChange}
-          placeholder="e.g. 10 cases/month"
-          className={inputCls}
-          disabled={state.status === "loading"}
-        />
-      </div>
+      {showTaxId && (
+        <div>
+          <label htmlFor={`${idPrefix}-taxId`} className={labelCls}>
+            Resale Certificate / Tax ID <span className="normal-case font-normal">(optional)</span>
+          </label>
+          <input
+            id={`${idPrefix}-taxId`}
+            name="taxId"
+            type="text"
+            maxLength={100}
+            value={form.taxId}
+            onChange={handleChange}
+            placeholder="Resale certificate or tax ID number"
+            className={inputCls}
+            disabled={state.status === "loading"}
+          />
+        </div>
+      )}
 
       <div>
-        <label htmlFor="ws-taxId" className={labelCls}>
-          Resale Certificate / Tax ID <span className="normal-case font-normal">(optional)</span>
-        </label>
-        <input
-          id="ws-taxId"
-          name="taxId"
-          type="text"
-          maxLength={100}
-          value={form.taxId}
-          onChange={handleChange}
-          placeholder="Resale certificate or tax ID number"
-          className={inputCls}
-          disabled={state.status === "loading"}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="ws-message" className={labelCls}>
+        <label htmlFor={`${idPrefix}-message`} className={labelCls}>
           Anything else? <span className="normal-case font-normal">(optional)</span>
         </label>
         <textarea
-          id="ws-message"
+          id={`${idPrefix}-message`}
           name="message"
           rows={4}
           maxLength={1000}

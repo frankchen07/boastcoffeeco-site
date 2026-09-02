@@ -69,6 +69,53 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Our Values */}
+      <section className="py-20 bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)]">
+        <div className="container-md">
+          <div className="max-w-2xl mb-14">
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+              Our Values
+            </h2>
+            <p className="text-lg text-[var(--color-brand-border)] leading-relaxed">
+              The four things we never compromise on, from the espresso bar to the front counter.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-10">
+            {[
+              {
+                title: "Communication",
+                description:
+                  "We keep our team and customers in the loop, and we listen as much as we talk.",
+              },
+              {
+                title: "Connection",
+                description:
+                  "Every cup starts with a smile and a warm welcome — because a great coffee experience is a human one.",
+              },
+              {
+                title: "Consistency",
+                description:
+                  "Uncompromising consistency you'd expect from a Michelin-star restaurant — every cup, every time.",
+              },
+              {
+                title: "Cleanliness",
+                description: "A clean bar is a better bar — for our team, and for you.",
+              },
+            ].map(({ title, description }) => (
+              <div key={title} className="border-t-2 border-[var(--color-brand-accent)] pt-8">
+                <h3 className="text-xl font-display font-bold mb-3">
+                  {title}
+                </h3>
+                <p className="text-[var(--color-brand-border)] leading-relaxed text-sm">
+                  {description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Closing CTA */}
       <section className="py-20 bg-[var(--color-brand-surface)]">
         <div className="container-md text-center">

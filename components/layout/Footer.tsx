@@ -51,6 +51,14 @@ export default function Footer({ accountUrl }: { accountUrl: string | null }) {
               ))}
               <li>
                 <Link
+                  href="/office-programs"
+                  className="text-sm text-[var(--color-brand-surface)] hover:text-[var(--color-brand-accent)] transition-colors"
+                >
+                  Office Programs
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/wholesale"
                   className="text-sm text-[var(--color-brand-surface)] hover:text-[var(--color-brand-accent)] transition-colors"
                 >

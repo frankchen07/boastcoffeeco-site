@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
 import BusinessInquiryForm from "@/components/sections/BusinessInquiryForm";
-import wholesaleContent from "@/content/wholesale.json";
+import officeProgramsContent from "@/content/office-programs.json";
 import formsContent from "@/content/forms.json";
 
 export const metadata: Metadata = {
-  title: "Wholesale",
-  description: "Buy wholesale from Boast Coffee Co.",
+  title: "Office Programs",
+  description: "Set up recurring coffee, tea, and kombucha service for your office.",
 };
 
-export default function WholesalePage() {
+export default function OfficeProgramsPage() {
   return (
     <div className="bg-[var(--color-brand-cream)]">
       {/* Page header */}
       <div className="bg-[var(--color-brand-surface)] border-b border-[var(--color-brand-border)]">
         <div className="container-md py-14">
           <h1 className="text-4xl md:text-5xl font-display font-bold text-[var(--color-brand-dark)]">
-            Wholesale
+            Office Programs
           </h1>
         </div>
       </div>
@@ -25,14 +25,14 @@ export default function WholesalePage() {
           {/* Form */}
           <div>
             <h2 className="text-2xl font-display font-bold text-[var(--color-brand-dark)] mb-8">
-              Buy Wholesale
+              Get Set Up
             </h2>
             <BusinessInquiryForm
-              idPrefix="ws"
-              apiEndpoint="/api/wholesale"
-              businessNameLabel="Business Name"
-              itemOptions={formsContent.wholesaleItems}
-              showTaxId
+              idPrefix="op"
+              apiEndpoint="/api/office-programs"
+              businessNameLabel="Company Name"
+              itemOptions={formsContent.officeProgramItems}
+              showTaxId={false}
               successMessage="Application sent! We'll review it and follow up soon."
             />
           </div>
@@ -44,7 +44,7 @@ export default function WholesalePage() {
                 How It Works
               </p>
               <p className="text-sm text-[var(--color-brand-muted)] leading-relaxed">
-                {wholesaleContent.intro}
+                {officeProgramsContent.intro}
               </p>
             </div>
           </div>
