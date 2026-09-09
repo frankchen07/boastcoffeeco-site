@@ -39,7 +39,7 @@ export default function CateringPage() {
           sizes="100vw"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/25" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/55" />
         <div className="container-md relative z-10 py-24">
           <div className="max-w-2xl">
             <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.05] mb-6">
@@ -110,8 +110,8 @@ export default function CateringPage() {
 
       {/* Wholesale callout */}
       <section className="py-20 bg-[var(--color-brand-cream)]">
-        <div className="container-md">
-          <div className="max-w-2xl">
+        <div className="container-md text-center">
+          <div className="max-w-2xl mx-auto">
             <h2 className="text-3xl font-display font-bold text-[var(--color-brand-dark)] mb-4">
               Bay Area offices keep calling us back!
             </h2>

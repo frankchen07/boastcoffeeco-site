@@ -51,18 +51,18 @@ export default function Footer({ accountUrl }: { accountUrl: string | null }) {
               ))}
               <li>
                 <Link
-                  href="/office-programs"
+                  href="/office-programs/apply"
                   className="text-sm text-[var(--color-brand-surface)] hover:text-[var(--color-brand-accent)] transition-colors"
                 >
-                  Office Programs
+                  Office Setup
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/wholesale"
+                  href="/wholesale/apply"
                   className="text-sm text-[var(--color-brand-surface)] hover:text-[var(--color-brand-accent)] transition-colors"
                 >
-                  Wholesale
+                  Apply for Wholesale
                 </Link>
               </li>
               {accountUrl && (

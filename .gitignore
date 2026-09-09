@@ -51,3 +51,4 @@ next-env.d.ts
 !public/*.webp
 public/*.mp4
 public/*.mov
+!public/IMG_2934.mov

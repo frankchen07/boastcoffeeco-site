@@ -104,7 +104,7 @@ export default function CartDrawer({
               <Link
                 href={shopBasePath}
                 onClick={closeCart}
-                className="text-sm font-medium text-[var(--color-brand-accent)] hover:underline"
+                className="text-sm font-medium text-[var(--color-brand-muted)] hover:underline"
               >
                 Browse the shop
               </Link>
@@ -139,7 +139,7 @@ export default function CartDrawer({
                       <p className="text-xs text-[var(--color-brand-muted)]">{line.variantTitle}</p>
                     )}
                     {line.sellingPlanName && (
-                      <p className="text-xs text-[var(--color-brand-accent)] font-medium">
+                      <p className="text-xs text-[var(--color-brand-muted)] font-medium">
                         {line.sellingPlanName}
                       </p>
                     )}
@@ -199,7 +199,7 @@ export default function CartDrawer({
             </p>
             <a
               href={cart.checkoutUrl}
-              className="block w-full bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] text-center text-sm font-semibold py-3.5 rounded hover:bg-[var(--color-brand-accent)] transition-colors"
+              className="block w-full bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] text-center text-sm font-semibold py-3.5 rounded hover:bg-[var(--color-brand-accent)] hover:text-[var(--color-brand-dark)] transition-colors"
             >
               Checkout
             </a>

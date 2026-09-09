@@ -113,7 +113,7 @@ export default function Header() {
                 key={href}
                 href={href}
                 onClick={() => setMenuOpen(false)}
-                className="py-2 text-base font-medium text-[var(--color-brand-dark)] hover:text-[var(--color-brand-accent)] transition-colors"
+                className="py-2 text-base font-medium text-[var(--color-brand-dark)] hover:text-[var(--color-brand-muted)] transition-colors"
               >
                 {label}
               </Link>

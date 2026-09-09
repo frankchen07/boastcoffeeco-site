@@ -1,4 +1,5 @@
 import { LinkButton } from "@/components/ui/Button";
+import BackgroundVideo from "@/components/ui/BackgroundVideo";
 
 interface HeroProps {
   headline: string;
@@ -29,15 +30,11 @@ export default function Hero({
     >
       {videoSrc && (
         <>
-          <video
+          <BackgroundVideo
             src={videoSrc}
-            autoPlay
-            loop
-            muted
-            playsInline
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/85 to-black/60" />
         </>
       )}
       <div className="container-md relative z-10 py-24 md:py-32">

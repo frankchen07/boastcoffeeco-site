@@ -65,7 +65,7 @@ function ProductCard({ product, useCartHook, shopBasePath }: ProductCardProps) {
         <div className="flex-1">
           <Link
             href={`${shopBasePath}/${product.handle}`}
-            className="font-display text-base font-semibold text-[var(--color-brand-dark)] hover:text-[var(--color-brand-accent)] transition-colors line-clamp-2"
+            className="font-display text-base font-semibold text-[var(--color-brand-dark)] hover:text-[var(--color-brand-muted)] transition-colors line-clamp-2"
           >
             {product.title}
           </Link>
@@ -80,7 +80,7 @@ function ProductCard({ product, useCartHook, shopBasePath }: ProductCardProps) {
           {needsOptions ? (
             <Link
               href={`${shopBasePath}/${product.handle}`}
-              className="text-xs font-semibold px-4 py-2 rounded bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] hover:bg-[var(--color-brand-accent)] transition-colors ml-auto"
+              className="text-xs font-semibold px-4 py-2 rounded bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] hover:bg-[var(--color-brand-accent)] hover:text-[var(--color-brand-dark)] transition-colors ml-auto"
             >
               Choose Options
             </Link>
@@ -88,7 +88,7 @@ function ProductCard({ product, useCartHook, shopBasePath }: ProductCardProps) {
             <button
               onClick={handleAddToCart}
               disabled={!product.availableForSale || adding}
-              className="text-xs font-semibold px-4 py-2 rounded bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] hover:bg-[var(--color-brand-accent)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="text-xs font-semibold px-4 py-2 rounded bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] hover:bg-[var(--color-brand-accent)] hover:text-[var(--color-brand-dark)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               {adding ? "Adding…" : product.availableForSale ? "Add to Cart" : "Sold Out"}
             </button>

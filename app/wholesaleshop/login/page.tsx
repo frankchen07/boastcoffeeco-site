@@ -61,7 +61,7 @@ export default async function WholesaleLoginPage({ searchParams }: Props) {
             required
             autoFocus
             placeholder="Password"
-            className="w-full px-4 py-3 rounded border border-[var(--color-brand-border)] bg-white text-[var(--color-brand-dark)] focus:outline-none focus:border-[var(--color-brand-dark)]"
+            className="w-full px-4 py-3 rounded border border-[var(--color-brand-border)] bg-white text-[var(--color-brand-dark)] focus:border-[var(--color-brand-dark)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-dark)]"
           />
           {error && (
             <p className="text-sm text-red-600">Incorrect password. Try again.</p>
