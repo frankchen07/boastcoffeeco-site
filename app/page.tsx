@@ -12,7 +12,7 @@ export default function HomePage() {
         subhead="Sourced from the world's best growing regions. Small-batch roasted & brewed with intention, and delivered to where you are."
         primaryCta={{ label: "Shop Coffee", href: "/shop" }}
         dark
-        videoSrc="/bcc-roastery.mov"
+        videoSrc="/IMG_2934.mov"
       />
 
       {/* We're here to boast */}
@@ -27,8 +27,8 @@ export default function HomePage() {
             <p className="text-lg text-[var(--color-brand-muted)] leading-relaxed">
               Boast started with a simple idea: coffee done well should be something worth telling
               people about. Every bean we roast and serve is our answer to that. The name isn&apos;t
-              about ego. &ldquo;Boast&rdquo; is about letting the coffee do the talking — preserving
-              what makes each bean exceptional and putting it front and center, every time.
+              about ego. &ldquo;Boast&rdquo; is about letting the coffee do the talking, preserving
+              what makes each bean exceptional and putting it front and center. It also means listening as much as we talk — because a great coffee experience is a human one before it's a product.
             </p>
           </div>
         </div>
@@ -50,6 +50,11 @@ export default function HomePage() {
                 <p>
                   In 2017, we started small-batch roasting specialty beans in San Jose and serving nitro cold brew on tap in kegs for offices and corporate venues. Demand grew, so we added on-site coffee carts alongside of our smooth cold brew, and started running catering events. In the past two years, we've taken it further with our custom solar-powered espresso van, bringing a full service craft coffee bar directly to events.
                 </p>
+                <p>
+                  Wherever we set up, the standard doesn&apos;t move. You get the consistency you&apos;d
+                  expect from a Michelin-star kitchen and the cleanliness of a bar clean
+                  enough to eat off of.
+                </p>
                 <p className="font-bold">
                   That&apos;s still what Boast is: great coffee worth telling people about, wherever you need it.
                 </p>
@@ -65,53 +70,6 @@ export default function HomePage() {
                 loading="eager"
               />
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Our Values */}
-      <section className="py-20 bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)]">
-        <div className="container-md">
-          <div className="max-w-2xl mb-14">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
-              Our Values
-            </h2>
-            <p className="text-lg text-[var(--color-brand-border)] leading-relaxed">
-              The four things we never compromise on, from the espresso bar to the front counter.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-10">
-            {[
-              {
-                title: "Communication",
-                description:
-                  "We keep our team and customers in the loop, and we listen as much as we talk.",
-              },
-              {
-                title: "Connection",
-                description:
-                  "Every cup starts with a smile and a warm welcome — because a great coffee experience is a human one.",
-              },
-              {
-                title: "Consistency",
-                description:
-                  "Uncompromising consistency you'd expect from a Michelin-star restaurant — every cup, every time.",
-              },
-              {
-                title: "Cleanliness",
-                description: "A clean bar is a better bar — for our team, and for you.",
-              },
-            ].map(({ title, description }) => (
-              <div key={title} className="border-t-2 border-[var(--color-brand-accent)] pt-8">
-                <h3 className="text-xl font-display font-bold mb-3">
-                  {title}
-                </h3>
-                <p className="text-[var(--color-brand-border)] leading-relaxed text-sm">
-                  {description}
-                </p>
-              </div>
-            ))}
           </div>
         </div>
       </section>

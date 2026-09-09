@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import visitContent from "@/content/visit.json";
+import BackgroundVideo from "@/components/ui/BackgroundVideo";
 
 export const metadata: Metadata = {
   title: "Visit",
@@ -14,12 +15,8 @@ export default function VisitPage() {
     <div>
       {/* Hero */}
       <section className="relative min-h-[55dvh] flex items-center overflow-hidden text-[var(--color-brand-cream)]">
-        <video
+        <BackgroundVideo
           src="/bcc-timelapse-outside.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/25" />

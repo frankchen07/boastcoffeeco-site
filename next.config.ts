@@ -25,6 +25,16 @@ const nextConfig: NextConfig = {
         destination: "/book-event",
         permanent: true,
       },
+      {
+        source: "/nitro",
+        destination: "/office-programs",
+        permanent: true,
+      },
+      {
+        source: "/espresso",
+        destination: "/wholesale",
+        permanent: true,
+      },
     ];
   },
 };

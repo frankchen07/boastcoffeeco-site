@@ -2,8 +2,8 @@
   "navLinks": [
     { "href": "/#about", "label": "About" },
     { "href": "/catering", "label": "Catering" },
-    { "href": "/nitro", "label": "Nitro" },
-    { "href": "/espresso", "label": "Espresso" },
+    { "href": "/office-programs", "label": "Office Programs" },
+    { "href": "/wholesale", "label": "Wholesale" },
     { "href": "/visit", "label": "Visit" },
     { "href": "/shop", "label": "Shop" }
   ],
@@ -11,8 +11,8 @@
   "footerNavigate": [
     { "href": "/#about", "label": "About" },
     { "href": "/catering", "label": "Catering" },
-    { "href": "/nitro", "label": "Nitro" },
-    { "href": "/espresso", "label": "Espresso" },
+    { "href": "/office-programs", "label": "Office Programs" },
+    { "href": "/wholesale", "label": "Wholesale" },
     { "href": "/visit", "label": "Visit" },
     { "href": "/shop", "label": "Shop" }
   ],

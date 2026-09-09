@@ -82,7 +82,7 @@ export default function ContactForm() {
   }
 
   const inputCls =
-    "w-full px-4 py-3 bg-transparent border border-[var(--color-brand-border)] rounded text-sm text-[var(--color-brand-dark)] placeholder:text-[var(--color-brand-muted)] focus:outline-none focus:border-[var(--color-brand-dark)] transition-colors";
+    "w-full px-4 py-3 bg-transparent border border-[var(--color-brand-border)] rounded text-sm text-[var(--color-brand-dark)] placeholder:text-[var(--color-brand-muted)] focus:border-[var(--color-brand-dark)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-brand-dark)] transition-colors";
   const labelCls =
     "block text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-muted)] mb-2";
 
