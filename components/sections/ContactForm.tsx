@@ -39,11 +39,26 @@ function nowLocalDatetime() {
 export default function ContactForm() {
   const [form, setForm] = useState(initialForm);
   const [state, setState] = useState<FormState>({ status: "idle", message: "" });
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setFieldErrors((prev) => {
+      if (!prev[e.target.name]) return prev;
+      const next = { ...prev };
+      delete next[e.target.name];
+      return next;
+    });
+  }
+
+  function handleInvalid(
+    e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) {
+    e.preventDefault();
+    const target = e.currentTarget;
+    setFieldErrors((prev) => ({ ...prev, [target.name]: target.validationMessage }));
   }
 
   function toggleSpecialDrink(drink: string) {
@@ -87,7 +102,7 @@ export default function ContactForm() {
     "block text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-muted)] mb-2";
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-5">
       {/* Honeypot: hidden from real users, bots tend to fill every field */}
       <div className="absolute -left-[9999px]" aria-hidden="true">
         <label htmlFor="company">Company</label>
@@ -115,10 +130,18 @@ export default function ContactForm() {
             maxLength={100}
             value={form.name}
             onChange={handleChange}
+            onInvalid={handleInvalid}
             placeholder="Your name"
             className={inputCls}
             disabled={state.status === "loading"}
+            aria-invalid={Boolean(fieldErrors.name)}
+            aria-describedby={fieldErrors.name ? "name-error" : undefined}
           />
+          {fieldErrors.name && (
+            <p id="name-error" role="alert" className="mt-1.5 text-sm text-red-600">
+              {fieldErrors.name}
+            </p>
+          )}
         </div>
 
         <div>
@@ -133,10 +156,18 @@ export default function ContactForm() {
             maxLength={200}
             value={form.email}
             onChange={handleChange}
+            onInvalid={handleInvalid}
             placeholder="your@email.com"
             className={inputCls}
             disabled={state.status === "loading"}
+            aria-invalid={Boolean(fieldErrors.email)}
+            aria-describedby={fieldErrors.email ? "email-error" : undefined}
           />
+          {fieldErrors.email && (
+            <p id="email-error" role="alert" className="mt-1.5 text-sm text-red-600">
+              {fieldErrors.email}
+            </p>
+          )}
         </div>
       </div>
 
@@ -168,8 +199,11 @@ export default function ContactForm() {
             required
             value={form.eventType}
             onChange={handleChange}
+            onInvalid={handleInvalid}
             className={`${inputCls} appearance-none pr-10`}
             disabled={state.status === "loading"}
+            aria-invalid={Boolean(fieldErrors.eventType)}
+            aria-describedby={fieldErrors.eventType ? "eventType-error" : undefined}
           >
             <option value="" disabled>
               Select an event type
@@ -195,6 +229,11 @@ export default function ContactForm() {
             <path d="M2.5 4.5L6 8l3.5-3.5" />
           </svg>
         </div>
+        {fieldErrors.eventType && (
+          <p id="eventType-error" role="alert" className="mt-1.5 text-sm text-red-600">
+            {fieldErrors.eventType}
+          </p>
+        )}
         {form.eventType && form.eventType !== "Other" && (
           <p className="mt-2 text-sm text-[var(--color-brand-muted)]">
             {form.eventType === "Pop-up"
@@ -217,9 +256,17 @@ export default function ContactForm() {
             min={nowLocalDatetime()}
             value={form.eventStart}
             onChange={handleChange}
+            onInvalid={handleInvalid}
             className={inputCls}
             disabled={state.status === "loading"}
+            aria-invalid={Boolean(fieldErrors.eventStart)}
+            aria-describedby={fieldErrors.eventStart ? "eventStart-error" : undefined}
           />
+          {fieldErrors.eventStart && (
+            <p id="eventStart-error" role="alert" className="mt-1.5 text-sm text-red-600">
+              {fieldErrors.eventStart}
+            </p>
+          )}
         </div>
 
         <div>
@@ -234,9 +281,17 @@ export default function ContactForm() {
             min={form.eventStart || nowLocalDatetime()}
             value={form.eventEnd}
             onChange={handleChange}
+            onInvalid={handleInvalid}
             className={inputCls}
             disabled={state.status === "loading"}
+            aria-invalid={Boolean(fieldErrors.eventEnd)}
+            aria-describedby={fieldErrors.eventEnd ? "eventEnd-error" : undefined}
           />
+          {fieldErrors.eventEnd && (
+            <p id="eventEnd-error" role="alert" className="mt-1.5 text-sm text-red-600">
+              {fieldErrors.eventEnd}
+            </p>
+          )}
         </div>
       </div>
 
@@ -253,10 +308,18 @@ export default function ContactForm() {
           required
           value={form.guestCount}
           onChange={handleChange}
+          onInvalid={handleInvalid}
           placeholder="50"
           className={inputCls}
           disabled={state.status === "loading"}
+          aria-invalid={Boolean(fieldErrors.guestCount)}
+          aria-describedby={fieldErrors.guestCount ? "guestCount-error" : undefined}
         />
+        {fieldErrors.guestCount && (
+          <p id="guestCount-error" role="alert" className="mt-1.5 text-sm text-red-600">
+            {fieldErrors.guestCount}
+          </p>
+        )}
       </div>
 
       <div className="grid sm:grid-cols-2 gap-5">
@@ -271,8 +334,11 @@ export default function ContactForm() {
               required
               value={form.cartType}
               onChange={handleChange}
+              onInvalid={handleInvalid}
               className={`${inputCls} appearance-none pr-10`}
               disabled={state.status === "loading"}
+              aria-invalid={Boolean(fieldErrors.cartType)}
+              aria-describedby={fieldErrors.cartType ? "cartType-error" : undefined}
             >
               {CART_TYPE_OPTIONS.map((type) => (
                 <option key={type} value={type}>
@@ -295,6 +361,11 @@ export default function ContactForm() {
               <path d="M2.5 4.5L6 8l3.5-3.5" />
             </svg>
           </div>
+          {fieldErrors.cartType && (
+            <p id="cartType-error" role="alert" className="mt-1.5 text-sm text-red-600">
+              {fieldErrors.cartType}
+            </p>
+          )}
         </div>
 
         <div>
@@ -308,8 +379,11 @@ export default function ContactForm() {
               required
               value={form.solarVan}
               onChange={handleChange}
+              onInvalid={handleInvalid}
               className={`${inputCls} appearance-none pr-10`}
               disabled={state.status === "loading"}
+              aria-invalid={Boolean(fieldErrors.solarVan)}
+              aria-describedby={fieldErrors.solarVan ? "solarVan-error" : undefined}
             >
               {SOLAR_VAN_OPTIONS.map((option) => (
                 <option key={option} value={option}>
@@ -332,6 +406,11 @@ export default function ContactForm() {
               <path d="M2.5 4.5L6 8l3.5-3.5" />
             </svg>
           </div>
+          {fieldErrors.solarVan && (
+            <p id="solarVan-error" role="alert" className="mt-1.5 text-sm text-red-600">
+              {fieldErrors.solarVan}
+            </p>
+          )}
         </div>
       </div>
 

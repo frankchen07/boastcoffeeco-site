@@ -75,7 +75,7 @@ export default function VisitPage() {
               href="https://maps.google.com/?q=MidWife+%26+the+Baker+Mountain+View+CA"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-1 inline-block text-sm font-medium text-[var(--color-brand-dark)] underline underline-offset-4 hover:text-[var(--color-brand-accent)] transition-colors"
+              className="mt-1 inline-block text-sm font-medium text-[var(--color-brand-dark)] underline underline-offset-4 hover:text-[var(--color-brand-accent-text)] transition-colors"
             >
               Open in Google Maps
             </a>

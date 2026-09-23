@@ -13,7 +13,7 @@ export default function CartIcon({
     <button
       onClick={openCart}
       aria-label={`Open cart${itemCount > 0 ? `, ${itemCount} items` : ""}`}
-      className="relative p-2 text-[var(--color-brand-dark)] hover:text-[var(--color-brand-accent)] transition-colors"
+      className="relative p-2 text-[var(--color-brand-dark)] hover:text-[var(--color-brand-accent-text)] transition-colors"
     >
       <svg
         width="20"
@@ -30,7 +30,7 @@ export default function CartIcon({
         <path d="M16 10a4 4 0 01-8 0" />
       </svg>
       {itemCount > 0 && (
-        <span className="absolute -top-0.5 -right-0.5 bg-[var(--color-brand-accent)] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center leading-none">
+        <span className="absolute -top-0.5 -right-0.5 bg-[var(--color-brand-accent)] text-[var(--color-brand-dark)] text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center leading-none">
           {itemCount > 9 ? "9+" : itemCount}
         </span>
       )}

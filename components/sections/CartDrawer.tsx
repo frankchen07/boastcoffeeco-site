@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useCart, type CartContextValue } from "@/lib/cart-context";
 import { formatPrice } from "@/lib/shopify";
 
@@ -17,6 +17,17 @@ export default function CartDrawer({
   const drawerRef = useRef<HTMLElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const returnFocusRef = useRef<Element | null>(null);
+  const [liveMessage, setLiveMessage] = useState("");
+
+  function handleUpdateItem(lineId: string, quantity: number, productTitle: string) {
+    updateItem(lineId, quantity);
+    setLiveMessage(quantity <= 0 ? `${productTitle} removed from cart` : `${productTitle} quantity updated to ${quantity}`);
+  }
+
+  function handleRemoveItem(lineId: string, productTitle: string) {
+    removeItem(lineId);
+    setLiveMessage(`${productTitle} removed from cart`);
+  }
 
   // Save pre-open focus target; restore it on close
   useEffect(() => {
@@ -79,6 +90,10 @@ export default function CartDrawer({
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
+        <div aria-live="polite" className="sr-only">
+          {liveMessage}
+        </div>
+
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--color-brand-border)]">
           <h2 className="font-display text-lg font-semibold text-[var(--color-brand-dark)]">
@@ -151,7 +166,7 @@ export default function CartDrawer({
                     <div className="flex items-center gap-3 mt-2">
                       <div className="flex items-center border border-[var(--color-brand-border)] rounded">
                         <button
-                          onClick={() => updateItem(line.id, line.quantity - 1)}
+                          onClick={() => handleUpdateItem(line.id, line.quantity - 1, line.productTitle)}
                           disabled={isLoading}
                           className="px-2.5 py-1 text-[var(--color-brand-muted)] hover:text-[var(--color-brand-dark)] disabled:opacity-50"
                           aria-label="Decrease quantity"
@@ -162,7 +177,7 @@ export default function CartDrawer({
                           {line.quantity}
                         </span>
                         <button
-                          onClick={() => updateItem(line.id, line.quantity + 1)}
+                          onClick={() => handleUpdateItem(line.id, line.quantity + 1, line.productTitle)}
                           disabled={isLoading}
                           className="px-2.5 py-1 text-[var(--color-brand-muted)] hover:text-[var(--color-brand-dark)] disabled:opacity-50"
                           aria-label="Increase quantity"
@@ -171,7 +186,7 @@ export default function CartDrawer({
                         </button>
                       </div>
                       <button
-                        onClick={() => removeItem(line.id)}
+                        onClick={() => handleRemoveItem(line.id, line.productTitle)}
                         disabled={isLoading}
                         className="text-xs text-[var(--color-brand-muted)] hover:text-red-500 transition-colors disabled:opacity-50"
                       >

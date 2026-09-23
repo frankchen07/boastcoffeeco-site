@@ -44,11 +44,26 @@ export default function BusinessInquiryForm({
 
   const [form, setForm] = useState(initialForm);
   const [state, setState] = useState<FormState>({ status: "idle", message: "" });
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setFieldErrors((prev) => {
+      if (!prev[e.target.name]) return prev;
+      const next = { ...prev };
+      delete next[e.target.name];
+      return next;
+    });
+  }
+
+  function handleInvalid(
+    e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) {
+    e.preventDefault();
+    const target = e.currentTarget;
+    setFieldErrors((prev) => ({ ...prev, [target.name]: target.validationMessage }));
   }
 
   function toggleItem(item: string) {
@@ -100,7 +115,7 @@ export default function BusinessInquiryForm({
     "block text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-muted)] mb-2";
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-5">
       {/* Honeypot: hidden from real users, bots tend to fill every field */}
       <div className="absolute -left-[9999px]" aria-hidden="true">
         <label htmlFor={`${idPrefix}-company`}>Company</label>
@@ -128,10 +143,18 @@ export default function BusinessInquiryForm({
             maxLength={100}
             value={form.name}
             onChange={handleChange}
+            onInvalid={handleInvalid}
             placeholder="Your name"
             className={inputCls}
             disabled={state.status === "loading"}
+            aria-invalid={Boolean(fieldErrors.name)}
+            aria-describedby={fieldErrors.name ? `${idPrefix}-name-error` : undefined}
           />
+          {fieldErrors.name && (
+            <p id={`${idPrefix}-name-error`} role="alert" className="mt-1.5 text-sm text-red-600">
+              {fieldErrors.name}
+            </p>
+          )}
         </div>
 
         <div>
@@ -146,10 +169,18 @@ export default function BusinessInquiryForm({
             maxLength={200}
             value={form.email}
             onChange={handleChange}
+            onInvalid={handleInvalid}
             placeholder="your@email.com"
             className={inputCls}
             disabled={state.status === "loading"}
+            aria-invalid={Boolean(fieldErrors.email)}
+            aria-describedby={fieldErrors.email ? `${idPrefix}-email-error` : undefined}
           />
+          {fieldErrors.email && (
+            <p id={`${idPrefix}-email-error`} role="alert" className="mt-1.5 text-sm text-red-600">
+              {fieldErrors.email}
+            </p>
+          )}
         </div>
       </div>
 
@@ -182,10 +213,18 @@ export default function BusinessInquiryForm({
           maxLength={150}
           value={form.businessName}
           onChange={handleChange}
+          onInvalid={handleInvalid}
           placeholder={`Your ${businessNameLabel.toLowerCase()}`}
           className={inputCls}
           disabled={state.status === "loading"}
+          aria-invalid={Boolean(fieldErrors.businessName)}
+          aria-describedby={fieldErrors.businessName ? `${idPrefix}-businessName-error` : undefined}
         />
+        {fieldErrors.businessName && (
+          <p id={`${idPrefix}-businessName-error`} role="alert" className="mt-1.5 text-sm text-red-600">
+            {fieldErrors.businessName}
+          </p>
+        )}
       </div>
 
       <div>
