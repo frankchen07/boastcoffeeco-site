@@ -68,7 +68,7 @@ export default function PrivacyPage() {
             </h2>
             <a
               href="mailto:hello@boastcoffee.com"
-              className="text-[var(--color-brand-dark)] hover:text-[var(--color-brand-accent)] transition-colors font-medium underline underline-offset-4"
+              className="text-[var(--color-brand-dark)] hover:text-[var(--color-brand-accent-text)] transition-colors font-medium underline underline-offset-4"
             >
               hello@boastcoffee.com
             </a>

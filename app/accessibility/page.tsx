@@ -15,8 +15,8 @@ const sections = [
     body: "We aim to conform to the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA. These guidelines explain how to make web content more accessible to people with disabilities.",
   },
   {
-    heading: "Known Gaps",
-    body: "We are aware that some areas of this website may not yet fully meet the standard. We are actively working to identify and address accessibility issues as they are discovered.",
+    heading: "Ongoing Testing",
+    body: "We test this site against WCAG 2.1 AA using both automated tooling and manual keyboard/screen-reader checks, and we review it again with each significant update to the site.",
   },
   {
     heading: "Feedback",
@@ -55,14 +55,14 @@ export default function AccessibilityPage() {
             </h2>
             <a
               href="mailto:hello@boastcoffee.com"
-              className="text-[var(--color-brand-dark)] hover:text-[var(--color-brand-accent)] transition-colors font-medium underline underline-offset-4"
+              className="text-[var(--color-brand-dark)] hover:text-[var(--color-brand-accent-text)] transition-colors font-medium underline underline-offset-4"
             >
               hello@boastcoffee.com
             </a>
           </div>
 
           <p className="text-xs text-[var(--color-brand-muted)] pt-4 border-t border-[var(--color-brand-border)]">
-            Last updated: July 2026
+            Last updated: September 2026
           </p>
         </div>
       </div>

@@ -20,11 +20,11 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-[var(--color-brand-accent)] text-[var(--color-brand-dark)] border border-[var(--color-brand-accent)] hover:bg-transparent hover:text-[var(--color-brand-accent)] focus-visible:outline-[var(--color-brand-accent)]",
+    "bg-[var(--color-brand-accent)] text-[var(--color-brand-dark)] border border-[var(--color-brand-accent)] hover:bg-transparent hover:text-[var(--color-brand-accent-text)] focus-visible:outline-[var(--color-brand-accent)]",
   secondary:
     "bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] border border-[var(--color-brand-dark)] hover:bg-transparent hover:text-[var(--color-brand-dark)] focus-visible:outline-[var(--color-brand-dark)]",
   ghost:
-    "bg-transparent text-[var(--color-brand-dark)] underline underline-offset-4 hover:text-[var(--color-brand-accent)]",
+    "bg-transparent text-[var(--color-brand-dark)] underline underline-offset-4 hover:text-[var(--color-brand-accent-text)]",
 };
 
 const sizes: Record<Size, string> = {

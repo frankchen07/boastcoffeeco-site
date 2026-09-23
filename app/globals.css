@@ -5,6 +5,9 @@
   --color-brand-cream: #F7F3EE;
   --color-brand-dark: #252444;
   --color-brand-accent: #C9A86E;
+  /* Darker accent for text set directly on cream/light backgrounds — the base
+     accent is ~2:1 there and fails WCAG AA; this hits ~5.6:1. */
+  --color-brand-accent-text: #7A5C2E;
   --color-brand-muted: #6B5B4E;
   --color-brand-border: #E4DAD0;
   --color-brand-surface: #EDE7DF;

@@ -98,7 +98,7 @@ export default function OfficeProgramsPage() {
       {/* Closing CTA */}
       <section className="py-20 bg-[var(--color-brand-cream)]">
         <div className="container-md text-center">
-          <p className="text-xl md:text-2xl font-display font-bold text-[var(--color-brand-muted)] mb-8 max-w-2xl mx-auto">
+          <p className="text-3xl font-display font-bold text-[var(--color-brand-dark)] mb-8 max-w-2xl mx-auto">
             Quality craft coffee, serviced like clockwork. That&apos;s an upgrade your team will taste.
           </p>
           <LinkButton href="/office-programs/apply" size="lg">
