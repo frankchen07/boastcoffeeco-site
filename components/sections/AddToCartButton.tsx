@@ -107,29 +107,44 @@ export default function AddToCartButton({
                 {variant && formatPrice(variant.price, product.currencyCode)}
               </span>
             </label>
-            {sellingPlans.map((plan) => (
-              <label
-                key={plan.id}
-                className={`flex items-center justify-between px-4 py-3 rounded border cursor-pointer transition-colors ${
-                  sellingPlanId === plan.id
-                    ? "border-[var(--color-brand-dark)]"
-                    : "border-[var(--color-brand-border)]"
-                }`}
-              >
-                <span className="flex items-center gap-2 text-sm text-[var(--color-brand-dark)]">
-                  <input
-                    type="radio"
-                    name="purchase-option"
-                    checked={sellingPlanId === plan.id}
-                    onChange={() => setSellingPlanId(plan.id)}
-                  />
-                  {plan.name}
-                </span>
-                <span className="text-sm font-semibold text-[var(--color-brand-dark)]">
-                  {formatPrice(plan.price, product.currencyCode)}
-                </span>
-              </label>
-            ))}
+            {sellingPlans.map((plan) => {
+              const isSelected = sellingPlanId === plan.id;
+              const showDescription = isSelected && plan.description;
+              return (
+                <label
+                  key={plan.id}
+                  className={`block px-4 py-3 rounded border cursor-pointer transition-colors ${
+                    isSelected
+                      ? "border-[var(--color-brand-dark)]"
+                      : "border-[var(--color-brand-border)]"
+                  }`}
+                >
+                  <span className="flex items-center justify-between">
+                    <span className="flex items-center gap-2 text-sm text-[var(--color-brand-dark)]">
+                      <input
+                        type="radio"
+                        name="purchase-option"
+                        checked={isSelected}
+                        onChange={() => setSellingPlanId(plan.id)}
+                        aria-describedby={showDescription ? "selling-plan-description" : undefined}
+                      />
+                      {plan.name}
+                    </span>
+                    <span className="text-sm font-semibold text-[var(--color-brand-dark)]">
+                      {formatPrice(plan.price, product.currencyCode)}
+                    </span>
+                  </span>
+                  {showDescription && (
+                    <span
+                      id="selling-plan-description"
+                      className="block mt-1 pl-5 text-xs text-[var(--color-brand-muted)]"
+                    >
+                      {plan.description}
+                    </span>
+                  )}
+                </label>
+              );
+            })}
           </div>
         </div>
       )}
