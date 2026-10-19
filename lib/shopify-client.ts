@@ -21,6 +21,9 @@ export interface ShopifyClient {
   getCart(cartId: string): Promise<NormalizedCart | null>;
 }
 
+/** Cache tag on every Storefront fetch; busted by /api/revalidate/shopify webhook. */
+export const SHOPIFY_CACHE_TAG = "shopify";
+
 // ─── GraphQL Fragments ───────────────────────────────────────────────────────
 
 const PRODUCT_FRAGMENT = `
@@ -189,7 +192,7 @@ export function createShopifyClient({
         "X-Shopify-Storefront-Access-Token": storefrontToken,
       },
       body: JSON.stringify({ query, variables }),
-      next: { revalidate: 3600 },
+      next: { revalidate: 3600, tags: [SHOPIFY_CACHE_TAG] },
     });
 
     if (!res.ok) {
