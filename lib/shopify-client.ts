@@ -100,6 +100,12 @@ const CART_FRAGMENT = `
 
 // ─── Normalizers ──────────────────────────────────────────────────────────────
 
+/** Appstle plan descriptions can arrive as pasted HTML; render them as plain text. */
+function toPlainText(html: string | null): string | null {
+  const text = html?.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+  return text || null;
+}
+
 function normalizeVariant(variant: ShopifyProductVariant): NormalizedVariant {
   return {
     id: variant.id,
@@ -111,7 +117,7 @@ function normalizeVariant(variant: ShopifyProductVariant): NormalizedVariant {
     sellingPlans: variant.sellingPlanAllocations.edges.map(({ node }) => ({
       id: node.sellingPlan.id,
       name: node.sellingPlan.name,
-      description: node.sellingPlan.description,
+      description: toPlainText(node.sellingPlan.description),
       price: node.priceAdjustments[0]?.price.amount ?? variant.price.amount,
     })),
   };
