@@ -5,14 +5,14 @@ import { LinkButton } from "@/components/ui/Button";
 export const metadata: Metadata = {
   title: "Wholesale",
   description:
-    "Boast Wholesale — organic, small-batch roasted coffee beans, nitro kegs, and espresso concentrate for cafés, restaurants, and resellers.",
+    "Boast Wholesale — organic, freshly roasted coffee beans, nitro kegs, and espresso concentrate for cafés, restaurants, and resellers.",
 };
 
 const products = [
   {
     title: "Coffee Beans",
     description:
-      "Organic, small-batch, and roasted in-house at wholesale prices. Traceable, consistent, and ready for espresso or drip.",
+      "Organic and roasted in-house at wholesale prices. Traceable, consistent, and ready for espresso or drip.",
   },
   {
     title: "Nitro Kegs",
@@ -40,7 +40,7 @@ export default function WholesalePage() {
               Great coffee. No extra headache.
             </h1>
             <p className="text-lg md:text-xl text-[var(--color-brand-surface)] leading-relaxed mb-10">
-              Organic, small-batch beans, nitro kegs, and espresso concentrate — roasted and prepped
+              Organic beans, nitro kegs, and espresso concentrate — roasted and prepped
               in-house, ready for service.
             </p>
             <div className="flex flex-wrap gap-4">

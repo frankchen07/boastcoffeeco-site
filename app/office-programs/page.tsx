@@ -12,7 +12,7 @@ const products = [
   {
     title: "Nitro Cold Brew Kegs",
     description:
-      "We brew our own cold brew with organic, small-batch roasted, single origin beans, and charge it with nitro. We deliver, install, and swap the keg before it ever runs low — one less thing on your office manager's plate.",
+      "We brew our own cold brew with organic, freshly roasted, single origin beans, and charge it with nitro. We deliver, install, and swap the keg before it ever runs low — one less thing on your office manager's plate.",
   },
   {
     title: "Nitro Tea Kegs",

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Boast Coffee Co.",
   },
   description:
-    "Premium small-batch coffee roasted with intention. Specialty coffee, nitro cold brew, and more.",
+    "Premium specialty coffee roasted with intention. Specialty coffee, nitro cold brew, and more.",
   metadataBase: new URL("https://www.boastcoffee.com"),
   openGraph: {
     siteName: "Boast Coffee Co.",
