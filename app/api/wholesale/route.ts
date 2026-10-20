@@ -95,9 +95,7 @@ export async function POST(request: Request) {
     ].filter(Boolean);
 
     const { error } = await resend.emails.send({
-      // Temporary: boastcoffee.com isn't verified in Resend yet. Swap back to
-      // noreply@boastcoffee.com once the domain is verified in the Resend dashboard.
-      from: "Boast Coffee Website <onboarding@resend.dev>",
+      from: "Boast Coffee Website <noreply@boastcoffee.com>",
       to: CONTACT_EMAIL,
       replyTo: email.trim(),
       subject: `[Wholesale] ${businessName.trim()}`,
