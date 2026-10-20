@@ -37,7 +37,7 @@ export default async function ShopPage() {
             Shop
           </h1>
           <p className="mt-4 text-lg text-[var(--color-brand-muted)] max-w-lg">
-            Small-batch espresso roasts, nitro cold brew, and our loved Kyoto-brewed espresso concentrate. 
+            Freshly roasted espresso, nitro cold brew, and our loved Kyoto-brewed espresso concentrate. 
           </p>
         </div>
       </div>

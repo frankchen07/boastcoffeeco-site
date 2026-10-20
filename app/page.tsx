@@ -7,9 +7,9 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <Hero
-        eyebrow="Organic Small-Batch Specialty Coffee"
-        headline="Coffee worth boasting about."
-        subhead="Sourced from the world's best growing regions. Small-batch roasted & brewed with intention, and delivered to where you are."
+        eyebrow="Organic Specialty Coffee"
+        headline="Coffee worth Boasting about."
+        subhead="Freshly roasted, meticulously crafted, & brewed with intention."
         primaryCta={{ label: "Shop Coffee", href: "/shop" }}
         dark
         videoSrc="/IMG_2934.mov"
@@ -20,15 +20,15 @@ export default function HomePage() {
         <div className="container-md">
           <div className="max-w-2xl">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)] mb-6">
-              We&apos;re here to boast
+              We&apos;re here to Boast
               <br />
-              the coffee, not ourselves.
+              about coffee, not ourselves.
             </h2>
             <p className="text-lg text-[var(--color-brand-muted)] leading-relaxed">
               Boast started with a simple idea: coffee done well should be something worth telling
               people about. Every bean we roast and serve is our answer to that. The name isn&apos;t
               about ego. &ldquo;Boast&rdquo; is about letting the coffee do the talking, preserving
-              what makes each bean exceptional and putting it front and center. It also means listening as much as we talk — because a great coffee experience is a human one before it's a product.
+              what makes each bean exceptional and putting it front and center.
             </p>
           </div>
         </div>
