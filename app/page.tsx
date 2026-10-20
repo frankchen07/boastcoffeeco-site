@@ -62,8 +62,8 @@ export default function HomePage() {
             </div>
             <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-lg">
               <Image
-                src="/bcc-bags-1.jpg"
-                alt="Boast Coffee bags ready to ship"
+                src="/bcc-beans.png"
+                alt="Boast Coffee roasted beans"
                 fill
                 className="object-cover object-center opacity-65"
                 sizes="(max-width: 1024px) 100vw, 50vw"
