@@ -7,6 +7,14 @@ import {
   type CartType,
   type SpecialDrink,
 } from "@/lib/event-pricing";
+import {
+  buildRequestCopy,
+  escapeHtml,
+  fieldsToHtml,
+  fieldsToText,
+  formatEventTime,
+  type EmailField,
+} from "@/lib/event-email";
 
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? "hello@boastcoffee.com";
 const FIVE_MINUTES_MS = 5 * 60 * 1000;
@@ -111,17 +119,21 @@ export async function POST(request: Request) {
       specialDrinks: specialDrinks as SpecialDrink[],
     });
 
+    const fields: EmailField[] = [
+      ["Name", name.trim()],
+      ["Email", email.trim()],
+      ...(phoneTrimmed ? [["Phone", phoneTrimmed] as EmailField] : []),
+      ["Event Type", eventType],
+      ["Expected Guests", guestCount],
+      ["Event Start", formatEventTime(eventStart)],
+      ["Event End", formatEventTime(eventEnd)],
+      ["Cart Type", cartType],
+      ["Solar Van", solarVan],
+      ["Special Drinks", specialDrinks.length > 0 ? specialDrinks.join(", ") : "None"],
+    ];
+
     const textLines = [
-      `Name: ${name.trim()}`,
-      `Email: ${email.trim()}`,
-      phoneTrimmed && `Phone: ${phoneTrimmed}`,
-      `Event Type: ${eventType}`,
-      `Expected Guests: ${guestCount}`,
-      `Event Start: ${eventStart}`,
-      `Event End: ${eventEnd}`,
-      `Cart Type: ${cartType}`,
-      `Solar Van: ${solarVan}`,
-      `Special Drinks: ${specialDrinks.length > 0 ? specialDrinks.join(", ") : "None"}`,
+      ...fieldsToText(fields),
       `\nEstimated Price: $${estimate.total} (internal estimate — verify before quoting)`,
       `  Duration: ${estimate.breakdown.hours}h, Guest blocks: ${estimate.breakdown.guestBlocks}, Cart: +$${estimate.breakdown.cartDelta}, Van: +$${estimate.breakdown.vanDelta}, Drinks: +$${estimate.breakdown.drinksDelta}`,
       messageTrimmed && `\n${messageTrimmed}`,
@@ -134,16 +146,7 @@ export async function POST(request: Request) {
       subject: `[Event] ${name.trim()} - ${eventType}`,
       text: textLines.join("\n"),
       html: `
-        <p><strong>Name:</strong> ${escapeHtml(name.trim())}</p>
-        <p><strong>Email:</strong> ${escapeHtml(email.trim())}</p>
-        ${phoneTrimmed ? `<p><strong>Phone:</strong> ${escapeHtml(phoneTrimmed)}</p>` : ""}
-        <p><strong>Event Type:</strong> ${escapeHtml(eventType)}</p>
-        <p><strong>Expected Guests:</strong> ${escapeHtml(String(guestCount))}</p>
-        <p><strong>Event Start:</strong> ${escapeHtml(eventStart)}</p>
-        <p><strong>Event End:</strong> ${escapeHtml(eventEnd)}</p>
-        <p><strong>Cart Type:</strong> ${escapeHtml(cartType)}</p>
-        <p><strong>Solar Van:</strong> ${escapeHtml(solarVan)}</p>
-        <p><strong>Special Drinks:</strong> ${escapeHtml(specialDrinks.length > 0 ? specialDrinks.join(", ") : "None")}</p>
+        ${fieldsToHtml(fields)}
         <p><strong>Estimated Price:</strong> $${estimate.total} <em>(internal estimate — verify before quoting)</em></p>
         <p style="color:#666;font-size:0.9em;">Duration: ${estimate.breakdown.hours}h &middot; Guest blocks: ${estimate.breakdown.guestBlocks} &middot; Cart: +$${estimate.breakdown.cartDelta} &middot; Van: +$${estimate.breakdown.vanDelta} &middot; Drinks: +$${estimate.breakdown.drinksDelta}</p>
         ${messageTrimmed ? `<br><p>${escapeHtml(messageTrimmed).replace(/\n/g, "<br>")}</p>` : ""}
@@ -158,6 +161,18 @@ export async function POST(request: Request) {
       );
     }
 
+    // The request already reached us, so a failed copy shouldn't fail the submission.
+    const copy = buildRequestCopy(fields, messageTrimmed);
+    const { error: copyError } = await resend.emails.send({
+      from: "Boast Coffee Co. <noreply@boastcoffee.com>",
+      to: email.trim(),
+      replyTo: CONTACT_EMAIL,
+      ...copy,
+    });
+    if (copyError) {
+      console.error("Contact form copy error:", copyError);
+    }
+
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("Contact form error:", err);
@@ -166,13 +181,4 @@ export async function POST(request: Request) {
       { status: 500 }
     );
   }
-}
-
-function escapeHtml(str: string): string {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
 }

@@ -22,7 +22,7 @@ export default function WholesaleApplyPage() {
             &larr; Wholesale
           </Link>
           <h1 className="text-4xl md:text-5xl font-display font-bold text-[var(--color-brand-dark)]">
-            Wholesale
+            Become a Wholesale Partner
           </h1>
         </div>
       </div>

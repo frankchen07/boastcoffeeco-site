@@ -26,7 +26,7 @@ export default function VisitPage() {
               Come try our coffee!
             </h1>
             <p className="text-lg md:text-xl text-[var(--color-brand-surface)] leading-relaxed max-w-lg">
-              We&apos;re next to the Midwife &amp; the Baker 🥐 in Mountain View.
+              Our coffee van is next to the Midwife &amp; the Baker 🥐 in Mountain View.
             </p>
           </div>
         </div>
@@ -83,6 +83,31 @@ export default function VisitPage() {
         </div>
       </section>
 
+      {/* Roastery */}
+      <section className="py-20 bg-[var(--color-brand-cream)]">
+        <div className="container-md">
+          <div className="max-w-xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)] mb-6">
+              Our Roastery
+            </h2>
+            <p className="text-lg text-[var(--color-brand-muted)] leading-relaxed mb-6">
+              We also have a roastery (where the magic happens). Visits are by appointment only.
+            </p>
+            <address className="not-italic">
+              <a
+                href="https://maps.google.com/?q=2554+Seaboard+Ave+San+Jose+CA+95131"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-[var(--color-brand-dark)] underline underline-offset-4 hover:text-[var(--color-brand-accent-text)] transition-colors"
+              >
+                2554 Seaboard Ave
+                <br />
+                San Jose, CA 95131
+              </a>
+            </address>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
