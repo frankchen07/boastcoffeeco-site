@@ -58,10 +58,10 @@ export default function OfficeProgramsPage() {
         </div>
         <div className="relative h-72 lg:h-auto lg:w-[44%] shrink-0">
           <Image
-            src="/bcc-kegs.jpg"
-            alt="Boast nitro kegs for office programs"
+            src="/bcc-nitrotap.jpg"
+            alt="Boast nitro cold brew on tap"
             fill
-            className="object-cover object-center opacity-75"
+            className="object-cover object-bottom opacity-75"
             sizes="(max-width: 1024px) 100vw, 44vw"
             priority
           />
