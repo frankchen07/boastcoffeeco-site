@@ -19,7 +19,7 @@ const products = [
   {
     title: "Nitro Kegs",
     description:
-      "A fresh, ready-made nitro cold brew that complements what you're already pouring — no new equipment, no dedicated brew process. Tap it and pour.",
+      "A fresh, ready-made nitro cold brew that complements what you're already pouring. We bring and service the entire setup, so there's no dedicated brew process. Just tap it and pour.",
     image: "/bcc-nitrokegs.jpg",
     alt: "Boast nitro cold brew kegs",
   },
@@ -43,7 +43,7 @@ export default function WholesalePage() {
               For Cafés, Restaurants &amp; Resellers
             </p>
             <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.05] mb-6">
-              Great coffee. Level up your menu.
+              Level up your coffee menu.
             </h1>
             <p className="text-lg md:text-xl text-[var(--color-brand-surface)] leading-relaxed mb-10">
               Organic, specialty coffee, nitro coffee kegs, and espresso concentrate — freshly
