@@ -48,7 +48,7 @@ export default function HomePage() {
                   real gap in how craft coffee was delivered, especially off-premise.
                 </p>
                 <p>
-                  In 2017, we started roasting fresh specialty beans in San Jose and serving nitro cold brew on tap in kegs for offices and corporate venues. Demand grew, so we added on-site coffee carts alongside of our smooth cold brew, and started running catering events. In the past two years, we&apos;ve taken it further with our custom solar-powered espresso van, bringing a full service craft coffee bar directly to events.
+                  In 2017, we started roasting fresh specialty beans in San Jose and serving nitro cold brew on tap in kegs for offices and corporate venues. Demand grew, so we added on-site coffee carts alongside of our smooth cold brew, and started running catering events. In the past two years, we&apos;ve taken it further with our custom solar-powered coffee van, bringing a full service craft coffee bar directly to events.
                 </p>
                 <p>
                   Wherever we set up, the standard doesn&apos;t move. You get the consistency you&apos;d

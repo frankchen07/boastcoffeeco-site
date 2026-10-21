@@ -5,7 +5,7 @@ import { LinkButton } from "@/components/ui/Button";
 export const metadata: Metadata = {
   title: "Catering",
   description:
-    "Boast Coffee Catering — a solar-powered espresso van, nitro cold brew on tap, and Kyoto concentrate iced espresso. Full-service specialty coffee for Bay Area events.",
+    "Boast Coffee Catering — a solar-powered coffee van, nitro cold brew on tap, and Kyoto concentrate iced espresso. Full-service specialty coffee for Bay Area events.",
 };
 
 const services = [

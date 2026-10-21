@@ -237,7 +237,7 @@ export default function ContactForm() {
         {form.eventType && form.eventType !== "Other" && (
           <p className="mt-2 text-sm text-[var(--color-brand-muted)]">
             {form.eventType === "Pop-up"
-              ? "This type of event will be charged normally, by the cup."
+              ? "This type of event will be charged by the cup (a guaranteed minimum will be required)."
               : "This type of event will be prepaid."}
           </p>
         )}
