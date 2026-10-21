@@ -38,7 +38,7 @@ export default function OfficeProgramsPage() {
       <section className="min-h-[70dvh] bg-[var(--color-brand-dark)] text-[var(--color-brand-cream)] flex flex-col lg:flex-row overflow-hidden">
         <div className="flex-1 flex items-center px-6 md:px-10 lg:pl-[max(2.5rem,calc((100vw-1200px)/2+2.5rem))] lg:pr-16 py-24">
           <div className="max-w-xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-brand-accent)] mb-4">
+            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--color-brand-accent)] mb-4">
               For Bay Area Offices
             </p>
             <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.05] mb-6">
@@ -47,7 +47,7 @@ export default function OfficeProgramsPage() {
               by Boast
             </h1>
             <p className="text-lg md:text-xl text-[var(--color-brand-surface)] leading-relaxed mb-10">
-              We stock your office with nitro coffee & tea, craft kombucha, and single origin beans — then service it for you. No more crappy burnt brews.
+              We stock your office with nitro coffee & tea, craft kombucha, and single origin beans — then service it for you. Make it easy. We got you covered.
             </p>
             <div className="flex flex-wrap gap-4">
               <LinkButton href="/office-programs/apply" size="lg">
@@ -73,7 +73,7 @@ export default function OfficeProgramsPage() {
         <div className="container-md">
           <div className="max-w-2xl mb-14">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)] mb-4">
-              No more cardboard box coffee. Get Boast.
+              Level up your office coffee. Get Boast.
             </h2>
           </div>
 

@@ -42,7 +42,7 @@ export default function CateringPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/55" />
         <div className="container-md relative z-10 py-24">
           <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-widest mb-5 text-[var(--color-brand-accent)]">
+            <p className="text-sm font-semibold uppercase tracking-widest mb-5 text-[var(--color-brand-accent)]">
               Mobile Craft Coffee
             </p>
             <h1 className="text-5xl md:text-7xl font-display font-bold leading-[1.05] mb-6">
@@ -63,7 +63,7 @@ export default function CateringPage() {
         <div className="container-md">
           <div className="mb-14">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)]">
-              No more Boring Coffee. Get Boast. Level up your Events.
+              No more boring coffee. Get Boast. Level up your events.
             </h2>
           </div>
 

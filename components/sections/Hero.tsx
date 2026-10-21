@@ -41,7 +41,7 @@ export default function Hero({
         <div className="max-w-2xl">
           {eyebrow && (
             <p
-              className={`text-xs font-semibold uppercase tracking-widest mb-5 ${
+              className={`text-sm font-semibold uppercase tracking-widest mb-5 ${
                 dark ? "text-[var(--color-brand-accent)]" : "text-[var(--color-brand-muted)]"
               }`}
             >
