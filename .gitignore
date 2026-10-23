@@ -52,3 +52,6 @@ next-env.d.ts
 public/*.mp4
 public/*.mov
 !public/IMG_2934.mov
+
+# print collateral (cheatsheets, flyers) stays local
+print/
