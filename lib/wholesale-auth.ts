@@ -1,4 +1,5 @@
 import { createHmac, timingSafeEqual } from "crypto";
+import { cookies } from "next/headers";
 
 export const WHOLESALE_AUTH_COOKIE = "wholesale_auth";
 
@@ -30,4 +31,9 @@ export function isValidCookie(value: string | undefined): boolean {
   if (!expected || !secret || !value) return false;
 
   return safeEqual(sign(expected, secret), value);
+}
+
+export async function hasWholesaleSession(): Promise<boolean> {
+  const cookieStore = await cookies();
+  return isValidCookie(cookieStore.get(WHOLESALE_AUTH_COOKIE)?.value);
 }

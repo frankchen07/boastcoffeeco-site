@@ -24,6 +24,9 @@ export interface ShopifyClient {
 /** Cache tag on every Storefront fetch; busted by /api/revalidate/shopify webhook. */
 export const SHOPIFY_CACHE_TAG = "shopify";
 
+// Server-side fetch caches POSTs by body, so cart reads/writes must not be cached.
+const UNCACHED = 0;
+
 // ─── GraphQL Fragments ───────────────────────────────────────────────────────
 
 const PRODUCT_FRAGMENT = `
@@ -172,18 +175,26 @@ function normalizeCart(cart: Cart): NormalizedCart {
 export function createShopifyClient({
   storeDomain,
   storefrontToken,
+  isPrivateToken = false,
   country,
 }: {
   storeDomain: string | undefined;
   storefrontToken: string | undefined;
+  /** Server-only private Storefront token, sent in its own header. */
+  isPrivateToken?: boolean;
   /** Pin queries to a Market via @inContext(country). Omit to use the shop's default market. */
   country?: string;
 }): ShopifyClient {
   const endpoint = storeDomain ? `https://${storeDomain}/api/2026-04/graphql.json` : null;
 
+  const tokenHeader = isPrivateToken
+    ? "Shopify-Storefront-Private-Token"
+    : "X-Shopify-Storefront-Access-Token";
+
   async function shopifyFetch<T>(
     query: string,
-    variables?: Record<string, unknown>
+    variables?: Record<string, unknown>,
+    revalidate = 3600
   ): Promise<T> {
     if (!endpoint || !storefrontToken) {
       throw new Error(
@@ -195,10 +206,10 @@ export function createShopifyClient({
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-Shopify-Storefront-Access-Token": storefrontToken,
+        [tokenHeader]: storefrontToken,
       },
       body: JSON.stringify({ query, variables }),
-      next: { revalidate: 3600, tags: [SHOPIFY_CACHE_TAG] },
+      next: { revalidate, tags: [SHOPIFY_CACHE_TAG] },
     });
 
     if (!res.ok) {
@@ -265,7 +276,9 @@ export function createShopifyClient({
       mutation CartCreate {
         cartCreate { cart { ...CartFields } }
       }
-      `
+      `,
+      undefined,
+      UNCACHED
     );
     return normalizeCart(data.cartCreate.cart);
   }
@@ -281,7 +294,8 @@ export function createShopifyClient({
         cartLinesAdd(cartId: $cartId, lines: $lines) { cart { ...CartFields } }
       }
       `,
-      { cartId, lines }
+      { cartId, lines },
+      UNCACHED
     );
     return normalizeCart(data.cartLinesAdd.cart);
   }
@@ -294,7 +308,8 @@ export function createShopifyClient({
         cartLinesRemove(cartId: $cartId, lineIds: $lineIds) { cart { ...CartFields } }
       }
       `,
-      { cartId, lineIds }
+      { cartId, lineIds },
+      UNCACHED
     );
     return normalizeCart(data.cartLinesRemove.cart);
   }
@@ -311,7 +326,8 @@ export function createShopifyClient({
         cartLinesUpdate(cartId: $cartId, lines: $lines) { cart { ...CartFields } }
       }
       `,
-      { cartId, lines: [{ id: lineId, quantity }] }
+      { cartId, lines: [{ id: lineId, quantity }] },
+      UNCACHED
     );
     return normalizeCart(data.cartLinesUpdate.cart);
   }
@@ -324,7 +340,8 @@ export function createShopifyClient({
         cart(id: $cartId) { ...CartFields }
       }
       `,
-      { cartId }
+      { cartId },
+      UNCACHED
     );
     return data.cart ? normalizeCart(data.cart) : null;
   }

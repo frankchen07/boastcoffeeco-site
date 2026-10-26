@@ -65,11 +65,11 @@ The retail site is headless and stateless — no admin backend, no database, and
 
 **Provisioning the wholesale storefront (`/wholesaleshop`)**
 - In Shopify Admin, create a second "Headless" sales channel (Settings > Apps and sales channels > Develop apps) distinct from the one retail uses.
-- Generate its own Storefront API access token and grant it Storefront API access (products, cart) same as retail.
+- Generate its own Storefront API **private** access token and grant it Storefront API access (products, cart) same as retail.
 - Publish only wholesale-tagged products to this second channel — this is what scopes `/wholesaleshop`'s catalog to wholesale products automatically, no app-side filtering needed.
-- Add the token to `.env` as `NEXT_PUBLIC_SHOPIFY_WHOLESALE_STOREFRONT_ACCESS_TOKEN` (same `NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN` as retail).
+- Add the private token to `.env` as `SHOPIFY_WHOLESALE_STOREFRONT_PRIVATE_TOKEN` (server-only, never `NEXT_PUBLIC_`; same `NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN` as retail). Wholesale cart calls run through Server Actions (`lib/wholesale-cart-actions.ts`) that check the wholesale cookie first.
 - Pricing is one shared wholesale price list for everyone with the link — there's no company login, so Shopify's per-company negotiated pricing doesn't apply here.
-- Set `WHOLESALE_SHOP_PASSWORD` in `.env` (server-only, pick any shared password) — this gates every `/wholesaleshop` page behind `/wholesaleshop/login` regardless of the Storefront token/catalog setup above.
+- Set `WHOLESALE_SHOP_PASSWORD` and `WHOLESALE_COOKIE_SECRET` (`openssl rand -hex 32`) in `.env` (both server-only) — this gates every `/wholesaleshop` page behind `/wholesaleshop/login` regardless of the Storefront token/catalog setup above.
 
 **Wholesale Customer: Application → Approval**
 1. Customer submits the form at `/wholesale` → emails Frank via Resend (`app/api/wholesale/route.ts`) with business details. No Shopify object is created yet.

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import Image from "next/image";
 import { getProduct } from "@/lib/shopify-wholesale";
 import { formatPrice, MOCK_PRODUCTS } from "@/lib/shopify-client";
 import { useWholesaleCart } from "@/lib/wholesale-cart-context";
 import AddToCartButton from "@/components/sections/AddToCartButton";
+import { hasWholesaleSession } from "@/lib/wholesale-auth";
 
 interface Props {
   params: Promise<{ handle: string }>;
@@ -13,6 +14,7 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { handle } = await params;
   const robots = { index: false, follow: false };
+  if (!(await hasWholesaleSession())) return { title: "Wholesale", robots };
   try {
     const product = await getProduct(handle);
     if (!product) return { title: "Product not found", robots };
@@ -30,6 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function WholesaleProductPage({ params }: Props) {
+  if (!(await hasWholesaleSession())) redirect("/wholesaleshop/login");
   const { handle } = await params;
 
   let product;
@@ -39,7 +42,8 @@ export default async function WholesaleProductPage({ params }: Props) {
       // fall back to mock
       product = MOCK_PRODUCTS.find((p) => p.handle === handle) ?? null;
     }
-  } catch {
+  } catch (err) {
+    console.error("Wholesale product error:", err);
     product = MOCK_PRODUCTS.find((p) => p.handle === handle) ?? null;
   }
 

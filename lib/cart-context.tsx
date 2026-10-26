@@ -23,7 +23,10 @@ export interface CartContextValue {
   updateItem: (lineId: string, quantity: number) => Promise<void>;
 }
 
-export function createCartContext(storageKey: string, client: ShopifyClient) {
+export function createCartContext(
+  storageKey: string,
+  client: Omit<ShopifyClient, "getProducts" | "getProduct">
+) {
   const CartContext = createContext<CartContextValue | null>(null);
 
   function CartProvider({ children }: { children: React.ReactNode }) {
