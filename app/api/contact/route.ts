@@ -119,10 +119,7 @@ export async function POST(request: Request) {
       specialDrinks: specialDrinks as SpecialDrink[],
     });
 
-    const fields: EmailField[] = [
-      ["Name", name.trim()],
-      ["Email", email.trim()],
-      ...(phoneTrimmed ? [["Phone", phoneTrimmed] as EmailField] : []),
+    const eventFields: EmailField[] = [
       ["Event Type", eventType],
       ["Expected Guests", guestCount],
       ["Event Start", formatEventTime(eventStart)],
@@ -130,6 +127,12 @@ export async function POST(request: Request) {
       ["Cart Type", cartType],
       ["Solar Van", solarVan],
       ["Special Drinks", specialDrinks.length > 0 ? specialDrinks.join(", ") : "None"],
+    ];
+    const fields: EmailField[] = [
+      ["Name", name.trim()],
+      ["Email", email.trim()],
+      ...(phoneTrimmed ? [["Phone", phoneTrimmed] as EmailField] : []),
+      ...eventFields,
     ];
 
     const textLines = [
@@ -162,7 +165,7 @@ export async function POST(request: Request) {
     }
 
     // The request already reached us, so a failed copy shouldn't fail the submission.
-    const copy = buildRequestCopy(fields, messageTrimmed);
+    const copy = buildRequestCopy(eventFields, Boolean(messageTrimmed));
     const { error: copyError } = await resend.emails.send({
       from: "Boast Coffee Co. <noreply@boastcoffee.com>",
       to: email.trim(),

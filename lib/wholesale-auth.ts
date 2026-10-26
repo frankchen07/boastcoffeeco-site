@@ -2,26 +2,32 @@ import { createHmac, timingSafeEqual } from "crypto";
 
 export const WHOLESALE_AUTH_COOKIE = "wholesale_auth";
 
-function sign(password: string): string {
-  return createHmac("sha256", password).update("wholesaleshop-access").digest("hex");
+// Keyed by a separate secret so a leaked cookie can't be used to guess the password offline.
+function sign(password: string, secret: string): string {
+  return createHmac("sha256", secret).update(`wholesaleshop-access:${password}`).digest("hex");
+}
+
+function safeEqual(a: string, b: string): boolean {
+  const left = Buffer.from(a);
+  const right = Buffer.from(b);
+  return left.length === right.length && timingSafeEqual(left, right);
 }
 
 export function verifyPassword(input: string): boolean {
   const expected = process.env.WHOLESALE_SHOP_PASSWORD;
-  return Boolean(expected) && input === expected;
+  return Boolean(expected) && safeEqual(input, expected!);
 }
 
 export function cookieValueForPassword(password: string): string {
-  return sign(password);
+  const secret = process.env.WHOLESALE_COOKIE_SECRET;
+  if (!secret) throw new Error("WHOLESALE_COOKIE_SECRET is not set");
+  return sign(password, secret);
 }
 
 export function isValidCookie(value: string | undefined): boolean {
   const expected = process.env.WHOLESALE_SHOP_PASSWORD;
-  if (!expected || !value) return false;
+  const secret = process.env.WHOLESALE_COOKIE_SECRET;
+  if (!expected || !secret || !value) return false;
 
-  const expectedValue = Buffer.from(sign(expected));
-  const actualValue = Buffer.from(value);
-  if (expectedValue.length !== actualValue.length) return false;
-
-  return timingSafeEqual(expectedValue, actualValue);
+  return safeEqual(sign(expected, secret), value);
 }

@@ -33,20 +33,22 @@ export function fieldsToHtml(fields: EmailField[]): string {
 }
 
 // Copy of the request sent back to the customer. Never include pricing here.
-export function buildRequestCopy(fields: EmailField[], message: string) {
+// Recipient is unverified, so only allowlisted event fields go out.
+export function buildRequestCopy(eventFields: EmailField[], hasMessage: boolean) {
   const intro =
-    "Thanks for reaching out to Boast Coffee Co.! We received your event request and a member of our team will follow up soon. Here's a copy of what you sent:";
+    "Thanks for reaching out to Boast Coffee Co.! We received your event request and a member of our team will follow up soon. Here are your event details:";
+  const note = "We also got your note and will read it before we follow up.";
   const outro = "Questions in the meantime? Just reply to this email.";
 
   return {
     subject: "We got your event request - Boast Coffee Co.",
-    text: [intro, "", ...fieldsToText(fields), ...(message ? ["", message] : []), "", outro].join(
+    text: [intro, "", ...fieldsToText(eventFields), ...(hasMessage ? ["", note] : []), "", outro].join(
       "\n"
     ),
     html: `
       <p>${intro}</p>
-      ${fieldsToHtml(fields)}
-      ${message ? `<p>${escapeHtml(message).replace(/\n/g, "<br>")}</p>` : ""}
+      ${fieldsToHtml(eventFields)}
+      ${hasMessage ? `<p>${note}</p>` : ""}
       <p>${outro}</p>
     `,
   };
