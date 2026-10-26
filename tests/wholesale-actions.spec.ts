@@ -18,7 +18,9 @@ function actionId(name: string): string {
 
 function localEnv(key: string): string | undefined {
   if (!existsSync('.env.local')) return undefined;
-  return readFileSync('.env.local', 'utf8').match(new RegExp(`^${key}="?(.*?)"?$`, 'm'))?.[1] || undefined;
+  // Last definition wins, matching how Next loads .env files.
+  const matches = [...readFileSync('.env.local', 'utf8').matchAll(new RegExp(`^${key}="?(.*?)"?$`, 'gm'))];
+  return matches.at(-1)?.[1] || undefined;
 }
 
 async function callGetCart(request: import('@playwright/test').APIRequestContext, cookie?: string) {
