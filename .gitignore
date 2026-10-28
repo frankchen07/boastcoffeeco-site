@@ -55,3 +55,6 @@ public/*.mov
 
 # print collateral (cheatsheets, flyers) stays local
 print/
+
+# playwright output
+test-results/
