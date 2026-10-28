@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { getProduct, formatPrice, MOCK_PRODUCTS } from "@/lib/shopify";
+import { getProduct, MOCK_PRODUCTS } from "@/lib/shopify";
 import AddToCartButton from "@/components/sections/AddToCartButton";
 
 interface Props {
@@ -74,12 +74,9 @@ export default async function ProductPage({ params }: Props) {
           {/* Details */}
           <div className="flex flex-col gap-6">
             <div>
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)] mb-3">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)]">
                 {product.title}
               </h1>
-              <p className="text-2xl font-semibold text-[var(--color-brand-dark)]">
-                {formatPrice(product.price, product.currencyCode)}
-              </p>
             </div>
 
             <div

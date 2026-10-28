@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import Image from "next/image";
 import { getProduct } from "@/lib/shopify-wholesale";
-import { formatPrice, MOCK_PRODUCTS } from "@/lib/shopify-client";
+import { MOCK_PRODUCTS } from "@/lib/shopify-client";
 import { useWholesaleCart } from "@/lib/wholesale-cart-context";
 import AddToCartButton from "@/components/sections/AddToCartButton";
 import { hasWholesaleSession } from "@/lib/wholesale-auth";
@@ -84,12 +84,9 @@ export default async function WholesaleProductPage({ params }: Props) {
           {/* Details */}
           <div className="flex flex-col gap-6">
             <div>
-              <h1 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)] mb-3">
+              <h1 className="text-3xl md:text-4xl font-display font-bold text-[var(--color-brand-dark)]">
                 {product.title}
               </h1>
-              <p className="text-2xl font-semibold text-[var(--color-brand-dark)]">
-                {formatPrice(product.price, product.currencyCode)}
-              </p>
             </div>
 
             <div

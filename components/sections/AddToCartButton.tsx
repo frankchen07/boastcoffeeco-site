@@ -149,6 +149,12 @@ export default function AddToCartButton({
         </div>
       )}
 
+      {sellingPlans.length === 0 && variant && (
+        <p className="text-2xl font-semibold text-[var(--color-brand-dark)]">
+          {formatPrice(variant.price, product.currencyCode)}
+        </p>
+      )}
+
       <button
         onClick={handleAdd}
         disabled={!variant?.availableForSale || adding}
