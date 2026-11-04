@@ -40,6 +40,16 @@ const nextConfig: NextConfig = {
         destination: "/shop",
         permanent: true,
       },
+      {
+        source: "/product-page/keep-it-movin-blend",
+        destination: "/shop/keep-it-movin-house-blend-peru-mexico",
+        permanent: true,
+      },
+      {
+        source: "/product-page/:path*",
+        destination: "/shop",
+        permanent: true,
+      },
     ];
   },
 };
