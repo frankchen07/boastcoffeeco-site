@@ -35,6 +35,11 @@ const nextConfig: NextConfig = {
         destination: "/wholesale",
         permanent: true,
       },
+      {
+        source: "/shop-1",
+        destination: "/shop",
+        permanent: true,
+      },
     ];
   },
 };
