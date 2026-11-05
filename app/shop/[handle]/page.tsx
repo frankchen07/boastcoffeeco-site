@@ -25,13 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ProductPage({ params }: Props) {
   const { handle } = await params;
 
-  let product;
-  try {
-    product = await getProduct(handle);
-  } catch (err) {
-    console.error("Shop product error:", err);
-    product = null;
-  }
+  const product = await getProduct(handle);
 
   if (!product) notFound();
 
