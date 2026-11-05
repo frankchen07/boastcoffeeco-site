@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import { getProduct, MOCK_PRODUCTS } from "@/lib/shopify";
+import { getProduct } from "@/lib/shopify";
 import AddToCartButton from "@/components/sections/AddToCartButton";
 
 interface Props {
@@ -18,8 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: product.description,
     };
   } catch {
-    const mock = MOCK_PRODUCTS.find((p) => p.handle === handle);
-    return mock ? { title: mock.title, description: mock.description } : { title: "Product" };
+    return { title: "Product" };
   }
 }
 
@@ -29,12 +28,8 @@ export default async function ProductPage({ params }: Props) {
   let product;
   try {
     product = await getProduct(handle);
-    if (!product) {
-      // fall back to mock
-      product = MOCK_PRODUCTS.find((p) => p.handle === handle) ?? null;
-    }
   } catch {
-    product = MOCK_PRODUCTS.find((p) => p.handle === handle) ?? null;
+    product = null;
   }
 
   if (!product) notFound();

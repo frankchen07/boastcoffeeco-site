@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getProducts, MOCK_PRODUCTS } from "@/lib/shopify";
+import { getProducts } from "@/lib/shopify";
 
 const BASE_URL = "https://www.boastcoffee.com";
 
@@ -29,12 +29,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }));
     return [...staticRoutes, ...productRoutes];
   } catch {
-    const mockRoutes: MetadataRoute.Sitemap = MOCK_PRODUCTS.map((p) => ({
-      url: `${BASE_URL}/shop/${p.handle}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly" as const,
-      priority: 0.8,
-    }));
-    return [...staticRoutes, ...mockRoutes];
+    return staticRoutes;
   }
 }

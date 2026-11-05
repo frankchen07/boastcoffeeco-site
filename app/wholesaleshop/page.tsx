@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import ProductGrid from "@/components/sections/ProductGrid";
 import { getProducts } from "@/lib/shopify-wholesale";
-import { MOCK_PRODUCTS } from "@/lib/shopify-client";
 import { useWholesaleCart } from "@/lib/wholesale-cart-context";
 import { hasWholesaleSession } from "@/lib/wholesale-auth";
 import type { NormalizedProduct } from "@/lib/types";
@@ -16,11 +15,10 @@ export const metadata: Metadata = {
 
 async function getAllProducts(): Promise<NormalizedProduct[]> {
   try {
-    const products = await getProducts(12);
-    return products.length > 0 ? products : MOCK_PRODUCTS;
+    return await getProducts(12);
   } catch (err) {
     console.error("Wholesale products error:", err);
-    return MOCK_PRODUCTS;
+    return [];
   }
 }
 

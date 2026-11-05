@@ -13,8 +13,8 @@ const variants: [string, Record<string, string>][] = [
   ['/wholesaleshop.segments/_full.segment.rsc', {}],
   ['/wholesaleshop.segments/wholesaleshop/__PAGE__.segment.rsc', {}],
   ['/wholesaleshop.segments/wholesaleshop/__PAGE__.segment.rsc', prefetch],
-  ['/wholesaleshop/signature-blend', {}],
-  ['/wholesaleshop/signature-blend.rsc', {}],
+  ['/wholesaleshop/nitro-cold-brew-growler', {}],
+  ['/wholesaleshop/nitro-cold-brew-growler.rsc', {}],
 ];
 
 for (const [path, headers] of variants) {

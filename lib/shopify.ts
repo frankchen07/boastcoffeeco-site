@@ -1,4 +1,4 @@
-import { createShopifyClient, MOCK_PRODUCTS, formatPrice } from "./shopify-client";
+import { createShopifyClient, formatPrice } from "./shopify-client";
 
 export const SHOPIFY_ACCOUNT_URL = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN
   ? `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN}/account`
@@ -20,4 +20,4 @@ export const {
   getCart,
 } = client;
 
-export { MOCK_PRODUCTS, formatPrice };
+export { formatPrice };

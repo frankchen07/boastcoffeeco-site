@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import Image from "next/image";
 import { getProduct } from "@/lib/shopify-wholesale";
-import { MOCK_PRODUCTS } from "@/lib/shopify-client";
 import { useWholesaleCart } from "@/lib/wholesale-cart-context";
 import AddToCartButton from "@/components/sections/AddToCartButton";
 import { hasWholesaleSession } from "@/lib/wholesale-auth";
@@ -24,10 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       robots,
     };
   } catch {
-    const mock = MOCK_PRODUCTS.find((p) => p.handle === handle);
-    return mock
-      ? { title: mock.title, description: mock.description, robots }
-      : { title: "Product", robots };
+    return { title: "Product", robots };
   }
 }
 
@@ -38,13 +34,9 @@ export default async function WholesaleProductPage({ params }: Props) {
   let product;
   try {
     product = await getProduct(handle);
-    if (!product) {
-      // fall back to mock
-      product = MOCK_PRODUCTS.find((p) => p.handle === handle) ?? null;
-    }
   } catch (err) {
     console.error("Wholesale product error:", err);
-    product = MOCK_PRODUCTS.find((p) => p.handle === handle) ?? null;
+    product = null;
   }
 
   if (!product) notFound();

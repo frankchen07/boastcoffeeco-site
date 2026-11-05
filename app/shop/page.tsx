@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import ProductGrid from "@/components/sections/ProductGrid";
 import { LinkButton } from "@/components/ui/Button";
-import { getProducts, MOCK_PRODUCTS } from "@/lib/shopify";
+import { getProducts } from "@/lib/shopify";
 import type { NormalizedProduct } from "@/lib/types";
 
 export const revalidate = 3600; // ISR: revalidate hourly
@@ -15,10 +15,9 @@ export const metadata: Metadata = {
 
 async function getAllProducts(): Promise<NormalizedProduct[]> {
   try {
-    const products = await getProducts(12);
-    return products.length > 0 ? products : MOCK_PRODUCTS;
+    return await getProducts(12);
   } catch {
-    return MOCK_PRODUCTS;
+    return [];
   }
 }
 

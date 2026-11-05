@@ -357,66 +357,6 @@ export function createShopifyClient({
   };
 }
 
-// ─── Mock data for development (no Shopify store yet) ─────────────────────────
-
-function mockVariant(id: string, price: string): NormalizedVariant {
-  return {
-    id,
-    title: "Default Title",
-    availableForSale: true,
-    price,
-    compareAtPrice: null,
-    selectedOptions: [],
-    sellingPlans: [],
-  };
-}
-
-export const MOCK_PRODUCTS: NormalizedProduct[] = [
-  {
-    id: "mock-1",
-    handle: "signature-blend",
-    title: "Signature Blend",
-    description: "Our flagship medium roast from Guatemala. Rich, balanced, smooth.",
-    descriptionHtml:
-      "<p>Our flagship medium roast from Guatemala. Rich, balanced, smooth.</p>",
-    image: null,
-    price: "18.00",
-    currencyCode: "USD",
-    variantId: "mock-variant-1",
-    availableForSale: true,
-    options: [],
-    variants: [mockVariant("mock-variant-1", "18.00")],
-  },
-  {
-    id: "mock-2",
-    handle: "single-origin-ethiopia",
-    title: "Single Origin Ethiopia",
-    description: "Bright and fruity with notes of blueberry and citrus.",
-    descriptionHtml: "<p>Bright and fruity with notes of blueberry and citrus.</p>",
-    image: null,
-    price: "22.00",
-    currencyCode: "USD",
-    variantId: "mock-variant-2",
-    availableForSale: true,
-    options: [],
-    variants: [mockVariant("mock-variant-2", "22.00")],
-  },
-  {
-    id: "mock-3",
-    handle: "nitro-cold-brew-can",
-    title: "Espresso Concentrate 25oz",
-    description: "Velvety smooth concentrate brewed Kyoto-style.",
-    descriptionHtml: "<p>Velvety smooth concentrate brewed Kyoto-style.</p>",
-    image: null,
-    price: "6.00",
-    currencyCode: "USD",
-    variantId: "mock-variant-3",
-    availableForSale: true,
-    options: [],
-    variants: [mockVariant("mock-variant-3", "6.00")],
-  },
-];
-
 export function formatPrice(amount: string, currencyCode = "USD"): string {
   return new Intl.NumberFormat("en-US", {
     style: "currency",
