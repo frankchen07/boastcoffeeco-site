@@ -16,7 +16,8 @@ export const metadata: Metadata = {
 async function getAllProducts(): Promise<NormalizedProduct[]> {
   try {
     return await getProducts(12);
-  } catch {
+  } catch (err) {
+    console.error("Shop products error:", err);
     return [];
   }
 }

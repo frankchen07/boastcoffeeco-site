@@ -28,7 +28,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     }));
     return [...staticRoutes, ...productRoutes];
-  } catch {
+  } catch (err) {
+    console.error("Sitemap products error:", err);
     return staticRoutes;
   }
 }

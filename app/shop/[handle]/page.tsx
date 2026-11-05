@@ -28,7 +28,8 @@ export default async function ProductPage({ params }: Props) {
   let product;
   try {
     product = await getProduct(handle);
-  } catch {
+  } catch (err) {
+    console.error("Shop product error:", err);
     product = null;
   }
 
