@@ -15,6 +15,7 @@ export interface ShopifySellingPlan {
   name: string;
   description: string | null;
   recurringDeliveries: boolean;
+  deliveryPolicy: { interval?: "DAY" | "WEEK" | "MONTH" | "YEAR"; intervalCount?: number } | null;
 }
 
 export interface ShopifySellingPlanAllocation {
@@ -55,6 +56,17 @@ export interface ShopifyProduct {
     maxVariantPrice: ShopifyMoneyV2;
   };
   options: ShopifyProductOption[];
+  sellingPlanGroups: {
+    edges: {
+      node: {
+        sellingPlans: {
+          edges: {
+            node: { id: string };
+          }[];
+        };
+      };
+    }[];
+  };
   variants: { edges: { node: ShopifyProductVariant }[] };
 }
 

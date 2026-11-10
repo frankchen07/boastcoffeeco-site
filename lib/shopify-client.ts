@@ -1,6 +1,7 @@
 import type {
   ShopifyProduct,
   ShopifyProductVariant,
+  ShopifySellingPlan,
   Cart,
   NormalizedProduct,
   NormalizedVariant,
@@ -43,6 +44,17 @@ const PRODUCT_FRAGMENT = `
       maxVariantPrice { amount currencyCode }
     }
     options { name values }
+    sellingPlanGroups(first: 10) {
+      edges {
+        node {
+          sellingPlans(first: 10) {
+            edges {
+              node { id }
+            }
+          }
+        }
+      }
+    }
     variants(first: 10) {
       edges {
         node {
@@ -55,7 +67,12 @@ const PRODUCT_FRAGMENT = `
           sellingPlanAllocations(first: 10) {
             edges {
               node {
-                sellingPlan { id name description recurringDeliveries }
+                sellingPlan {
+                  id name description recurringDeliveries
+                  deliveryPolicy {
+                    ... on SellingPlanRecurringDeliveryPolicy { interval intervalCount }
+                  }
+                }
                 priceAdjustments { price { amount currencyCode } }
               }
             }
@@ -109,7 +126,35 @@ function toPlainText(html: string | null): string | null {
   return text || null;
 }
 
-function normalizeVariant(variant: ShopifyProductVariant): NormalizedVariant {
+const INTERVAL_DAYS = { DAY: 1, WEEK: 7, MONTH: 30, YEAR: 365 };
+
+// Storefront returns a variant's plans in creation order; sort by the order it returns
+// product.sellingPlanGroups in, then most frequent delivery first. Unknown plans sort last.
+function sellingPlanGroupIndex(product: ShopifyProduct): Map<string, number> {
+  const groupIndex = new Map<string, number>();
+  product.sellingPlanGroups.edges.forEach(({ node: group }, index) => {
+    for (const { node: plan } of group.sellingPlans.edges) groupIndex.set(plan.id, index);
+  });
+  return groupIndex;
+}
+
+function deliveryDays({ deliveryPolicy }: ShopifySellingPlan): number {
+  return deliveryPolicy?.interval
+    ? INTERVAL_DAYS[deliveryPolicy.interval] * (deliveryPolicy.intervalCount ?? 1)
+    : Infinity;
+}
+
+function normalizeVariant(
+  variant: ShopifyProductVariant,
+  groupIndex: Map<string, number>
+): NormalizedVariant {
+  const group = (plan: ShopifySellingPlan) => groupIndex.get(plan.id) ?? groupIndex.size;
+  const allocations = [...variant.sellingPlanAllocations.edges].sort(
+    ({ node: a }, { node: b }) =>
+      group(a.sellingPlan) - group(b.sellingPlan) ||
+      deliveryDays(a.sellingPlan) - deliveryDays(b.sellingPlan) ||
+      0
+  );
   return {
     id: variant.id,
     title: variant.title,
@@ -117,7 +162,7 @@ function normalizeVariant(variant: ShopifyProductVariant): NormalizedVariant {
     price: variant.price.amount,
     compareAtPrice: variant.compareAtPrice?.amount ?? null,
     selectedOptions: variant.selectedOptions,
-    sellingPlans: variant.sellingPlanAllocations.edges.map(({ node }) => ({
+    sellingPlans: allocations.map(({ node }) => ({
       id: node.sellingPlan.id,
       name: node.sellingPlan.name,
       description: toPlainText(node.sellingPlan.description),
@@ -127,7 +172,8 @@ function normalizeVariant(variant: ShopifyProductVariant): NormalizedVariant {
 }
 
 function normalizeProduct(product: ShopifyProduct): NormalizedProduct {
-  const variants = product.variants.edges.map(({ node }) => normalizeVariant(node));
+  const groupIndex = sellingPlanGroupIndex(product);
+  const variants = product.variants.edges.map(({ node }) => normalizeVariant(node, groupIndex));
   const firstVariant = variants[0];
   return {
     id: product.id,

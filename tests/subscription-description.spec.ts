@@ -1,13 +1,13 @@
 import { test, expect } from '@playwright/test';
 
 const BASE_URL = process.env.BASE_URL ?? 'http://localhost:3000';
-// Real product with Appstle selling plans (Monthly + 6 Month)
+// Real product with Appstle selling plans (short-term + long-term groups)
 const PRODUCT = '/shop/keep-it-movin-house-blend-peru-mexico';
 
 test('selling plan description shows only once that plan is selected', async ({ page }) => {
   await page.goto(`${BASE_URL}${PRODUCT}`);
 
-  const monthly = page.getByRole('radio', { name: /Monthly Subscription/ });
+  const monthly = page.getByRole('radio', { name: /1 month subscription/i });
   const description = page.locator('#selling-plan-description');
 
   await expect(description).toHaveCount(0);
